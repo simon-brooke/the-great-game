@@ -136,8 +136,8 @@ thousands of user-contributed add-on 'mods', mostly stories and quests,
 for Neverwinter Nights, of which I wrote several - and I greatly enjoyed
 doing so.
 
-Later on, with Carrol Dufault and others (including
-[wonderful original music by James Semple](https://www.youtube.com/watch?v=1afAIojPZ1w)), I went on to write a [new story for The Witcher](https://www.moddb.com/mods/birth-virgins) which won CD Project's prize for best mod.
+Later on, with Carrol Dufault and others (including James Semple who wrote
+[wonderful original music](https://www.youtube.com/watch?v=1afAIojPZ1w)), I went on to write a [new story for The Witcher](https://www.moddb.com/mods/birth-virgins) which won CD Project's prize for best mod.
 
 For me, writing story is every bit as compelling an activity as playing it,
 and I know I'm not alone in that. So I feel strongly that if **The Great Game**
