@@ -46,15 +46,15 @@
 
   The returned plan is a map with keys:
 
-  # :merchant - the id of the `merchant` for whom the plan was created;
-  # :origin - the city from which the trade starts;
-  # :destination - the city to which the trade is planned;
-  # :commodity - the `commodity` to be carried;
-  # :buy-price - the price at which that `commodity` can be bought;
-  # :expected-price - the price at which the `merchant` anticipates
+* :merchant - the id of the `merchant` for whom the plan was created;
+* :origin - the city from which the trade starts;
+* :destination - the city to which the trade is planned;
+* :commodity - the `commodity` to be carried;
+* :buy-price - the price at which that `commodity` can be bought;
+* :expected-price - the price at which the `merchant` anticipates
       that `commodity` can be sold;
-  # :distance - the number of stages in the planned journey
-  # :dist-to-home - the distance from `destination` to the `merchant`'s
+* :distance - the number of stages in the planned journey
+* :dist-to-home - the distance from `destination` to the `merchant`'s
       home city."
   [merchant world commodity]
   (let [m (cond
