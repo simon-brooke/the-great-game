@@ -44,3 +44,14 @@
          (empty? found)
          (find-routes routes from to paths)
          found)))))
+
+(defn find-route
+  "Find a single route from `from` to `to` in this `world-or-routes`, which
+  may be either a world as defined in [[the-great-game.world.world]] or else
+  a sequence of tuples of keywords."
+  [world-or-routes from to]
+  (first
+    (find-routes
+      (or (:routes world-or-routes) world-or-routes)
+      from
+      to)))

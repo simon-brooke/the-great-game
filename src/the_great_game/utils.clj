@@ -1,6 +1,5 @@
 (ns the-great-game.utils)
 
-
 (defn cyclic?
   "True if two or more elements of `route` are identical"
   [route]
@@ -15,3 +14,4 @@
                (apply merge-with m xs)
                (last xs)))]
     (reduce m maps)))
+

@@ -9,7 +9,8 @@
 
 (def default-world
   "A basic world for testing concepts"
-  {:cities
+  {:date 0 ;; the age of this world in game days
+   :cities
    {:aberdeen
     {:id :aberdeen
      :supplies
@@ -181,4 +182,9 @@
   [world commodity city]
   (-> world :cities city :prices commodity))
 
-
+(defn run
+  "Return a world like this `world` with only the `:date` value updated
+  (incremented by one). For running other aspects of the simulation, see
+  [[the-great-game.world.run#var-run]]."
+  [world]
+  (assoc world :date (inc (or (:date world) 0))))
