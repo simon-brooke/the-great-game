@@ -24,7 +24,7 @@
      ;; the end of each game day.
      {:iron 1
       :cloth 10
-      :tobacco 10}
+      :whisky 10}
      :port true
      :prices
      ;; `prices`: the current price (both buying and selling, for simplicity)
@@ -34,7 +34,7 @@
       :fish 1
       :leather 1
       :iron 1
-      :tobacco 1}
+      :whisky 1}
      :stock
      ;; `stock` is the quantity of each commodity in the market at any
      ;; given time. It is adjusted for production and consumption at
@@ -43,7 +43,7 @@
       :fish 0
       :leather 0
       :iron 0
-      :tobacco 0}
+      :whisky 0}
      :cash 100}
     :buckie
     {:id :buckie
@@ -52,19 +52,19 @@
      :demands
      {:cloth 5
       :leather 3
-      :tobacco 5
+      :whisky 5
       :iron 1}
      :port true
      :prices {:cloth 1
               :fish 1
               :leather 1
               :iron 1
-              :tobacco 1}
+              :whisky 1}
      :stock {:cloth 0
              :fish 0
              :leather 0
              :iron 0
-             :tobacco 0}
+             :whisky 0}
      :cash 100}
     :callander
     {:id :callander
@@ -72,18 +72,18 @@
      :demands
      {:cloth 5
       :fish 3
-      :tobacco 5
+      :whisky 5
       :iron 1}
      :prices {:cloth 1
               :fish 1
               :leather 1
               :iron 1
-              :tobacco 1}
+              :whisky 1}
      :stock {:cloth 0
              :fish 0
              :leather 0
              :iron 0
-             :tobacco 0}
+             :whisky 0}
      :cash 100}
     :dundee {:id :dundee}
     :edinburgh {:id :dundee}
@@ -93,23 +93,23 @@
      :demands
      {:cloth 5
       :leather 3
-      :tobacco 5
+      :whisky 5
       :fish 10}
      :port true
      :prices {:cloth 1
               :fish 1
               :leather 1
               :iron 1
-              :tobacco 1}
+              :whisky 1}
      :stock {:cloth 0
              :fish 0
              :leather 0
              :iron 0
-             :tobacco 0}
+             :whisky 0}
      :cash 100}
     :glasgow
     {:id :glasgow
-     :supplies {:tobacco 10}
+     :supplies {:whisky 10}
      :demands
      {:cloth 5
       :leather 3
@@ -120,12 +120,12 @@
               :fish 1
               :leather 1
               :iron 1
-              :tobacco 1}
+              :whisky 1}
      :stock {:cloth 0
              :fish 0
              :leather 0
              :iron 0
-             :tobacco 0}
+             :whisky 0}
      :cash 100}}
    :merchants
    {:archie {:id :archie
@@ -171,7 +171,7 @@
    {:cloth {:id :cloth :cost 1 :weight 0.25}
     :fish {:id :fish :cost 1 :weight 1}
     :leather {:id :leather :cost 1 :weight 0.5}
-    :tobacco {:id :tobacco :cost 1 :weight 0.1}
+    :whisky {:id :whisky :cost 1 :weight 0.1}
     :iron {:id :iron :cost 1 :weight 10}}})
 
 (defn actual-price
