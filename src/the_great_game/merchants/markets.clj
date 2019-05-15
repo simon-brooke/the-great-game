@@ -1,6 +1,7 @@
 (ns the-great-game.merchants.markets
   "Adjusting quantities and prices in markets."
-  (:require [the-great-game.utils :refer [deep-merge]]
+  (:require [taoensso.timbre :as l :refer [info error]]
+            [the-great-game.utils :refer [deep-merge]]
             [the-great-game.world.world :refer [actual-price default-world]]))
 
 (defn new-price
@@ -38,12 +39,15 @@
                     (> su st)
                     (- su st)
                     true 0)
-        price (new-price p st su d)]
+        n (new-price p st su d)]
+    (if
+      (not (= p n))
+      (l/info "Price of " commodity " at " id " has changed from " (float p) " to " (float n)))
     {:cities {id
               {:stock
                {commodity (+ (- st decrement) increment)}
                :prices
-               {commodity price}}}}))
+               {commodity n}}}}))
 
 
 (defn update-markets

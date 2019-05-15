@@ -2,6 +2,7 @@
   "Trade planning for merchants, primarily."
   (:require [taoensso.timbre :as l :refer [info error]]
             [the-great-game.utils :refer [deep-merge]]
+            [the-great-game.gossip.gossip :refer [move-gossip]]
             [the-great-game.world.routes :refer [find-route]]
             [the-great-game.world.world :refer [actual-price default-world]]))
 
@@ -309,16 +310,19 @@
              :cash (+ (:cash market) p)}}})
         ;; if no plan, then if at home stay put
         (= (:location m) (:home m))
-        {}
+        (do
+          (l/info "Merchant " id " remains at home in " location)
+          {})
         ;; else move towards home
         true
         (let [route (find-route world location (:home m))
               next-location (nth route 1)]
           (l/info "No trade possible at " location "; merchant " id " moves to " next-location)
-          {:merchants
+          (merge
+            {:merchants
            {id
-            {:location next-location}}})))))
-
+            {:location next-location}}}
+            (move-gossip id world next-location)))))))
 
 (defn re-plan
   "Having failed to sell a cargo at current location, re-plan a route to
@@ -337,7 +341,6 @@
       {:merchants
        {id
         {:plan plan}}})))
-
 
 (defn sell-and-buy
   "Return a new world like this `world`, in which this `merchant` has sold
@@ -381,7 +384,6 @@
       ;; else
       (re-plan merchant world))))
 
-
 (defn move-merchant
   "Handle general en route movement of this `merchant` in this `world`."
   [merchant world]
@@ -396,18 +398,23 @@
         next-location (if plan
                         (nth 1 (find-route world (:location m) (:destination plan)))
                         (:location m))]
-    (l/info "Merchant " id " at " (:location m))
-    (cond at-destination?
-          (sell-and-buy merchant world plan)
-          (nil? (:plan m))
-          (plan-and-buy merchant world)
-          true
-          {:merchants
-           {id
-            {:id id
-             :location next-location
-             :known-prices (add-known-prices m world)}}})))
-
+    (l/info "Merchant " id " has moved from " (:location m) " to " next-location)
+    (cond
+      ;; if the merchant is at the destination of their current plan
+      ;; sell all cargo and repurchase.
+      at-destination?
+      (sell-and-buy merchant world plan)
+      ;; if they don't have a plan, seek to create one
+      (nil? (:plan m))
+      (plan-and-buy merchant world)
+      ;; otherwise, move one step towards their destination
+      true
+      (deep-merge
+        {:merchants
+         {id
+          {:location next-location
+           :known-prices (add-known-prices m world)}}}
+        (move-gossip id world next-location)))))
 
 (defn run
   "Return a world like this `world`, but with each merchant moved."

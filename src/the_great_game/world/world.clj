@@ -185,6 +185,6 @@
 (defn run
   "Return a world like this `world` with only the `:date` value updated
   (incremented by one). For running other aspects of the simulation, see
-  [[the-great-game.world.run#var-run]]."
+  [[the-great-game.world.run]]."
   [world]
   (assoc world :date (inc (or (:date world) 0))))

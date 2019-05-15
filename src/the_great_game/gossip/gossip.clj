@@ -40,6 +40,24 @@
                #(= (:location %) (:location g))
                (vals (:gossips world))))))}})))
 
+(defn move-gossip
+  "Return a world like this `world` but with this `gossip` moved to this
+  `new-location`. Many gossips are essentially shadow-records of agents of
+  other types, and the movement if the gossip should be controlled by the
+  run function of the type of the record they shadow. The [[#run]] function
+  below does NOT call this function."
+  [gossip world new-location]
+  (let [id (cond
+            (map? gossip)
+            (:id (-> world :gossipe gossip)
+            (keyword? gossip)
+            gossip))]
+  (deep-merge
+    world
+    {:gossips
+     {id
+      {:location new-location}}})))
+
 (defn run
   "Return a world like this `world`, with news items exchanged between gossip
   agents."
