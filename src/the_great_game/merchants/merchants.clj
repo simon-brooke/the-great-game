@@ -1,6 +1,6 @@
 (ns the-great-game.merchants.merchants
   "Trade planning for merchants, primarily."
-  (:require [taoensso.timbre :as l :refer [info error]]
+  (:require [taoensso.timbre :as l :refer [info error spy]]
             [the-great-game.utils :refer [deep-merge]]
             [the-great-game.gossip.gossip :refer [move-gossip]]
             [the-great-game.world.routes :refer [find-route]]
@@ -30,7 +30,7 @@
             (-> world :merchants merchant)
             (map? merchant)
             merchant)
-        cargo (-> m :stock)]
+        cargo (:stock m)]
     (reduce
       +
       0
@@ -65,26 +65,26 @@
 
   Returned plans are maps with keys:
 
-* :merchant - the id of the `merchant` for whom the plan was created;
-* :origin - the city from which the trade starts;
-* :destination - the city to which the trade is planned;
-* :commodity - the `commodity` to be carried;
-* :buy-price - the price at which that `commodity` can be bought;
-* :expected-price - the price at which the `merchant` anticipates
-      that `commodity` can be sold;
-* :distance - the number of stages in the planned journey
-* :dist-to-home - the distance from `destination` to the `merchant`'s
-      home city."
+  * :merchant - the id of the `merchant` for whom the plan was created;
+  * :origin - the city from which the trade starts;
+  * :destination - the city to which the trade is planned;
+  * :commodity - the `commodity` to be carried;
+  * :buy-price - the price at which that `commodity` can be bought;
+  * :expected-price - the price at which the `merchant` anticipates
+  that `commodity` can be sold;
+  * :distance - the number of stages in the planned journey
+  * :dist-to-home - the distance from `destination` to the `merchant`'s
+  home city."
   [merchant world commodity]
   (let [m (cond
             (keyword? merchant)
             (-> world :merchants merchant)
             (map? merchant)
             merchant)
-        origin (-> m :location)]
+        origin (:location m)]
     (map
       #(hash-map
-         :merchant (-> m :id)
+         :merchant (:id m)
          :origin origin
          :destination %
          :commodity commodity
@@ -97,10 +97,10 @@
                      (find-route world origin %))
          :dist-to-home (count
                          (find-route
-                             world
-                             (:home m)
-                             %)))
-      (remove #(= % origin) (keys (-> world :cities))))))
+                           world
+                           (:home m)
+                           %)))
+      (remove #(= % origin) (-> world :cities keys)))))
 
 (defn nearest-with-targets
   "Return the distance to the nearest destination among those of these
@@ -183,7 +183,7 @@
             merchant)
         l (:location m)]
     (quot
-      (-> m :cash)
+      (:cash m)
       (-> world :cities l :prices commodity))))
 
 (defn augment-plan
@@ -219,7 +219,7 @@
             (-> world :merchants merchant)
             (map? merchant)
             merchant)
-        origin (-> m :location)
+        origin (:location m)
         available (-> world :cities origin :stock)
         plans (map
                 #(augment-plan
@@ -228,7 +228,7 @@
                    (plan-trade m world %))
                 (filter
                   #(let [q (-> world :cities origin :stock %)]
-                     (and (number? q) (> q 0)))
+                     (and (number? q) (pos? q)))
                   (keys available)))]
     (if
       (not (empty? plans))
@@ -281,48 +281,48 @@
   a new trade, and bought appropriate stock for it. If no profitable trade
   can be planned, the merchant is simply moved towards their home."
   [merchant world]
-  (deep-merge
-    world
-    (let [m (cond
-              (keyword? merchant)
-              (-> world :merchants merchant)
-              (map? merchant)
-              merchant)
-          id (:id m)
-          location (:location m)
-          market (-> world :cities location)
-          plan (select-cargo merchant world)]
-      (cond
-        (not (empty? plan))
-        (let
-          [c (:commodity plan)
-           p (* (:quantity plan) (:buy-price plan))
-           q (:quantity plan)]
-          (l/info "Merchant " id " bought " q " units of " c " at " location " for " p)
+  (let [m (cond
+            (keyword? merchant)
+            (-> world :merchants merchant)
+            (map? merchant)
+            merchant)
+        id (:id m)
+        location (:location m)
+        market (-> world :cities location)
+        plan (select-cargo merchant world)]
+    (l/debug "plan-and-buy: merchant" id)
+    (cond
+      (not (empty? plan))
+      (let
+        [c (:commodity plan)
+         p (* (:quantity plan) (:buy-price plan))
+         q (:quantity plan)]
+        (l/info "Merchant" id "bought" q "units of" c "at" location "for" p plan)
+        {:merchants
+         {id
+          {:stock (add-stock (:stock m) {c q})
+           :cash (- (:cash m) p)
+           :known-prices (add-known-prices m world)
+           :plan plan}}
+         :cities
+         {location
+          {:stock (assoc (:stock market) c (- (-> market :stock c) q))
+           :cash (+ (:cash market) p)}}})
+      ;; if no plan, then if at home stay put
+      (= (:location m) (:home m))
+      (do
+        (l/info "Merchant" id "remains at home in" location)
+        {})
+      ;; else move towards home
+      :else
+      (let [route (find-route world location (:home m))
+            next-location (nth route 1)]
+        (l/info "No trade possible at" location "; merchant" id "moves to" next-location)
+        (merge
           {:merchants
            {id
-            {:stock (add-stock (:stock m) {c q})
-             :cash (- (:cash m) p)
-             :known-prices (add-known-prices m world)}}
-           :cities
-           {location
-            {:stock (assoc (:stock market) c (- (-> market :stock c) q))
-             :cash (+ (:cash market) p)}}})
-        ;; if no plan, then if at home stay put
-        (= (:location m) (:home m))
-        (do
-          (l/info "Merchant " id " remains at home in " location)
-          {})
-        ;; else move towards home
-        true
-        (let [route (find-route world location (:home m))
-              next-location (nth route 1)]
-          (l/info "No trade possible at " location "; merchant " id " moves to " next-location)
-          (merge
-            {:merchants
-           {id
             {:location next-location}}}
-            (move-gossip id world next-location)))))))
+          (move-gossip id world next-location))))))
 
 (defn re-plan
   "Having failed to sell a cargo at current location, re-plan a route to
@@ -336,6 +336,7 @@
         id (:id m)
         location (:location m)
         plan (augment-plan m world (plan-trade m world (-> m :plan :commodity)))]
+    (l/debug "re-plan: merchant" id)
     (deep-merge
       world
       {:merchants
@@ -363,11 +364,11 @@
                       (map
                         #(* (-> m :stock %) (-> market :prices m))
                         (keys (:stock m))))]
+    (l/debug "sell-and-buy: merchant" id)
     (if
       (>= (:cash market) stock-value)
       (do
-        (l/info
-          (apply str (flatten (list "Merchant " id " sells " (:stock m) " at " location " for " stock-value))))
+        (l/info "Merchant" id "sells" (:stock m) "at" location "for" stock-value)
         (plan-and-buy
           merchant
           (deep-merge
@@ -385,7 +386,9 @@
       (re-plan merchant world))))
 
 (defn move-merchant
-  "Handle general en route movement of this `merchant` in this `world`."
+  "Handle general en route movement of this `merchant` in this `world`;
+  return a (partial or full) world like this `world` but in which the
+  merchant may have been moved ot updated."
   [merchant world]
   (let [m (cond
             (keyword? merchant)
@@ -396,28 +399,42 @@
         at-destination? (and (:plan m) (= (:location m) (-> m :plan :destination)))
         plan (:plan m)
         next-location (if plan
-                        (nth 1 (find-route world (:location m) (:destination plan)))
+                        (nth
+                          (find-route
+                            world
+                            (:location m)
+                            (:destination plan))
+                          1)
                         (:location m))]
-    (l/info "Merchant " id " has moved from " (:location m) " to " next-location)
+    (l/debug "move-merchant: merchant" id "at" (:location m)
+             "destination" (-> m :plan :destination) "next" next-location
+             "at destination" at-destination?)
     (cond
       ;; if the merchant is at the destination of their current plan
       ;; sell all cargo and repurchase.
       at-destination?
-      (sell-and-buy merchant world plan)
+      (sell-and-buy merchant world)
       ;; if they don't have a plan, seek to create one
-      (nil? (:plan m))
+      (nil? plan)
       (plan-and-buy merchant world)
       ;; otherwise, move one step towards their destination
-      true
-      (deep-merge
-        {:merchants
-         {id
-          {:location next-location
-           :known-prices (add-known-prices m world)}}}
-        (move-gossip id world next-location)))))
+      (and next-location (not= next-location (:location m)))
+      (do
+        (l/info "Merchant " id " moving from " (:location m) " to " next-location)
+        (deep-merge
+          {:merchants
+           {id
+            {:location next-location
+             :known-prices (add-known-prices m world)}}}
+          (move-gossip id world next-location)))
+      :else
+      (do
+        (l/info "Merchant" id "has plan but no next-location; currently at"
+                (:location m) ", destination is" (:destination plan))
+        world))))
 
 (defn run
-  "Return a world like this `world`, but with each merchant moved."
+  "Return a partial world based on this `world`, but with each merchant moved."
   [world]
   (try
     (reduce
@@ -429,7 +446,7 @@
            (catch Exception any
              (l/error any "Failure while moving merchant " %)
              {}))
-        (keys (:merchants world))))
+      (keys (:merchants world))))
     (catch Exception any
       (l/error any "Failure while moving merchants")
       world)))

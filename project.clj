@@ -4,6 +4,7 @@
           :output-path "docs"
           :source-uri "https://github.com/simon-brooke/the-great-game/blob/master/{filepath}#L{line}"}
   :dependencies [[org.clojure/clojure "1.8.0"]
+                 [environ "1.1.0"]
                  [com.taoensso/timbre "4.10.0"]]
   :description "Prototype code towards the great game I've been writing about for ten years, and know I will never finish."
   :license {:name "GNU General Public License,version 2.0 or (at your option) any later version"

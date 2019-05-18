@@ -49,9 +49,9 @@
   [gossip world new-location]
   (let [id (cond
             (map? gossip)
-            (:id (-> world :gossipe gossip)
+            (-> world :gossips gossip :id)
             (keyword? gossip)
-            gossip))]
+            gossip)]
   (deep-merge
     world
     {:gossips
