@@ -15,3 +15,21 @@
                (last xs)))]
     (reduce m maps)))
 
+(defn make-target-filter
+  "Construct a filter which, when applied to a list of maps,
+  will pass those which match these `targets`, where each target
+  is a tuple [key value]."
+  ;; TODO: this would probably be more elegant as a macro
+  [targets]
+  (eval
+    (list
+      'fn
+      (vector 'm)
+      (cons
+        'and
+        (map
+          #(list
+             '=
+             (list (first %) 'm)
+             (nth % 1))
+          targets)))))
