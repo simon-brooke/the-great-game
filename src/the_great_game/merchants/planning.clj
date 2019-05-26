@@ -1,5 +1,8 @@
 (ns the-great-game.merchants.planning
-  "Trade planning for merchants, primarily."
+  "Trade planning for merchants, primarily. This follows a simple-minded
+  generate-and-test strategy and currently generates plans for all possible
+  routes from the current location. This may not scale. Also, routes do not
+  currently have cost or risk associated with them."
   (:require [the-great-game.utils :refer [deep-merge make-target-filter]]
             [the-great-game.merchants.merchant-utils :refer :all]
             [the-great-game.world.routes :refer [find-route]]
