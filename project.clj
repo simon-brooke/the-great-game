@@ -10,7 +10,8 @@
   :description "Prototype code towards the great game I've been writing about for ten years, and know I will never finish."
   :license {:name "GNU General Public License,version 2.0 or (at your option) any later version"
             :url "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"}
-  :plugins [[lein-codox "0.10.3"]]
+  :plugins [[lein-cloverage "1.1.1"]
+            [lein-codox "0.10.7"]]
 
   :release-tasks [["vcs" "assert-committed"]
                   ["change" "version" "leiningen.release/bump-version" "release"]
