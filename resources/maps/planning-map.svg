@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1189mm"
+   height="841mm"
+   viewBox="0 0 1189 841"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="planning-map.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.49497475"
+     inkscape:cx="1453.7159"
+     inkscape:cy="582.07921"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,544)">
+    <image
+       sodipodi:absref="/home/simon/workspace/the-great-game/resources/maps/heightmap.inverted.png"
+       xlink:href="heightmap.inverted.png"
+       style="fill:#550000"
+       width="1164.0658"
+       height="1164.0658"
+       preserveAspectRatio="none"
+       id="image985"
+       x="142.94299"
+       y="-531.93903" />
+    <ellipse
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path988"
+       cx="473.33432"
+       cy="72.760857"
+       rx="1.3363476"
+       ry="1.0690781" />
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="161.49434"
+       cx="441.79651"
+       id="ellipse999"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="118.9985"
+       cx="486.16327"
+       id="ellipse999-4"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="158.28711"
+       cx="537.74628"
+       id="ellipse999-8"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="129.08792"
+       cx="528.25818"
+       id="ellipse999-3"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="63.406433"
+       cx="812.23212"
+       id="ellipse999-1"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="9.6852579"
+       cx="794.05774"
+       id="ellipse999-2"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="165.77066"
+       cx="667.10474"
+       id="ellipse999-28"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="477.34338"
+       y="73.829979"
+       id="text1048"><tspan
+         sodipodi:role="line"
+         id="tspan1046"
+         x="477.34338"
+         y="73.829979"
+         style="stroke-width:0.26458332px">Hans'hua</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="445.271"
+       y="160.42528"
+       id="text1052"><tspan
+         sodipodi:role="line"
+         id="tspan1050"
+         x="445.271"
+         y="160.42528"
+         style="stroke-width:0.26458332px">Tchahua</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="486.43051"
+       y="124.07665"
+       id="text1056"><tspan
+         sodipodi:role="line"
+         id="tspan1054"
+         x="486.43051"
+         y="124.07665"
+         style="stroke-width:0.26458332px">Sinhua</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="541.48804"
+       y="158.5544"
+       id="text1060"><tspan
+         sodipodi:role="line"
+         id="tspan1058"
+         x="541.48804"
+         y="158.5544"
+         style="stroke-width:0.26458332px">Huandun</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="530.53003"
+       y="131.29291"
+       id="text1064"><tspan
+         sodipodi:role="line"
+         id="tspan1062"
+         x="530.53003"
+         y="131.29291"
+         style="stroke-width:0.26458332px">Koantuan</tspan></text>
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="8.0816402"
+       cx="302.5491"
+       id="ellipse999-6"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="306.02362"
+       y="8.6161976"
+       id="text1083"><tspan
+         sodipodi:role="line"
+         id="tspan1081"
+         x="306.02362"
+         y="8.6161976"
+         style="stroke-width:0.26458332px">Silverhold</tspan></text>
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="48.973877"
+       cx="288.65109"
+       id="ellipse999-12"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#550000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="291.32379"
+       y="50.577526"
+       id="text1093"><tspan
+         sodipodi:role="line"
+         id="tspan1091"
+         x="291.32379"
+         y="50.577526"
+         style="stroke-width:0.26458332px">Longwater</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="797.79956"
+       y="9.9525499"
+       id="text1097"><tspan
+         sodipodi:role="line"
+         id="tspan1095"
+         x="797.79956"
+         y="9.9525499"
+         style="stroke-width:0.26458332px">Horsewatermeet</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="773.47803"
+       y="58.595604"
+       id="text1101"><tspan
+         sodipodi:role="line"
+         id="tspan1099"
+         x="773.47803"
+         y="58.595604"
+         style="stroke-width:0.26458332px">The City at Her Gates</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="670.31201"
+       y="166.83974"
+       id="text1105"><tspan
+         sodipodi:role="line"
+         x="670.31201"
+         y="166.83974"
+         style="stroke-width:0.26458332px"
+         id="tspan1177">Quanjun</tspan></text>
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="65.811859"
+       cx="636.36877"
+       id="ellipse999-28-3"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="132.36197"
+       cx="466.38531"
+       id="ellipse999-28-9"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="469.8598"
+       y="134.76741"
+       id="text1130"><tspan
+         sodipodi:role="line"
+         id="tspan1128"
+         x="469.8598"
+         y="134.76741"
+         style="stroke-width:0.26458332px">Black Ford</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="607.23639"
+       y="70.889977"
+       id="text1134"><tspan
+         sodipodi:role="line"
+         id="tspan1132"
+         x="607.23639"
+         y="70.889977"
+         style="stroke-width:0.26458332px">Dragon Festival Site</tspan></text>
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="106.16956"
+       cx="462.10904"
+       id="ellipse999-28-95"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="465.58353"
+       y="107.50593"
+       id="text1163"><tspan
+         sodipodi:role="line"
+         id="tspan1161"
+         x="465.58353"
+         y="107.50593"
+         style="stroke-width:0.26458332px">South </tspan><tspan
+         sodipodi:role="line"
+         x="465.58353"
+         y="112.46687"
+         style="stroke-width:0.26458332px"
+         id="tspan1165">Inn</tspan></text>
+    <ellipse
+       ry="1.0690781"
+       rx="1.3363476"
+       cy="38.817635"
+       cx="469.05801"
+       id="ellipse999-28-2"
+       style="opacity:1;fill:#550000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.96875px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="472.53253"
+       y="40.955826"
+       id="text1175"><tspan
+         sodipodi:role="line"
+         id="tspan1173"
+         x="472.53253"
+         y="40.955826"
+         style="stroke-width:0.26458332px">North Inn</tspan></text>
+  </g>
+</svg>
