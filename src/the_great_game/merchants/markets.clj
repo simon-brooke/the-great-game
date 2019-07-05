@@ -1,8 +1,7 @@
 (ns the-great-game.merchants.markets
   "Adjusting quantities and prices in markets."
   (:require [taoensso.timbre :as l :refer [info error]]
-            [the-great-game.utils :refer [deep-merge]]
-            [the-great-game.world.world :refer [actual-price default-world]]))
+            [the-great-game.utils :refer [deep-merge]]))
 
 (defn new-price
   "If `stock` is greater than the maximum of `supply` and `demand`, then
@@ -30,19 +29,24 @@
         su (or (-> c :supplies commodity) 0)
         decrement (min st d)
         increment (cond
-                    ;; if its profitable to produce this commodity, the craftspeople
-                    ;; of the city will do so.
+                    ;; if we've two turns' production of this commodity in
+                    ;; stock, halt production
+                    (> st (* su 2))
+                    0
+                    ;; if it is profitable to produce this commodity, the
+                    ;; craftspeople of the city will do so.
                     (> p 1) su
-                    ;; otherwise, if there isn't a turn's production in stock, top up
-                    ;; the stock, so that there's something for incoming merchants to
-                    ;; buy
+                    ;; otherwise, if there isn't a turn's production in
+                    ;; stock, top up the stock, so that there's something for
+                    ;; incoming merchants to buy
                     (> su st)
                     (- su st)
-                    true 0)
+                    :else
+                    0)
         n (new-price p st su d)]
     (if
-      (not (= p n))
-      (l/info "Price of " commodity " at " id " has changed from " (float p) " to " (float n)))
+      (not= p n)
+      (l/info "Price of" commodity "at" id "has changed from" (float p) "to" (float n)))
     {:cities {id
               {:stock
                {commodity (+ (- st decrement) increment)}

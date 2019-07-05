@@ -1,0 +1,260 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../../coverage.css"/>  <title> the_great_game/merchants/markets.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;the-great-game.merchants.markets
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;&quot;Adjusting&nbsp;quantities&nbsp;and&nbsp;prices&nbsp;in&nbsp;markets.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[taoensso.timbre&nbsp;:as&nbsp;l&nbsp;:refer&nbsp;[info&nbsp;error]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[the-great-game.utils&nbsp;:refer&nbsp;[deep-merge]]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                006&nbsp;&nbsp;(defn&nbsp;new-price
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;&nbsp;&nbsp;&quot;If&nbsp;`stock`&nbsp;is&nbsp;greater&nbsp;than&nbsp;the&nbsp;maximum&nbsp;of&nbsp;`supply`&nbsp;and&nbsp;`demand`,&nbsp;then
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                008&nbsp;&nbsp;&nbsp;&nbsp;there&nbsp;is&nbsp;surplus&nbsp;and&nbsp;`old`&nbsp;price&nbsp;is&nbsp;too&nbsp;high,&nbsp;so&nbsp;shold&nbsp;be&nbsp;reduced.&nbsp;If
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;&nbsp;&nbsp;lower,&nbsp;then&nbsp;it&nbsp;is&nbsp;too&nbsp;low&nbsp;and&nbsp;should&nbsp;be&nbsp;increased.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;&nbsp;&nbsp;[old&nbsp;stock&nbsp;supply&nbsp;demand]
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                011&nbsp;&nbsp;&nbsp;&nbsp;(let
+                </span><br/>
+<span class="covered" title="13 out of 13 forms covered">
+                012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[delta&nbsp;(dec&#x27;&nbsp;(&#x2F;&nbsp;(max&nbsp;supply&nbsp;demand&nbsp;1)&nbsp;(max&nbsp;stock&nbsp;1)))
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scaled&nbsp;(&#x2F;&nbsp;delta&nbsp;100)]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                014&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(+&nbsp;old&nbsp;scaled)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                015&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                017&nbsp;&nbsp;(defn&nbsp;adjust-quantity-and-price
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                018&nbsp;&nbsp;&nbsp;&nbsp;&quot;Adjust&nbsp;the&nbsp;quantity&nbsp;of&nbsp;this&nbsp;`commodity`&nbsp;currently&nbsp;in&nbsp;stock&nbsp;in&nbsp;this&nbsp;`city`
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                019&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;this&nbsp;`world`.&nbsp;Return&nbsp;a&nbsp;fragmentary&nbsp;world&nbsp;which&nbsp;can&nbsp;be&nbsp;deep-merged&nbsp;into
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;world.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                021&nbsp;&nbsp;&nbsp;&nbsp;[world&nbsp;city&nbsp;commodity]
+                </span><br/>
+<span class="partial" title="2 out of 4 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[c&nbsp;(cond
+                </span><br/>
+<span class="covered" title="8 out of 8 forms covered">
+                023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(keyword?&nbsp;city)&nbsp;(-&gt;&nbsp;world&nbsp;:cities&nbsp;city)
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map?&nbsp;city)&nbsp;city)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;(:id&nbsp;c)
+                </span><br/>
+<span class="partial" title="9 out of 10 forms covered">
+                026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p&nbsp;(or&nbsp;(-&gt;&nbsp;c&nbsp;:prices&nbsp;commodity)&nbsp;0)
+                </span><br/>
+<span class="covered" title="10 out of 10 forms covered">
+                027&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d&nbsp;(or&nbsp;(-&gt;&nbsp;c&nbsp;:demands&nbsp;commodity)&nbsp;0)
+                </span><br/>
+<span class="partial" title="9 out of 10 forms covered">
+                028&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;st&nbsp;(or&nbsp;(-&gt;&nbsp;c&nbsp;:stock&nbsp;commodity)&nbsp;0)
+                </span><br/>
+<span class="partial" title="9 out of 10 forms covered">
+                029&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;su&nbsp;(or&nbsp;(-&gt;&nbsp;c&nbsp;:supplies&nbsp;commodity)&nbsp;0)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                030&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decrement&nbsp;(min&nbsp;st&nbsp;d)
+                </span><br/>
+<span class="partial" title="3 out of 6 forms covered">
+                031&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increment&nbsp;(cond
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                032&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;if&nbsp;we&#x27;ve&nbsp;two&nbsp;turns&#x27;&nbsp;production&nbsp;of&nbsp;this&nbsp;commodity&nbsp;in
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                033&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;stock,&nbsp;halt&nbsp;production
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&gt;&nbsp;st&nbsp;(*&nbsp;su&nbsp;2))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;if&nbsp;it&nbsp;is&nbsp;profitable&nbsp;to&nbsp;produce&nbsp;this&nbsp;commodity,&nbsp;the
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;craftspeople&nbsp;of&nbsp;the&nbsp;city&nbsp;will&nbsp;do&nbsp;so.
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                038&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&gt;&nbsp;p&nbsp;1)&nbsp;su
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                039&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;otherwise,&nbsp;if&nbsp;there&nbsp;isn&#x27;t&nbsp;a&nbsp;turn&#x27;s&nbsp;production&nbsp;in
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                040&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;stock,&nbsp;top&nbsp;up&nbsp;the&nbsp;stock,&nbsp;so&nbsp;that&nbsp;there&#x27;s&nbsp;something&nbsp;for
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                041&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;incoming&nbsp;merchants&nbsp;to&nbsp;buy
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                042&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&gt;&nbsp;su&nbsp;st)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                043&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(-&nbsp;su&nbsp;st)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                044&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:else
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                045&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0)
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                046&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;(new-price&nbsp;p&nbsp;st&nbsp;su&nbsp;d)]
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                047&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(not=&nbsp;p&nbsp;n)
+                </span><br/>
+<span class="covered" title="26 out of 26 forms covered">
+                049&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(l&#x2F;info&nbsp;&quot;Price&nbsp;of&quot;&nbsp;commodity&nbsp;&quot;at&quot;&nbsp;id&nbsp;&quot;has&nbsp;changed&nbsp;from&quot;&nbsp;(float&nbsp;p)&nbsp;&quot;to&quot;&nbsp;(float&nbsp;n)))
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                050&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:cities&nbsp;{id
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:stock
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                052&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{commodity&nbsp;(+&nbsp;(-&nbsp;st&nbsp;decrement)&nbsp;increment)}
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                053&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:prices
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                054&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{commodity&nbsp;n}}}}))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                055&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                056&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                057&nbsp;&nbsp;(defn&nbsp;update-markets
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                058&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;world&nbsp;like&nbsp;this&nbsp;`world`,&nbsp;with&nbsp;quantities&nbsp;and&nbsp;prices&nbsp;in&nbsp;markets
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                059&nbsp;&nbsp;&nbsp;&nbsp;updated&nbsp;to&nbsp;reflect&nbsp;supply&nbsp;and&nbsp;demand.&nbsp;If&nbsp;`city`&nbsp;or&nbsp;`city`&nbsp;and&nbsp;`commodity`
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                060&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;specified,&nbsp;return&nbsp;a&nbsp;fragmentary&nbsp;world&nbsp;with&nbsp;only&nbsp;the&nbsp;changes&nbsp;for&nbsp;that
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                061&nbsp;&nbsp;&nbsp;&nbsp;`city`&nbsp;(and&nbsp;`commodity`&nbsp;if&nbsp;specified)&nbsp;populated.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                062&nbsp;&nbsp;&nbsp;&nbsp;([world]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                063&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reduce
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                064&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deep-merge
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                065&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                066&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
+                </span><br/>
+<span class="not-covered" title="0 out of 4 forms covered">
+                067&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(update-markets&nbsp;world&nbsp;%)
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                068&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(keys&nbsp;(:cities&nbsp;world)))))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                069&nbsp;&nbsp;&nbsp;&nbsp;([world&nbsp;city]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                070&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reduce
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                071&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deep-merge
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                072&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{}
+                </span><br/>
+<span class="not-covered" title="0 out of 8 forms covered">
+                073&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map&nbsp;#(update-markets&nbsp;world&nbsp;city&nbsp;%)
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                074&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(keys&nbsp;(:commodities&nbsp;world)))))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                075&nbsp;&nbsp;&nbsp;&nbsp;([world&nbsp;city&nbsp;commodity]
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                076&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(adjust-quantity-and-price&nbsp;world&nbsp;city&nbsp;commodity)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                077&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                078&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                079&nbsp;&nbsp;(defn&nbsp;run
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                080&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;world&nbsp;like&nbsp;this&nbsp;`world`,&nbsp;with&nbsp;quantities&nbsp;and&nbsp;prices&nbsp;in&nbsp;markets
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                081&nbsp;&nbsp;&nbsp;&nbsp;updated&nbsp;to&nbsp;reflect&nbsp;supply&nbsp;and&nbsp;demand.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                082&nbsp;&nbsp;&nbsp;&nbsp;[world]
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                083&nbsp;&nbsp;&nbsp;&nbsp;(update-markets&nbsp;world))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                084&nbsp;&nbsp;
+                </span><br/>
+ </body>
+</html>

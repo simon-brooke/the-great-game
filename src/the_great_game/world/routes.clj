@@ -9,11 +9,11 @@
    (map
      (fn [to] (cons from to))
      (remove
-       #(empty? %)
+       empty?
        (map
          (fn [route]
-           (filter
-             #(not (= from %))
+           (remove
+             #(= from %)
              (if (some #(= % from) route) route)))
          routes))))
   ([routes from to]
@@ -30,14 +30,12 @@
      (not (empty? steps))
      (let [paths (remove
                    cyclic?
-                   (apply
-                     concat
-                     (map
+                   (mapcat
                        (fn [path]
                          (map
                            (fn [x] (concat path (rest x)))
                            (find-routes routes (last path))))
-                       steps)))
+                       steps))
            found (filter
                    #(= (last %) to) paths)]
        (if

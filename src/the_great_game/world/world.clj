@@ -183,8 +183,10 @@
   (-> world :cities city :prices commodity))
 
 (defn run
-  "Return a world like this `world` with only the `:date` value updated
-  (incremented by one). For running other aspects of the simulation, see
-  [[the-great-game.world.run]]."
-  [world]
-  (assoc world :date (inc (or (:date world) 0))))
+  "Return a world like this `world` with only the `:date` to this `date`
+  (or id `date` not supplied, the current value incremented by one). For
+  running other aspects of the simulation, see [[the-great-game.world.run]]."
+  ([world]
+   (run world (inc (or (:date world) 0))))
+  ([world date]
+   (assoc world :date date)))
