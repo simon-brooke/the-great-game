@@ -23,7 +23,7 @@
             (-> world :merchants merchant)
             (map? merchant)
             merchant)
-        cargo (:stock m)]
+        cargo (or (:stock m) {})]
     (reduce
       +
       0
@@ -41,9 +41,11 @@
             (-> world :merchants merchant)
             (map? merchant)
             merchant)]
-    (quot
-      (- (:capacity m) (burden m world))
-      (-> world :commodities commodity :weight))))
+    (max
+      0
+      (quot
+        (- (or (:capacity m) 0) (burden m world))
+        (-> world :commodities commodity :weight)))))
 
 (defn can-afford
   "Return the number of units of this `commodity` which this `merchant`
@@ -55,9 +57,15 @@
             (map? merchant)
             merchant)
         l (:location m)]
-    (quot
-      (:cash m)
-      (-> world :cities l :prices commodity))))
+    (cond
+      (nil? m)
+      (throw (Exception. "No merchant?"))
+      (or (nil? l) (nil? (-> world :cities l)))
+      (throw (Exception. (str "No known location for merchant " m)))
+      :else
+      (quot
+        (:cash m)
+        (-> world :cities l :prices commodity)))))
 
 (defn add-stock
   "Where `a` and `b` are both maps all of whose values are numbers, return
@@ -73,20 +81,26 @@
 
 (defn add-known-prices
   "Add the current prices at this `merchant`'s location in the `world`
-  to a new cacke of known prices, and return it."
+  to a new cache of known prices, and return it."
   [merchant world]
   (let [m (cond
             (keyword? merchant)
             (-> world :merchants merchant)
             (map? merchant)
             merchant)
-        k (:known-prices m)
+        k (or (:known-prices m) {})
         l (:location m)
-        d (:date world)
+        d (or (:date world) 0)
         p (-> world :cities l :prices)]
-    (reduce
-      merge
-      k
-      (map
-        #(hash-map % (apply vector cons {:price (p %) :date d} (k %)))
-        (-> world :commodities keys)))))
+    (cond
+      (nil? m)
+      (throw (Exception. "No merchant?"))
+      (or (nil? l) (nil? (-> world :cities l)))
+      (throw (Exception. (str "No known location for merchant " m)))
+      :else
+      (reduce
+        merge
+        k
+        (map
+          #(hash-map % (apply vector cons {:price (p %) :date d} (k %)))
+          (-> world :commodities keys))))))

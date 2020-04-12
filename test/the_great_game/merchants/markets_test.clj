@@ -79,8 +79,31 @@
           (-> actual :cities :falkirk :stock :iron)
           17)
         "Stock should be topped up by the difference between the supply and
-        the demand amount."))
+        the demand amount."))))
 
-    )
-
-  )
+(deftest run-test
+  (let [world (deep-merge
+                default-world
+                {:cities
+                 {:aberdeen
+                  {:stock {:fish 5}
+                   :supplies {:fish 12}
+                   :prices {:fish 1.1}}
+                  :falkirk
+                  {:stock {:iron 10}
+                   :demands {:iron 5}
+                   :supplies {:iron 12}
+                   :prices {:iron 1.1}}}})
+        actual (run world)]
+    (is
+      (=
+        (-> actual :cities :aberdeen :stock :fish)
+        (+ (-> world :cities :aberdeen :supplies :fish)
+           (-> world :cities :aberdeen :stock :fish)))
+      "If stock is not empty and price is above cost, stock should be topped up by supply amount.")
+    (is
+      (=
+        (-> actual :cities :falkirk :stock :iron)
+        17)
+      "Stock should be topped up by the difference between the supply and
+      the demand amount.")))
