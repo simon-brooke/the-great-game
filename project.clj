@@ -5,6 +5,7 @@
           :output-path "docs/codox"
           :source-uri "https://github.com/simon-brooke/the-great-game/blob/master/{filepath}#L{line}"}
   :dependencies [[org.clojure/clojure "1.8.0"]
+                 [org.clojure/math.numeric-tower "0.0.4"]
                  [environ "1.1.0"]
                  [com.taoensso/timbre "4.10.0"]]
   :description "Prototype code towards the great game I've been writing about for ten years, and know I will never finish."
