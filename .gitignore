@@ -17,3 +17,5 @@ pom.xml.asc
 .nrepl-port
 .cpcache/
 *~
+
+docs/cloverage/
