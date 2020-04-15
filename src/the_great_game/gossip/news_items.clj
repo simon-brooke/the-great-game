@@ -218,22 +218,28 @@
   ([gossip item follow-inferences?]
    (if
      (interesting-item? gossip item)
-     (let [g (assoc gossip :knowledge
-               (cons
-                 (assoc
-                   item
-                   :nth-hand (if
-                               (number? (:nth-hand item))
-                               (inc (:nth-hand item))
-                               1)
-                   :date (if (number? (:date item)) (:date item) (game-time))
-                   :location (degrade-location gossip (:location item))
-                   ;; ought to degratde the location
-                   ;; ought to maybe-degrade characters we're not yet interested in
-                   )
-                 ;; ought not to add knowledge items we already have, except
-                 ;; to replace if new item is of increased specificity
-                 (:knowledge gossip)))]
+     (let
+       [g (assoc
+            gossip
+            :knowledge
+            (cons
+              (assoc
+                item
+                :nth-hand (if
+                            (number? (:nth-hand item))
+                            (inc (:nth-hand item))
+                            1)
+                :time-stamp (if
+                              (number? (:time-stamp item))
+                              (:time-stamp item)
+                              (game-time))
+                :location (degrade-location gossip (:location item))
+                ;; ought to degratde the location
+                ;; ought to maybe-degrade characters we're not yet interested in
+                )
+              ;; ought not to add knowledge items we already have, except
+              ;; to replace if new item is of increased specificity
+              (:knowledge gossip)))]
        (if follow-inferences?
          (assoc
            g

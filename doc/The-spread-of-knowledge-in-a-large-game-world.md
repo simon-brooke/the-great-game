@@ -27,23 +27,45 @@ _This version of this essay has been adapted to use the code in `the-great-game.
 
  Obviously, news is more valuable if the people involved are important or notorious: the significance of a story is probably the product of the significance of the people concerned.
 
- So a news item becomes a tuple
+ So a news item becomes a map with keys similar to
 
- `(days-old nth-hand significance action (actors))`
+    [:verb :actor :other :location :nth-hand :time-stamp]
+
+ The [exact keys for each verb are specified here](the-great-game.gossip.news-items.html#var-news-topics).
 
  for example
 
- `(54 2 10 'killed '(fred joe))`
+     {:verb :kill,
+     :actor {:id :fred :name "Fred"},
+     :other {:id :joe :name "Joe"},
+     :location [{45467 78613} :hanshua :plateau],
+     :nth-hand 3,
+     :time-stamp 17946463}
 
- meaning 'I spoke to a man who'd spoken to a man who said he saw notorious fred kill well-liked joe on 54 days ago'. Obviously, the non-player character must be able to construct a natural language sentence from the tuple when speaking within the hearing of a player character, but there's no need for a non-player character to produce a natural language sentence for another non-player character to parse; instead they can just exchange tuples.
+ meaning 'I spoke to a man who'd spoken to a man who said he saw fred kill joe at the game time represented by the time stamp 17946463, at the coordinates {45467 78613} in Hans'hua on the Plateau'. Obviously, the non-player character must be able to construct a natural language sentence from the tuple when speaking within the hearing of a player character, but there's no need for a non-player character to produce a natural language sentence for another non-player character to parse; instead they can just exchange tuples.
 
  But if we're exchanging knowledge between agents, then agents must have a means of representing knowledge. This knowledge is an association between subjects and sets of statement, such that when the agent learns the statement
 
- `(54 2 10 'killed '(fred joe))`
+     {:verb :kill,
+     :actor {:id :fred :name "Fred"},
+     :other {:id :joe :name "Joe"},
+     :location [{45467 78613} :hanshua :plateau],
+     :nth-hand 3,
+     :time-stamp 17946463}
 
  it adds this statement (with the 2 incremented to 3) to the set of statements it knows about fred and also to the set of statements it knows about joe. It's possible that the receiving agent could then challenge for further statements about fred and/or joe, the automated equivalent of a 'who's joe?' question.
 
  There could be feedback in this. Fred's and joe's significance scores could be incremented for each character to whom the statement is passed on, increasing the likeliness that fred, at least, would feature in more news stories in future. There needs also to be some means of managing how the non-player character's attitude to the subjects of the statement are affected. For example, If fred kills joe, and the character (say bill) receiving the news feels positively towards joe, then bill's attitude to fred should become sharply more hostile. If bill feels neutral about joe, then bill's attitude to fred should still become a bit more hostile, since killing people is on the whole a bad thing. But it bill feels very hostile towards joe, then bill's attitude to fred should become more friendly.
+
+But also, the added knowledge is *degraded*. If the recipient isn't from Hans'hua, the exact location isn't meaningful to them, for example. If the recipient isn't interested in Joe, precisely who was killed may be forgotten. So what is stored could become:
+
+     {:verb :kill,
+     :actor {:id :fred :name "Fred"},
+     :location [:hanshua :plateau],
+     :nth-hand 4,
+     :time-stamp 17946463}
+
+The timestamp could also be degraded, or lost altother - although how exactly this is represnted I'm not certain. Someone interested in the incident may remember 'it was exactly 17 days ago', whereas someone else may remember that it was 'this month, I think'.
 
  Obviously the rate of decay, and the degree of randomness, of the news-passing algorithm would need to be tuned, but this schema seems to me to describe a system with the following features:
 

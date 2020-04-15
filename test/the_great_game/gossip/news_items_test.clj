@@ -119,7 +119,7 @@
           ;; dates will not be and cannot be expected to be equal
           actual (make-all-inferences
                    {:verb :rape :actor :adam :other :belinda :location :test-home})
-          actual' (set (map #(dissoc % :date) actual))]
+          actual' (set (map #(dissoc % :time-stamp) actual))]
       (is (= actual' expected)))))
 
 (deftest learn-tests
@@ -130,5 +130,5 @@
           actual (learn-news-item
                    {:home [{0, 0} :test-home] :knowledge []}
                    {:verb :sex :actor :adam :other :belinda :location [:test-home]})
-          actual' (assoc actual :knowledge (vec (map #(dissoc % :date) (:knowledge actual))))]
+          actual' (assoc actual :knowledge (vec (map #(dissoc % :time-stamp) (:knowledge actual))))]
       (is (= actual' expected)))))
