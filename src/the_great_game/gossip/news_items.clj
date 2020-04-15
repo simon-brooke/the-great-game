@@ -41,6 +41,11 @@
   character, or else the receiver knows nothing at all about the character.
   Neither is desirable. Further thought needed.
 
+  By implication, the character values passed should include ^all^ the
+  information the giver knows about the character; that can then be degraded
+  as the receiver stores only that segment which the receiver finds
+  interesting.
+
   ##### Locations:
 
   A 'location' value is a list comprising at most the x/y coordinate location
@@ -218,22 +223,28 @@
   ([gossip item follow-inferences?]
    (if
      (interesting-item? gossip item)
-     (let [g (assoc gossip :knowledge
-               (cons
-                 (assoc
-                   item
-                   :nth-hand (if
-                               (number? (:nth-hand item))
-                               (inc (:nth-hand item))
-                               1)
-                   :date (if (number? (:date item)) (:date item) (game-time))
-                   :location (degrade-location gossip (:location item))
-                   ;; ought to degratde the location
-                   ;; ought to maybe-degrade characters we're not yet interested in
-                   )
-                 ;; ought not to add knowledge items we already have, except
-                 ;; to replace if new item is of increased specificity
-                 (:knowledge gossip)))]
+     (let
+       [g (assoc
+            gossip
+            :knowledge
+            (cons
+              (assoc
+                item
+                :nth-hand (if
+                            (number? (:nth-hand item))
+                            (inc (:nth-hand item))
+                            1)
+                :time-stamp (if
+                              (number? (:time-stamp item))
+                              (:time-stamp item)
+                              (game-time))
+                :location (degrade-location gossip (:location item))
+                ;; ought to degratde the location
+                ;; ought to maybe-degrade characters we're not yet interested in
+                )
+              ;; ought not to add knowledge items we already have, except
+              ;; to replace if new item is of increased specificity
+              (:knowledge gossip)))]
        (if follow-inferences?
          (assoc
            g

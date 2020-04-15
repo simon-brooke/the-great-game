@@ -16,7 +16,7 @@
 
  But, before going there, to summarise the proving stage. The inputs are:
 
-1. A raster height map (although this could be randomly generated using any one of many fractal algorithms) - this probably uses ideas from [tessellated multi-layer height map](../../2013/07/tessellated-multi-layer-height-map.html);
+1. A raster height map (although this could be randomly generated using any one of many fractal algorithms) - this probably uses ideas from [tessellated multi-layer height map](https://blog.journeyman.cc/2013/07/tessellated-multi-layer-height-map.html);
 1. Optionally, a raster rainfall map at 1km resolution (although my personal preference is that this should be generated procedurally from the height map).
 
  The outputs are
@@ -26,7 +26,7 @@
 1. A database of settlers and their settlements, such that the settlements have x,y co-ordinates;
 1. A vector road map.
 
- In this sense, the 'biome map' is just the end state of a [Microworld](../../2014/08/modelling-settlement-with-cellular.html) run. The 'biomes' include things like 'forest', 'scrub', 'heath', 'pasture', but they may also include human settlement, and even settlement by different cultural groups.
+ In this sense, the 'biome map' is just the end state of a [Microworld](https://blog.journeyman.cc/2014/08/modelling-settlement-with-cellular.html) run. The 'biomes' include things like 'forest', 'scrub', 'heath', 'pasture', but they may also include human settlement, and even settlement by different cultural groups.
 
  This gives us all we need to vegetate and furnish the world. When rendering each square metre we have
 
