@@ -14,7 +14,7 @@
                 003&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[the-great-game.world.location&nbsp;:refer&nbsp;[distance-between]]
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[the-great-game.time&nbsp;:refer&nbsp;[now]]))
+                004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[the-great-game.time&nbsp;:refer&nbsp;[game-time]]))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 005&nbsp;&nbsp;
@@ -418,323 +418,329 @@
 <span class="covered" title="10 out of 10 forms covered">
                 138&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(some&nbsp;(fn&nbsp;[x]&nbsp;(=&nbsp;x&nbsp;location))&nbsp;(:location&nbsp;%))
                 </span><br/>
-<span class="covered" title="3 out of 3 forms covered">
-                139&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(:knowledge&nbsp;gossip)))))
+<span class="covered" title="10 out of 10 forms covered">
+                139&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cons&nbsp;{:location&nbsp;(:home&nbsp;gossip)}&nbsp;(:knowledge&nbsp;gossip))))))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 140&nbsp;&nbsp;
                 </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                141&nbsp;&nbsp;;;&nbsp;(interest-in-location&nbsp;{:home&nbsp;[{0,&nbsp;0}&nbsp;:test-home]&nbsp;:knowledge&nbsp;[]}&nbsp;[:test-home])
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                142&nbsp;&nbsp;
+                </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                141&nbsp;&nbsp;(defn&nbsp;interesting-location?
+                143&nbsp;&nbsp;(defn&nbsp;interesting-location?
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                142&nbsp;&nbsp;&nbsp;&nbsp;&quot;True&nbsp;if&nbsp;the&nbsp;location&nbsp;of&nbsp;this&nbsp;news&nbsp;`item`&nbsp;is&nbsp;interesting&nbsp;to&nbsp;this&nbsp;`gossip`.&quot;
+                144&nbsp;&nbsp;&nbsp;&nbsp;&quot;True&nbsp;if&nbsp;the&nbsp;location&nbsp;of&nbsp;this&nbsp;news&nbsp;`item`&nbsp;is&nbsp;interesting&nbsp;to&nbsp;this&nbsp;`gossip`.&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                143&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;item]
+                145&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;item]
                 </span><br/>
 <span class="covered" title="9 out of 9 forms covered">
-                144&nbsp;&nbsp;&nbsp;&nbsp;(&gt;&nbsp;(interest-in-location&nbsp;gossip&nbsp;(:location&nbsp;item))&nbsp;1))
+                146&nbsp;&nbsp;&nbsp;&nbsp;(&gt;&nbsp;(interest-in-location&nbsp;gossip&nbsp;(:location&nbsp;item))&nbsp;0))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                145&nbsp;&nbsp;
+                147&nbsp;&nbsp;
                 </span><br/>
 <span class="covered" title="2 out of 2 forms covered">
-                146&nbsp;&nbsp;(defn&nbsp;interesting-object?
+                148&nbsp;&nbsp;(defn&nbsp;interesting-object?
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                147&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;object]
+                149&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;object]
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                148&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;Not&nbsp;yet&nbsp;(really)&nbsp;implemented
+                150&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;Not&nbsp;yet&nbsp;(really)&nbsp;implemented
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                149&nbsp;&nbsp;&nbsp;&nbsp;true)
+                151&nbsp;&nbsp;&nbsp;&nbsp;true)
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                150&nbsp;&nbsp;
+                152&nbsp;&nbsp;
                 </span><br/>
 <span class="partial" title="1 out of 2 forms covered">
-                151&nbsp;&nbsp;(defn&nbsp;interesting-topic?
+                153&nbsp;&nbsp;(defn&nbsp;interesting-topic?
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                152&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;topic]
+                154&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;topic]
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                153&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;Not&nbsp;yet&nbsp;(really)&nbsp;implemented
+                155&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;Not&nbsp;yet&nbsp;(really)&nbsp;implemented
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                154&nbsp;&nbsp;&nbsp;&nbsp;true)
+                156&nbsp;&nbsp;&nbsp;&nbsp;true)
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                155&nbsp;&nbsp;
+                157&nbsp;&nbsp;
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                156&nbsp;&nbsp;(defn&nbsp;interesting-item?
+                158&nbsp;&nbsp;(defn&nbsp;interesting-item?
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                157&nbsp;&nbsp;&nbsp;&nbsp;&quot;True&nbsp;if&nbsp;anything&nbsp;about&nbsp;this&nbsp;news&nbsp;`item`&nbsp;is&nbsp;interesting&nbsp;to&nbsp;this&nbsp;`gossip`.&quot;
+                159&nbsp;&nbsp;&nbsp;&nbsp;&quot;True&nbsp;if&nbsp;anything&nbsp;about&nbsp;this&nbsp;news&nbsp;`item`&nbsp;is&nbsp;interesting&nbsp;to&nbsp;this&nbsp;`gossip`.&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                158&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;item]
+                160&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;item]
                 </span><br/>
 <span class="partial" title="13 out of 17 forms covered">
-                159&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(or
+                161&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(or
                 </span><br/>
 <span class="covered" title="6 out of 6 forms covered">
-                160&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-character?&nbsp;gossip&nbsp;(:actor&nbsp;item))
+                162&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-character?&nbsp;gossip&nbsp;(:actor&nbsp;item))
                 </span><br/>
 <span class="covered" title="6 out of 6 forms covered">
-                161&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-character?&nbsp;gossip&nbsp;(:other&nbsp;item))
+                163&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-character?&nbsp;gossip&nbsp;(:other&nbsp;item))
                 </span><br/>
 <span class="covered" title="6 out of 6 forms covered">
-                162&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-location?&nbsp;gossip&nbsp;(:location&nbsp;item))
+                164&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-location?&nbsp;gossip&nbsp;(:location&nbsp;item))
                 </span><br/>
 <span class="covered" title="6 out of 6 forms covered">
-                163&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-object?&nbsp;gossip&nbsp;(:object&nbsp;item))
+                165&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-object?&nbsp;gossip&nbsp;(:object&nbsp;item))
                 </span><br/>
 <span class="not-covered" title="0 out of 5 forms covered">
-                164&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-topic?&nbsp;gossip&nbsp;(:verb&nbsp;item))))
+                166&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-topic?&nbsp;gossip&nbsp;(:verb&nbsp;item))))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                165&nbsp;&nbsp;
+                167&nbsp;&nbsp;
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                166&nbsp;&nbsp;(defn&nbsp;infer
+                168&nbsp;&nbsp;(defn&nbsp;infer
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                167&nbsp;&nbsp;&nbsp;&nbsp;&quot;Infer&nbsp;a&nbsp;new&nbsp;knowledge&nbsp;item&nbsp;from&nbsp;this&nbsp;`item`,&nbsp;following&nbsp;this&nbsp;`rule`&quot;
+                169&nbsp;&nbsp;&nbsp;&nbsp;&quot;Infer&nbsp;a&nbsp;new&nbsp;knowledge&nbsp;item&nbsp;from&nbsp;this&nbsp;`item`,&nbsp;following&nbsp;this&nbsp;`rule`&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                168&nbsp;&nbsp;&nbsp;&nbsp;[item&nbsp;rule]
+                170&nbsp;&nbsp;&nbsp;&nbsp;[item&nbsp;rule]
                 </span><br/>
 <span class="covered" title="3 out of 3 forms covered">
-                169&nbsp;&nbsp;&nbsp;&nbsp;(reduce&nbsp;merge
+                171&nbsp;&nbsp;&nbsp;&nbsp;(reduce&nbsp;merge
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                170&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item
+                172&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item
                 </span><br/>
 <span class="covered" title="2 out of 2 forms covered">
-                171&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cons
+                173&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cons
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
-                172&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:verb&nbsp;(:verb&nbsp;rule)}
+                174&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:verb&nbsp;(:verb&nbsp;rule)}
                 </span><br/>
 <span class="covered" title="13 out of 13 forms covered">
-                173&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map&nbsp;(fn&nbsp;[k]&nbsp;{k&nbsp;(apply&nbsp;(k&nbsp;rule)&nbsp;(list&nbsp;item))})
+                175&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map&nbsp;(fn&nbsp;[k]&nbsp;{k&nbsp;(apply&nbsp;(k&nbsp;rule)&nbsp;(list&nbsp;item))})
                 </span><br/>
 <span class="covered" title="3 out of 3 forms covered">
-                174&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(remove
+                176&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(remove
                 </span><br/>
 <span class="covered" title="4 out of 4 forms covered">
-                175&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(=&nbsp;%&nbsp;:verb)
+                177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(=&nbsp;%&nbsp;:verb)
                 </span><br/>
 <span class="covered" title="3 out of 3 forms covered">
-                176&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(keys&nbsp;rule))))))
-                </span><br/>
-<span class="blank" title="0 out of 0 forms covered">
-                177&nbsp;&nbsp;
-                </span><br/>
-<span class="covered" title="2 out of 2 forms covered">
-                178&nbsp;&nbsp;(declare&nbsp;learn-news-item)
+                178&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(keys&nbsp;rule))))))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 179&nbsp;&nbsp;
                 </span><br/>
-<span class="covered" title="1 out of 1 forms covered">
-                180&nbsp;&nbsp;(defn&nbsp;make-all-inferences
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                181&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;list&nbsp;of&nbsp;knowledge&nbsp;entries&nbsp;inferred&nbsp;from&nbsp;this&nbsp;news&nbsp;`item`&nbsp;by&nbsp;this
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                182&nbsp;&nbsp;&nbsp;&nbsp;`gossip`.&quot;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                183&nbsp;&nbsp;&nbsp;&nbsp;[item]
-                </span><br/>
 <span class="covered" title="2 out of 2 forms covered">
-                184&nbsp;&nbsp;&nbsp;&nbsp;(set
+                180&nbsp;&nbsp;(declare&nbsp;learn-news-item)
                 </span><br/>
-<span class="covered" title="2 out of 2 forms covered">
-                185&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reduce
+<span class="blank" title="0 out of 0 forms covered">
+                181&nbsp;&nbsp;
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                186&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;concat
+                182&nbsp;&nbsp;(defn&nbsp;make-all-inferences
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                183&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;list&nbsp;of&nbsp;knowledge&nbsp;entries&nbsp;inferred&nbsp;from&nbsp;this&nbsp;news&nbsp;`item`&nbsp;by&nbsp;this
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                184&nbsp;&nbsp;&nbsp;&nbsp;`gossip`.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                185&nbsp;&nbsp;&nbsp;&nbsp;[item]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                186&nbsp;&nbsp;&nbsp;&nbsp;(set
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                187&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reduce
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                188&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;concat
                 </span><br/>
 <span class="covered" title="3 out of 3 forms covered">
-                187&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
+                189&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
                 </span><br/>
 <span class="covered" title="10 out of 10 forms covered">
-                188&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(:knowledge&nbsp;(learn-news-item&nbsp;{}&nbsp;(infer&nbsp;item&nbsp;%)&nbsp;false))
+                190&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(:knowledge&nbsp;(learn-news-item&nbsp;{}&nbsp;(infer&nbsp;item&nbsp;%)&nbsp;false))
                 </span><br/>
 <span class="covered" title="7 out of 7 forms covered">
-                189&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(:inferences&nbsp;(news-topics&nbsp;(:verb&nbsp;item)))))))
+                191&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(:inferences&nbsp;(news-topics&nbsp;(:verb&nbsp;item)))))))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                190&nbsp;&nbsp;
+                192&nbsp;&nbsp;
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                191&nbsp;&nbsp;(defn&nbsp;degrade-character
+                193&nbsp;&nbsp;(defn&nbsp;degrade-character
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                192&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;character&nbsp;specification&nbsp;like&nbsp;this&nbsp;`character`,&nbsp;but&nbsp;comprising
+                194&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;character&nbsp;specification&nbsp;like&nbsp;this&nbsp;`character`,&nbsp;but&nbsp;comprising
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                193&nbsp;&nbsp;&nbsp;&nbsp;only&nbsp;those&nbsp;properties&nbsp;this&nbsp;`gossip`&nbsp;is&nbsp;interested&nbsp;in.&quot;
+                195&nbsp;&nbsp;&nbsp;&nbsp;only&nbsp;those&nbsp;properties&nbsp;this&nbsp;`gossip`&nbsp;is&nbsp;interested&nbsp;in.&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                194&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;character]
+                196&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;character]
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                195&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;Not&nbsp;yet&nbsp;(really)&nbsp;implemented
+                197&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;Not&nbsp;yet&nbsp;(really)&nbsp;implemented
                 </span><br/>
 <span class="not-covered" title="0 out of 1 forms covered">
-                196&nbsp;&nbsp;&nbsp;&nbsp;character)
+                198&nbsp;&nbsp;&nbsp;&nbsp;character)
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                197&nbsp;&nbsp;
+                199&nbsp;&nbsp;
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                198&nbsp;&nbsp;(defn&nbsp;degrade-location
+                200&nbsp;&nbsp;(defn&nbsp;degrade-location
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                199&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;location&nbsp;specification&nbsp;like&nbsp;this&nbsp;`location`,&nbsp;but&nbsp;comprising
+                201&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;location&nbsp;specification&nbsp;like&nbsp;this&nbsp;`location`,&nbsp;but&nbsp;comprising
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                200&nbsp;&nbsp;&nbsp;&nbsp;only&nbsp;those&nbsp;elements&nbsp;this&nbsp;`gossip`&nbsp;is&nbsp;interested&nbsp;in.&nbsp;If&nbsp;none,&nbsp;return
+                202&nbsp;&nbsp;&nbsp;&nbsp;only&nbsp;those&nbsp;elements&nbsp;this&nbsp;`gossip`&nbsp;is&nbsp;interested&nbsp;in.&nbsp;If&nbsp;none,&nbsp;return
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                201&nbsp;&nbsp;&nbsp;&nbsp;`nil`.&quot;
+                203&nbsp;&nbsp;&nbsp;&nbsp;`nil`.&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                202&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;location]
+                204&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;location]
                 </span><br/>
 <span class="covered" title="2 out of 2 forms covered">
-                203&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[l&nbsp;(if
+                205&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[l&nbsp;(if
                 </span><br/>
 <span class="covered" title="3 out of 3 forms covered">
-                204&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(coll?&nbsp;location)
+                206&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(coll?&nbsp;location)
                 </span><br/>
 <span class="covered" title="3 out of 3 forms covered">
-                205&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(filter
+                207&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(filter
                 </span><br/>
 <span class="partial" title="5 out of 7 forms covered">
-                206&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(when&nbsp;(interesting-location?&nbsp;gossip&nbsp;%)&nbsp;%)
+                208&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(when&nbsp;(interesting-location?&nbsp;gossip&nbsp;%)&nbsp;%)
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                207&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location))]
+                209&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location))]
                 </span><br/>
 <span class="partial" title="5 out of 7 forms covered">
-                208&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(when-not&nbsp;(empty?&nbsp;l)&nbsp;l)))
+                210&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(when-not&nbsp;(empty?&nbsp;l)&nbsp;l)))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                209&nbsp;&nbsp;
+                211&nbsp;&nbsp;
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                210&nbsp;&nbsp;(defn&nbsp;learn-news-item
+                212&nbsp;&nbsp;(defn&nbsp;learn-news-item
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                211&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;gossip&nbsp;like&nbsp;this&nbsp;`gossip`,&nbsp;which&nbsp;has&nbsp;learned&nbsp;this&nbsp;news&nbsp;`item`&nbsp;if
+                213&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;gossip&nbsp;like&nbsp;this&nbsp;`gossip`,&nbsp;which&nbsp;has&nbsp;learned&nbsp;this&nbsp;news&nbsp;`item`&nbsp;if
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                212&nbsp;&nbsp;&nbsp;&nbsp;it&nbsp;is&nbsp;of&nbsp;interest&nbsp;to&nbsp;them.&quot;
+                214&nbsp;&nbsp;&nbsp;&nbsp;it&nbsp;is&nbsp;of&nbsp;interest&nbsp;to&nbsp;them.&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                213&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;Not&nbsp;yet&nbsp;implemented
+                215&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;Not&nbsp;yet&nbsp;implemented
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                214&nbsp;&nbsp;&nbsp;&nbsp;([gossip&nbsp;item]
+                216&nbsp;&nbsp;&nbsp;&nbsp;([gossip&nbsp;item]
                 </span><br/>
-<span class="not-covered" title="0 out of 5 forms covered">
-                215&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(learn-news-item&nbsp;gossip&nbsp;item&nbsp;true))
+<span class="covered" title="5 out of 5 forms covered">
+                217&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(learn-news-item&nbsp;gossip&nbsp;item&nbsp;true))
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                216&nbsp;&nbsp;&nbsp;&nbsp;([gossip&nbsp;item&nbsp;follow-inferences?]
+                218&nbsp;&nbsp;&nbsp;&nbsp;([gossip&nbsp;item&nbsp;follow-inferences?]
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                217&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if
+                219&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if
                 </span><br/>
 <span class="covered" title="4 out of 4 forms covered">
-                218&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-item?&nbsp;gossip&nbsp;item)
+                220&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(interesting-item?&nbsp;gossip&nbsp;item)
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
-                219&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[g&nbsp;(assoc&nbsp;gossip&nbsp;:knowledge
+                221&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[g&nbsp;(assoc&nbsp;gossip&nbsp;:knowledge
                 </span><br/>
 <span class="covered" title="2 out of 2 forms covered">
-                220&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cons
+                222&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cons
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
-                221&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(assoc
+                223&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(assoc
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                222&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item
+                224&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item
                 </span><br/>
 <span class="covered" title="2 out of 2 forms covered">
-                223&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:nth-hand&nbsp;(if
+                225&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:nth-hand&nbsp;(if
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
-                224&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(number?&nbsp;(:nth-hand&nbsp;item))
+                226&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(number?&nbsp;(:nth-hand&nbsp;item))
                 </span><br/>
 <span class="not-covered" title="0 out of 5 forms covered">
-                225&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(inc&nbsp;(:nth-hand&nbsp;item))
+                227&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(inc&nbsp;(:nth-hand&nbsp;item))
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                226&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1)
+                228&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1)
                 </span><br/>
 <span class="partial" title="8 out of 11 forms covered">
-                227&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:date&nbsp;(if&nbsp;(number?&nbsp;(:date&nbsp;item))&nbsp;(:date&nbsp;item)&nbsp;(now))
+                229&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:date&nbsp;(if&nbsp;(number?&nbsp;(:date&nbsp;item))&nbsp;(:date&nbsp;item)&nbsp;(game-time))
                 </span><br/>
 <span class="covered" title="6 out of 6 forms covered">
-                228&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:location&nbsp;(degrade-location&nbsp;gossip&nbsp;(:location&nbsp;item))
+                230&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:location&nbsp;(degrade-location&nbsp;gossip&nbsp;(:location&nbsp;item))
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                229&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;ought&nbsp;to&nbsp;degratde&nbsp;the&nbsp;location
+                231&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;ought&nbsp;to&nbsp;degratde&nbsp;the&nbsp;location
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                230&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;ought&nbsp;to&nbsp;maybe-degrade&nbsp;characters&nbsp;we&#x27;re&nbsp;not&nbsp;yet&nbsp;interested&nbsp;in
+                232&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;ought&nbsp;to&nbsp;maybe-degrade&nbsp;characters&nbsp;we&#x27;re&nbsp;not&nbsp;yet&nbsp;interested&nbsp;in
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                231&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+                233&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                232&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;ought&nbsp;not&nbsp;to&nbsp;add&nbsp;knowledge&nbsp;items&nbsp;we&nbsp;already&nbsp;have,&nbsp;except
+                234&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;ought&nbsp;not&nbsp;to&nbsp;add&nbsp;knowledge&nbsp;items&nbsp;we&nbsp;already&nbsp;have,&nbsp;except
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                233&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;to&nbsp;replace&nbsp;if&nbsp;new&nbsp;item&nbsp;is&nbsp;of&nbsp;increased&nbsp;specificity
+                235&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;to&nbsp;replace&nbsp;if&nbsp;new&nbsp;item&nbsp;is&nbsp;of&nbsp;increased&nbsp;specificity
                 </span><br/>
 <span class="covered" title="3 out of 3 forms covered">
-                234&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(:knowledge&nbsp;gossip)))]
+                236&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(:knowledge&nbsp;gossip)))]
                 </span><br/>
 <span class="covered" title="2 out of 2 forms covered">
-                235&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;follow-inferences?
+                237&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;follow-inferences?
                 </span><br/>
-<span class="not-covered" title="0 out of 3 forms covered">
-                236&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(assoc
-                </span><br/>
-<span class="not-covered" title="0 out of 1 forms covered">
-                237&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                238&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:knowledge
-                </span><br/>
-<span class="not-covered" title="0 out of 8 forms covered">
-                239&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(concat&nbsp;(:knowledge&nbsp;g)&nbsp;(make-all-inferences&nbsp;item)))
+<span class="covered" title="3 out of 3 forms covered">
+                238&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(assoc
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                240&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g))
+                239&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                240&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:knowledge
+                </span><br/>
+<span class="covered" title="8 out of 8 forms covered">
+                241&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(concat&nbsp;(:knowledge&nbsp;g)&nbsp;(make-all-inferences&nbsp;item)))
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                242&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;g))
                 </span><br/>
 <span class="not-covered" title="0 out of 1 forms covered">
-                241&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gossip)))
-                </span><br/>
-<span class="blank" title="0 out of 0 forms covered">
-                242&nbsp;&nbsp;
-                </span><br/>
-<span class="blank" title="0 out of 0 forms covered">
-                243&nbsp;&nbsp;
+                243&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gossip)))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 244&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                245&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                246&nbsp;&nbsp;
                 </span><br/>
  </body>
 </html>

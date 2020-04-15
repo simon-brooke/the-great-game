@@ -11,193 +11,196 @@
                 002&nbsp;&nbsp;&nbsp;&nbsp;&quot;Interchange&nbsp;of&nbsp;news&nbsp;events&nbsp;between&nbsp;gossip&nbsp;agents&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                003&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[the-great-game.utils&nbsp;:refer&nbsp;[deep-merge]]))
+                003&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[the-great-game.utils&nbsp;:refer&nbsp;[deep-merge]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[the-great-game.gossip.news-items&nbsp;:refer&nbsp;[learn-news-item]]))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                004&nbsp;&nbsp;
+                005&nbsp;&nbsp;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                005&nbsp;&nbsp;;;&nbsp;Note&nbsp;that&nbsp;habitual&nbsp;travellers&nbsp;are&nbsp;all&nbsp;gossip&nbsp;agents;&nbsp;specifically,&nbsp;at&nbsp;this
+                006&nbsp;&nbsp;;;&nbsp;Note&nbsp;that&nbsp;habitual&nbsp;travellers&nbsp;are&nbsp;all&nbsp;gossip&nbsp;agents;&nbsp;specifically,&nbsp;at&nbsp;this
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                006&nbsp;&nbsp;;;&nbsp;stage,&nbsp;that&nbsp;means&nbsp;merchants.&nbsp;When&nbsp;merchants&nbsp;are&nbsp;moved&nbsp;we&nbsp;also&nbsp;need&nbsp;to
+                007&nbsp;&nbsp;;;&nbsp;stage,&nbsp;that&nbsp;means&nbsp;merchants.&nbsp;When&nbsp;merchants&nbsp;are&nbsp;moved&nbsp;we&nbsp;also&nbsp;need&nbsp;to
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                007&nbsp;&nbsp;;;&nbsp;update&nbsp;the&nbsp;location&nbsp;of&nbsp;the&nbsp;gossip&nbsp;with&nbsp;the&nbsp;same&nbsp;key.
+                008&nbsp;&nbsp;;;&nbsp;update&nbsp;the&nbsp;location&nbsp;of&nbsp;the&nbsp;gossip&nbsp;with&nbsp;the&nbsp;same&nbsp;key.
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                008&nbsp;&nbsp;
+                009&nbsp;&nbsp;
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                009&nbsp;&nbsp;(defn&nbsp;dialogue
+                010&nbsp;&nbsp;(defn&nbsp;dialogue
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                010&nbsp;&nbsp;&nbsp;&nbsp;&quot;Dialogue&nbsp;between&nbsp;an&nbsp;`enquirer`&nbsp;and&nbsp;an&nbsp;`agent`&nbsp;in&nbsp;this&nbsp;`world`;&nbsp;returns&nbsp;a
+                011&nbsp;&nbsp;&nbsp;&nbsp;&quot;Dialogue&nbsp;between&nbsp;an&nbsp;`enquirer`&nbsp;and&nbsp;an&nbsp;`agent`&nbsp;in&nbsp;this&nbsp;`world`;&nbsp;returns&nbsp;a
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                011&nbsp;&nbsp;&nbsp;&nbsp;map&nbsp;identical&nbsp;to&nbsp;`enquirer`&nbsp;except&nbsp;that&nbsp;its&nbsp;`:gossip`&nbsp;collection&nbsp;may&nbsp;have
+                012&nbsp;&nbsp;&nbsp;&nbsp;map&nbsp;identical&nbsp;to&nbsp;`enquirer`&nbsp;except&nbsp;that&nbsp;its&nbsp;`:gossip`&nbsp;collection&nbsp;may&nbsp;have
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                012&nbsp;&nbsp;&nbsp;&nbsp;additional&nbsp;entries.&quot;
+                013&nbsp;&nbsp;&nbsp;&nbsp;additional&nbsp;entries.&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                013&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;not&nbsp;yet&nbsp;written,&nbsp;this&nbsp;is&nbsp;a&nbsp;stub.
+                014&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;not&nbsp;yet&nbsp;written,&nbsp;this&nbsp;is&nbsp;a&nbsp;stub.
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                014&nbsp;&nbsp;&nbsp;&nbsp;[enquirer&nbsp;respondent&nbsp;world]
+                015&nbsp;&nbsp;&nbsp;&nbsp;[enquirer&nbsp;respondent&nbsp;world]
                 </span><br/>
 <span class="not-covered" title="0 out of 1 forms covered">
-                015&nbsp;&nbsp;&nbsp;&nbsp;enquirer)
+                016&nbsp;&nbsp;&nbsp;&nbsp;enquirer)
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                016&nbsp;&nbsp;
+                017&nbsp;&nbsp;
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                017&nbsp;&nbsp;(defn&nbsp;gather-news
+                018&nbsp;&nbsp;(defn&nbsp;gather-news
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                018&nbsp;&nbsp;&nbsp;&nbsp;([world]
+                019&nbsp;&nbsp;&nbsp;&nbsp;([world]
                 </span><br/>
 <span class="not-covered" title="0 out of 2 forms covered">
-                019&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reduce
+                020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reduce
                 </span><br/>
 <span class="not-covered" title="0 out of 1 forms covered">
-                020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deep-merge
+                021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deep-merge
                 </span><br/>
 <span class="not-covered" title="0 out of 1 forms covered">
-                021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world
+                022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world
                 </span><br/>
 <span class="not-covered" title="0 out of 3 forms covered">
-                022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
+                023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
                 </span><br/>
 <span class="not-covered" title="0 out of 4 forms covered">
-                023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(gather-news&nbsp;world&nbsp;%)
+                024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(gather-news&nbsp;world&nbsp;%)
                 </span><br/>
 <span class="not-covered" title="0 out of 5 forms covered">
-                024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(keys&nbsp;(:gossips&nbsp;world)))))
+                025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(keys&nbsp;(:gossips&nbsp;world)))))
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                025&nbsp;&nbsp;&nbsp;&nbsp;([world&nbsp;gossip]
+                026&nbsp;&nbsp;&nbsp;&nbsp;([world&nbsp;gossip]
                 </span><br/>
 <span class="not-covered" title="0 out of 7 forms covered">
-                026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[g&nbsp;(cond&nbsp;(keyword?&nbsp;gossip)
+                027&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[g&nbsp;(cond&nbsp;(keyword?&nbsp;gossip)
                 </span><br/>
 <span class="not-covered" title="0 out of 5 forms covered">
-                027&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(-&gt;&nbsp;world&nbsp;:gossips&nbsp;gossip)
+                028&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(-&gt;&nbsp;world&nbsp;:gossips&nbsp;gossip)
                 </span><br/>
 <span class="not-covered" title="0 out of 3 forms covered">
-                028&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map?&nbsp;gossip)
+                029&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map?&nbsp;gossip)
                 </span><br/>
 <span class="not-covered" title="0 out of 1 forms covered">
-                029&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gossip)]
+                030&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gossip)]
                 </span><br/>
 <span class="not-covered" title="0 out of 2 forms covered">
-                030&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:gossips
+                031&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:gossips
                 </span><br/>
 <span class="not-covered" title="0 out of 4 forms covered">
-                031&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{(:id&nbsp;g)
+                032&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{(:id&nbsp;g)
                 </span><br/>
 <span class="not-covered" title="0 out of 2 forms covered">
-                032&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reduce
+                033&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reduce
                 </span><br/>
 <span class="not-covered" title="0 out of 1 forms covered">
-                033&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deep-merge
+                034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deep-merge
                 </span><br/>
 <span class="not-covered" title="0 out of 1 forms covered">
-                034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{}
+                035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{}
                 </span><br/>
 <span class="not-covered" title="0 out of 3 forms covered">
-                035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
+                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
                 </span><br/>
 <span class="not-covered" title="0 out of 5 forms covered">
-                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(dialogue&nbsp;g&nbsp;%&nbsp;world)
+                037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(dialogue&nbsp;g&nbsp;%&nbsp;world)
                 </span><br/>
 <span class="not-covered" title="0 out of 3 forms covered">
-                037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(remove
+                038&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(remove
                 </span><br/>
 <span class="not-covered" title="0 out of 4 forms covered">
-                038&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(&nbsp;=&nbsp;g&nbsp;%)
+                039&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(&nbsp;=&nbsp;g&nbsp;%)
                 </span><br/>
 <span class="not-covered" title="0 out of 3 forms covered">
-                039&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(filter
+                040&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(filter
                 </span><br/>
 <span class="not-covered" title="0 out of 8 forms covered">
-                040&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(=&nbsp;(:location&nbsp;%)&nbsp;(:location&nbsp;g))
+                041&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#(=&nbsp;(:location&nbsp;%)&nbsp;(:location&nbsp;g))
                 </span><br/>
 <span class="not-covered" title="0 out of 5 forms covered">
-                041&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vals&nbsp;(:gossips&nbsp;world))))))}})))
+                042&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vals&nbsp;(:gossips&nbsp;world))))))}})))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                042&nbsp;&nbsp;
+                043&nbsp;&nbsp;
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                043&nbsp;&nbsp;(defn&nbsp;move-gossip
+                044&nbsp;&nbsp;(defn&nbsp;move-gossip
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                044&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;world&nbsp;like&nbsp;this&nbsp;`world`&nbsp;but&nbsp;with&nbsp;this&nbsp;`gossip`&nbsp;moved&nbsp;to&nbsp;this
+                045&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;world&nbsp;like&nbsp;this&nbsp;`world`&nbsp;but&nbsp;with&nbsp;this&nbsp;`gossip`&nbsp;moved&nbsp;to&nbsp;this
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                045&nbsp;&nbsp;&nbsp;&nbsp;`new-location`.&nbsp;Many&nbsp;gossips&nbsp;are&nbsp;essentially&nbsp;shadow-records&nbsp;of&nbsp;agents&nbsp;of
+                046&nbsp;&nbsp;&nbsp;&nbsp;`new-location`.&nbsp;Many&nbsp;gossips&nbsp;are&nbsp;essentially&nbsp;shadow-records&nbsp;of&nbsp;agents&nbsp;of
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                046&nbsp;&nbsp;&nbsp;&nbsp;other&nbsp;types,&nbsp;and&nbsp;the&nbsp;movement&nbsp;of&nbsp;the&nbsp;gossip&nbsp;should&nbsp;be&nbsp;controlled&nbsp;by&nbsp;the
+                047&nbsp;&nbsp;&nbsp;&nbsp;other&nbsp;types,&nbsp;and&nbsp;the&nbsp;movement&nbsp;of&nbsp;the&nbsp;gossip&nbsp;should&nbsp;be&nbsp;controlled&nbsp;by&nbsp;the
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                047&nbsp;&nbsp;&nbsp;&nbsp;run&nbsp;function&nbsp;of&nbsp;the&nbsp;type&nbsp;of&nbsp;the&nbsp;record&nbsp;they&nbsp;shadow.&nbsp;The&nbsp;[[#run]]&nbsp;function
+                048&nbsp;&nbsp;&nbsp;&nbsp;run&nbsp;function&nbsp;of&nbsp;the&nbsp;type&nbsp;of&nbsp;the&nbsp;record&nbsp;they&nbsp;shadow.&nbsp;The&nbsp;[[#run]]&nbsp;function
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                048&nbsp;&nbsp;&nbsp;&nbsp;below&nbsp;does&nbsp;NOT&nbsp;call&nbsp;this&nbsp;function.&quot;
+                049&nbsp;&nbsp;&nbsp;&nbsp;below&nbsp;does&nbsp;NOT&nbsp;call&nbsp;this&nbsp;function.&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                049&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;world&nbsp;new-location]
+                050&nbsp;&nbsp;&nbsp;&nbsp;[gossip&nbsp;world&nbsp;new-location]
                 </span><br/>
 <span class="not-covered" title="0 out of 4 forms covered">
-                050&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[id&nbsp;(cond
+                051&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[id&nbsp;(cond
                 </span><br/>
 <span class="not-covered" title="0 out of 3 forms covered">
-                051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map?&nbsp;gossip)
+                052&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map?&nbsp;gossip)
                 </span><br/>
 <span class="not-covered" title="0 out of 7 forms covered">
-                052&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(-&gt;&nbsp;world&nbsp;:gossips&nbsp;gossip&nbsp;:id)
+                053&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(-&gt;&nbsp;world&nbsp;:gossips&nbsp;gossip&nbsp;:id)
                 </span><br/>
 <span class="not-covered" title="0 out of 3 forms covered">
-                053&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(keyword?&nbsp;gossip)
+                054&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(keyword?&nbsp;gossip)
                 </span><br/>
 <span class="not-covered" title="0 out of 1 forms covered">
-                054&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gossip)]
+                055&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gossip)]
                 </span><br/>
 <span class="not-covered" title="0 out of 2 forms covered">
-                055&nbsp;&nbsp;&nbsp;&nbsp;(deep-merge
+                056&nbsp;&nbsp;&nbsp;&nbsp;(deep-merge
                 </span><br/>
 <span class="not-covered" title="0 out of 1 forms covered">
-                056&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world
+                057&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world
                 </span><br/>
 <span class="not-covered" title="0 out of 2 forms covered">
-                057&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:gossips
+                058&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:gossips
                 </span><br/>
 <span class="not-covered" title="0 out of 2 forms covered">
-                058&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id
+                059&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{id
                 </span><br/>
 <span class="not-covered" title="0 out of 3 forms covered">
-                059&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:location&nbsp;new-location}}})))
+                060&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:location&nbsp;new-location}}})))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                060&nbsp;&nbsp;
+                061&nbsp;&nbsp;
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
-                061&nbsp;&nbsp;(defn&nbsp;run
+                062&nbsp;&nbsp;(defn&nbsp;run
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                062&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;world&nbsp;like&nbsp;this&nbsp;`world`,&nbsp;with&nbsp;news&nbsp;items&nbsp;exchanged&nbsp;between&nbsp;gossip
+                063&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;world&nbsp;like&nbsp;this&nbsp;`world`,&nbsp;with&nbsp;news&nbsp;items&nbsp;exchanged&nbsp;between&nbsp;gossip
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                063&nbsp;&nbsp;&nbsp;&nbsp;agents.&quot;
+                064&nbsp;&nbsp;&nbsp;&nbsp;agents.&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                064&nbsp;&nbsp;&nbsp;&nbsp;[world]
+                065&nbsp;&nbsp;&nbsp;&nbsp;[world]
                 </span><br/>
 <span class="not-covered" title="0 out of 3 forms covered">
-                065&nbsp;&nbsp;&nbsp;&nbsp;(gather-news&nbsp;world))
+                066&nbsp;&nbsp;&nbsp;&nbsp;(gather-news&nbsp;world))
                 </span><br/>
  </body>
 </html>

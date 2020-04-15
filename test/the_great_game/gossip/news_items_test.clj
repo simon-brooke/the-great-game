@@ -23,6 +23,11 @@
                                  :location [{:x 35 :y 23} :auchencairn :galloway :scotland]}]}
                    [:galloway :scotland])]
       (is (= actual expected)))
+    (let [expected 2
+          actual (interest-in-location
+                   {:home [{:x 35 :y 23} :auchencairn :galloway :scotland]}
+                   [:galloway :scotland])]
+      (is (= actual expected)))
     (let [expected 0
           actual (interest-in-location
                    {:knowledge [{:verb :steal
@@ -114,19 +119,16 @@
           ;; dates will not be and cannot be expected to be equal
           actual (make-all-inferences
                    {:verb :rape :actor :adam :other :belinda :location :test-home})
-          actual' (map #(dissoc % :date) actual)]
+          actual' (set (map #(dissoc % :date) actual))]
       (is (= actual' expected)))))
 
-;; (deftest learn-tests
-;;   (testing "Learning from an interesting news item."
-;;     (let [expected {:home [{0 0} :test-home],
-;;                     :knowledge ({:verb :rape, :actor :adam, :other :belinda, :location nil, :nth-hand 1}
-;;                                        {:verb :sex, :actor :belinda, :other :adam, :location nil, :nth-hand 1}
-;;                                        {:verb :attack, :actor :adam, :other :belinda, :location nil, :nth-hand 1}
-;;                                        {:verb :sex, :actor :adam, :other :belinda, :location nil, :nth-hand 1})}
-;;           actual (learn-news-item
-;;                    {:home [{0, 0} :test-home]
-;;                     :knowledge []}
-;;                    {:verb :rape :actor :adam :other :belinda :location [:test-home]})
-;;           actual' (assoc actual :knowledge (map #(dissoc % :date) (:knowledge actual)))]
-;;       (is (= actual' expected)))))
+(deftest learn-tests
+  (testing "Learning from an interesting news item."
+    (let [expected {:home [{0 0} :test-home],
+                    :knowledge [{:verb :sex, :actor :adam, :other :belinda, :location nil, :nth-hand 1}
+                                {:verb :sex, :actor :belinda, :other :adam, :location nil, :nth-hand 1}]}
+          actual (learn-news-item
+                   {:home [{0, 0} :test-home] :knowledge []}
+                   {:verb :sex :actor :adam :other :belinda :location [:test-home]})
+          actual' (assoc actual :knowledge (vec (map #(dissoc % :date) (:knowledge actual))))]
+      (is (= actual' expected)))))

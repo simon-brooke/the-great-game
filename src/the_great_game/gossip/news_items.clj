@@ -1,7 +1,7 @@
 (ns the-great-game.gossip.news-items
   "Categories of news events interesting to gossip agents"
   (:require [the-great-game.world.location :refer [distance-between]]
-            [the-great-game.time :refer [now]]))
+            [the-great-game.time :refer [game-time]]))
 
 ;; The ideas here are based on the essay 'The spread of knowledge in a large
 ;; game world', q.v.; they've advanced a little beyond that and will doubtless
@@ -136,12 +136,14 @@
     (count
       (filter
         #(some (fn [x] (= x location)) (:location %))
-        (:knowledge gossip)))))
+        (cons {:location (:home gossip)} (:knowledge gossip))))))
+
+;; (interest-in-location {:home [{0, 0} :test-home] :knowledge []} [:test-home])
 
 (defn interesting-location?
   "True if the location of this news `item` is interesting to this `gossip`."
   [gossip item]
-  (> (interest-in-location gossip (:location item)) 1))
+  (> (interest-in-location gossip (:location item)) 0))
 
 (defn interesting-object?
   [gossip object]
@@ -224,7 +226,7 @@
                                (number? (:nth-hand item))
                                (inc (:nth-hand item))
                                1)
-                   :date (if (number? (:date item)) (:date item) (now))
+                   :date (if (number? (:date item)) (:date item) (game-time))
                    :location (degrade-location gossip (:location item))
                    ;; ought to degratde the location
                    ;; ought to maybe-degrade characters we're not yet interested in
