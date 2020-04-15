@@ -41,7 +41,7 @@
   character, or else the receiver knows nothing at all about the character.
   Neither is desirable. Further thought needed.
 
-  By implication, the character values passed should include ^all^ the
+  By implication, the character values passed should include *all* the
   information the giver knows about the character; that can then be degraded
   as the receiver stores only that segment which the receiver finds
   interesting.

@@ -11,7 +11,7 @@
 <h4><a href="#notes-" name="notes-"></a>Notes:</h4>
 <h5><a href="#characters-" name="characters-"></a>Characters:</h5>
 <p><em>TODO</em> but note that at most all the receiver can learn about a character from a news item is what the giver knows about that character, degraded by what the receiver finds interesting about them. If we just pass the id here, then either the receiver knows everything in the database about the character, or else the receiver knows nothing at all about the character. Neither is desirable. Further thought needed.</p>
-<p>By implication, the character values passed should include ^all^ the information the giver knows about the character; that can then be degraded as the receiver stores only that segment which the receiver finds interesting.</p>
+<p>By implication, the character values passed should include <em>all</em> the information the giver knows about the character; that can then be degraded as the receiver stores only that segment which the receiver finds interesting.</p>
 <h5><a href="#locations-" name="locations-"></a>Locations:</h5>
 <p>A ‘location’ value is a list comprising at most the x/y coordinate location and the ids of the settlement and region (possibly hierarchically) that contain the location. If the x/y is not local to the home of the receiving agent, they won’t remember it and won’t pass it on; if any of the ids are not interesting So location information will degrade progressively as the item is passed along.</p>
 <p>It is assumed that the <code>:home</code> of a character is a location in this sense.</p>
