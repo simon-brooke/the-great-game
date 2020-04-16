@@ -65,7 +65,7 @@
   { ;; A significant attack is interesting whether or not it leads to deaths
     :attack {:verb :attack :keys [:actor :other :location]}
     ;; Deaths of characters may be interesting
-    :die {:verb :attack :keys [:actor :location]}
+    :die {:verb :die :keys [:actor :location]}
     ;; Deliberate killings are interesting.
     :kill {:verb :kill :keys [:actor :other :location]
            :inferences [{:verb :die :actor :other :other :nil}]}
@@ -127,7 +127,7 @@
     (if-let [home (:home gossip)]
       (let [d (distance-between location home)
             i (/ 10000 d) ;; 10000 at metre scale is 10km; interest should
-            ;;fall of with distance from home, but possibly on a log scale
+            ;;fall off with distance from home, but possibly on a log scale
             ]
         (if (> i 1) i 0))
       0)
@@ -185,8 +185,8 @@
 (declare learn-news-item)
 
 (defn make-all-inferences
-  "Return a list of knowledge entries inferred from this news `item` by this
-  `gossip`."
+  "Return a list of knowledge entries that can be inferred from this news
+  `item`."
   [item]
   (set
     (reduce
@@ -239,10 +239,9 @@
                               (:time-stamp item)
                               (game-time))
                 :location (degrade-location gossip (:location item))
-                ;; ought to degratde the location
-                ;; ought to maybe-degrade characters we're not yet interested in
+                ;; TODO: ought to maybe-degrade characters we're not yet interested in
                 )
-              ;; ought not to add knowledge items we already have, except
+              ;; TODO: ought not to add knowledge items we already have, except
               ;; to replace if new item is of increased specificity
               (:knowledge gossip)))]
        (if follow-inferences?
