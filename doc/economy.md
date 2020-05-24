@@ -1,6 +1,6 @@
 # Game world economy
 
-Broadly this essay extends ideas presented in [Populating a game world](https://blog.journeyman.cc/2013/07/populating-game-world.html), q.v.
+Broadly this essay extends ideas presented in [Populating a game world](Populating-a-game-world.html), q.v.
 
 ## Primary producers
 

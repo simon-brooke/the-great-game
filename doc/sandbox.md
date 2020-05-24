@@ -31,7 +31,7 @@ Someone who intercepts and steals from merchants (and may also attack outlying f
 
 ## Second tier playable roles
 
-The next tier of playable roles rotates around issues arising from the mercantile ecosystem. 
+The next tier of playable roles rotates around issues arising from the mercantile ecosystem.
 
 ### Aristocracy
 
@@ -57,10 +57,10 @@ But nevertheless, in The Witcher 3, a decision was made to pack incident fairly 
 
 An in-game day doesn't have to be as long as a wall clock day, and, indeed, typically isn't. But nevertheless, doing several game days of incident-free travel, even in beautiful scenery, is not going to be engaging - which implies a fast-travel mechanic.
 
-I don't like fast travel, I find it a too-obvious breaking of immersion. Also, of course, one of the interesting things about a game in a merchant/outlaw ecosystem is the risk of interception on a journey. The Dragon Age series handled interrupted travel in 'fast travel' by randomly interacting the loading screen you get when moving from location to location in Dragon Age's patchwork worlds by dumping you into a tiny arena with enemies. That's really, really bad - there's no other way to say this. Everything about it shouts artifice.
+I don't like fast travel, I find it a too-obvious breaking of immersion. Also, of course, one of the interesting things about a game in a merchant/outlaw ecosystem is the risk of interception on a journey. The Dragon Age series handled interrupted travel in 'fast travel' by randomly interrupting the loading screen you get when moving from location to location in Dragon Age's patchwork worlds by dumping you into a tiny arena with enemies. That's really, really bad - there's no other way to say this. Everything about it shouts artifice.
 
 So I'm thinking of a different mechanism: one I'm calling cruise control.
 
-You set out on a task which will take a long time - such as a journey, but also such as any routine task. You're shown either a 'fast forward' of your character carrying out this task, or a series of cinematic 'shots along the way'. This depends, of course, on their being continuous renderable landscape between your departure and your destination, but there will be. This fast-forward proceeds at a substantially higher time gearing than normal game time - ten times as fast perhaps; we need it to, because as well as doing backgound scenery loading to move from one location to another, we're also simulating lots of non-player agents actions in parts of the world where the player currently isn't. So a 'jump cut' from one location to another isn't going to work anyway.
+You set out on a task which will take a long time - such as a journey, but also such as any routine task. You're shown either a 'fast forward' of your character carrying out this task, or a series of cinematic 'shots along the way'. This depends, of course, on there being continuous renderable landscape between your departure and your destination, but there will be. This fast-forward proceeds at a substantially higher time gearing than normal game time - ten times as fast perhaps; we need it to, because as well as doing backgound scenery loading to move from one location to another, we're also simulating lots of non-player agents' actions in parts of the world where the player currently isn't. So a 'jump cut' from one location to another isn't going to work anyway.
 
 The player can interrupt 'fast forward' at any time. But also, the game itself may bring you out of fast forward when it anticipates that there may be action which requires decision - for example, when there are outlaws in the vicinity. And it will do this **before** the player's party is under immediate attack - the player will have time to take stock of the situation and prepare appropriately. Finally, this will take place in the full open world; the player will have the option to choose *not* to enter the narrow defile, for example, to ask local people (if there are any) for any news of outlaw activity, or, if they are available, to send forward scouts.

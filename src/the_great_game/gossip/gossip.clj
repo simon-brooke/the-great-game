@@ -1,6 +1,7 @@
 (ns the-great-game.gossip.gossip
   "Interchange of news events between gossip agents"
-  (:require [the-great-game.utils :refer [deep-merge]]))
+  (:require [the-great-game.utils :refer [deep-merge]]
+            [the-great-game.gossip.news-items :refer [learn-news-item]]))
 
 ;; Note that habitual travellers are all gossip agents; specifically, at this
 ;; stage, that means merchants. When merchants are moved we also need to

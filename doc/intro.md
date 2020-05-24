@@ -19,7 +19,7 @@ that I need to be able to use it to tell stories, in order to create initial
 threads of narrative from which players can start their exploration.
 
 Note that, by 'conflict', here, I explicitly do not mean 'killing people',
-or even 'killing non-player characters'. I have [written extensively](https://blog.journeyman.cc/2015/02/voice-acting-considered-harmful.html)
+or even 'killing non-player characters'. I have [written extensively](Voice-acting-considered-harmful.html)
 about the problem in many current video games that all too often the only
 way of interacting with non-player characters is to kill them. Killing
 people should be one of the potential ways of resolving conflicts, because
@@ -32,18 +32,18 @@ repertoire of speech.
 
 ## Previous essays that are relevant
 
-* [The spread of knowledge in a large game world](https://blog.journeyman.cc/2008/04/the-spread-of-knowledge-in-large-game.html) (2008) discusses what individual non-player characters know, and how to model dynamic updates to their knowledge;
+* [The spread of knowledge in a large game world](The-spread-of-knowledge-in-a-large-game-world.html) (2008) discusses what individual non-player characters know, and how to model dynamic updates to their knowledge;
 * [Settling a game world](https://blog.journeyman.cc/2009/12/settling-game-world.html) (2009) gives rough outline of ideas about creating the environment, including modelling things like soil fertility, local building materials, and consequently local architecture;
 * [Tessellated multi-layer height map](https://blog.journeyman.cc/2013/07/tessellated-multi-layer-height-map.html) (2013) gives ideas for how a designed geography for a very large world could be stored relatively economically;
 * [Genetic Buildings](https://blog.journeyman.cc/2013/07/genetic-buildings.html) (2013) sketches algorithms which would allow procedurally-generated buildings to be site-appropriate, broadly variable and reproducable;
-* [Populating a game world](https://blog.journeyman.cc/2013/07/populating-game-world.html) (2013) provides outline algorithms for how a world can be populated, and how organic mixes of trades and crafts can be modelled;
+* [Populating a game world](Populating-a-game-world.html) (2013) provides outline algorithms for how a world can be populated, and how organic mixes of trades and crafts can be modelled;
 * [Modelling the change from rural to urban](https://blog.journeyman.cc/2013/07/modelling-change-from-rural-to-urban.html) (2013) describes the idea of procedurally modelling settlements, but it is grid-based and not particularly satisfactory and has largely been superceded in my thinking;
-* [Of pigeons, and long distance messaging in a game world]() (2013) builds on ideas about flows of information;
+* [Of pigeons, and long distance messaging in a game world](https://blog.journeyman.cc/2013/10/of-pigeons-and-long-distance-messaging.html) (2013) builds on ideas about flows of information;
 * [Modelling rural to urban, take two](https://blog.journeyman.cc/2013/10/modelling-rural-to-urban-take-two.html) (2013) revisited the idea of modelling organic settlement structures, trying to find algorithms which would naturally produce more persuasive settlement models, including further ideas on the procedural generation of buildings;
 * [More on modelling rivers](https://blog.journeyman.cc/2014/09/more-on-modelling-rivers.html) (2014) talks about modelling hydrology, with implications for soil fertility;
 * [Modelling settlement with cellular automata](https://blog.journeyman.cc/2014/08/modelling-settlement-with-cellular.html) (2014) talks about successful implementation of algorithms to model vegetative environment, human settlement and the impact of human settlement on the environment;
 * [Voice acting considered harmful](https://blog.journeyman.cc/2015/02/voice-acting-considered-harmful.html) (2015) outlines the ideas behind full speech interaction with non-player characters, and modelling what those non-player characters should be able to speak about;
-* [Baking the world](https://blog.journeyman.cc/2019/05/baking-world.html) (2019) an outline of the overall process of creating a world.
+* [Baking the world](Baking-the-world.html) (2019) an outline of the overall process of creating a world.
 
 ## Organic and emergent game-play
 
@@ -183,8 +183,8 @@ easy:
 So each agent is assigned - by the dreaded random number generator - one top
 level goal when they are instantiated. I don't think it's necessary to model
 change of top level goals, although of course that does happen in real life;
-however, although each agent has one top level goal, they will have lower l
-evel 'stretch goals' also taken from this list: so at each decision point in
+however, although each agent has one top level goal, they will have lower
+level 'stretch goals' also taken from this list: so at each decision point in
 an agent's planning loop, if base level needs are satisfied and progress on
 the top level goal is blocked, actions should be chosen which progress one
 of the lower goals. Indeed, it's possible that all agents could have all
@@ -379,4 +379,4 @@ Each game day, every habitual traveller within the 'local' gossip bubble
 exchanges some items of gossip with the nearest innkeeper to their current
 location. In the second and third gossip bubbles, it's probably only more
 favoured gossip agents who do this. See
-[The spread of knowledge in a large game world](https://blog.journeyman.cc/2008/04/the-spread-of-knowledge-in-large-game.html)
+[The spread of knowledge in a large game world](The-spread-of-knowledge-in-a-large-game-world.html)

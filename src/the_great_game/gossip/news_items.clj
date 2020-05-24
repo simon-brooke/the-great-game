@@ -1,6 +1,7 @@
 (ns the-great-game.gossip.news-items
   "Categories of news events interesting to gossip agents"
-  (:require [clojure.math.numeric-tower :refer [expt sqrt]]))
+  (:require [the-great-game.world.location :refer [distance-between]]
+            [the-great-game.time :refer [game-time]]))
 
 ;; The ideas here are based on the essay 'The spread of knowledge in a large
 ;; game world', q.v.; they've advanced a little beyond that and will doubtless
@@ -20,13 +21,30 @@
   their `verbs`. The `keys` associated with each topic are the extra pieces
   of information required to give context to a gossip item. Generally:
 
-  * `actor` is the id of the character who performed the action;
-  * `other` is the id of the character on whom the action was performed;
+  * `actor` is the id of the character who it is reported performed the
+  action;
+  * `other` is the id of the character on whom it is reported the action
+  was performed;
   * `location` is the place at which the action was performed;
-  * `object` is an object (or possibly list of objects?) relevant to the action;
+  * `object` is an object (or possibly list of objects?) relevant to the
+  action;
   * `price` is special to buy/sell, but of significant interest to merchants.
 
   #### Notes:
+
+  ##### Characters:
+
+  *TODO* but note that at most all the receiver can learn about a character
+  from a news item is what the giver knows about that character, degraded by
+  what the receiver finds interesting about them. If we just pass the id here,
+  then either the receiver knows everything in the database about the
+  character, or else the receiver knows nothing at all about the character.
+  Neither is desirable. Further thought needed.
+
+  By implication, the character values passed should include *all* the
+  information the giver knows about the character; that can then be degraded
+  as the receiver stores only that segment which the receiver finds
+  interesting.
 
   ##### Locations:
 
@@ -47,7 +65,7 @@
   { ;; A significant attack is interesting whether or not it leads to deaths
     :attack {:verb :attack :keys [:actor :other :location]}
     ;; Deaths of characters may be interesting
-    :die {:verb :attack :keys [:actor :location]}
+    :die {:verb :die :keys [:actor :location]}
     ;; Deliberate killings are interesting.
     :kill {:verb :kill :keys [:actor :other :location]
            :inferences [{:verb :die :actor :other :other :nil}]}
@@ -62,6 +80,7 @@
     :plot {:verb :plot :keys [:actor :other :object :location]}
     ;; Rapes are interesting.
     :rape {:verb :rape :keys [:actor :other :location]
+           ;; Should you also infer from rape that actor is male and adult?
            :inferences [{:verb :attack}
                         {:verb :sex}
                         {:verb :sex :actor :other :other :actor}]}
@@ -84,7 +103,9 @@
 
 (defn interest-in-character
   "Integer representation of how interesting this `character` is to this
-  `gossip`."
+  `gossip`.
+  *TODO:* this assumes that characters are passed as keywords, but, as
+  documented above, they probably have to be maps, to allow for degradation."
   [gossip character]
   (count
     (concat
@@ -97,98 +118,47 @@
   [gossip character]
   (> (interest-in-character gossip character) 0))
 
-(defn get-coords
-  "Return the coordinates in the game world of `location`, which may be
-  1. A coordinate pair in the format {:x 5 :y 32};
-  2. A location, as discussed above;
-  3. Any other gameworld object, having a `:location` property whose value
-    is one of the above."
-  [location]
-  (cond
-    (empty? location) nil
-    (map? location)
-    (cond
-      (and (number? (:x location)) (number? (:y location)))
-      location
-      (:location location)
-      (:location location))
-    :else
-    (get-coords (first (remove keyword? location)))))
-
-;; (get-coords {:x 5 :y 7})
-;; (get-coords [{:x -4 :y 55} :auchencairn :galloway :scotland])
-
-(defn distance-between
-  [location-1 location-2]
-  (let [c1 (get-coords location-1)
-        c2 (get-coords location-2)]
-    (if
-      (and c1 c2)
-      (sqrt (+ (expt (- (:x c1) (:x c2)) 2) (expt (- (:y c1) (:y c2)) 2))))))
-
-;; (distance-between {:x 5 :y 5} {:x 2 :y 2})
-;; (distance-between {:x 5 :y 5} {:x 2 :y 5})
-;; (distance-between {:x 5 :y 5} [{:x -4 :y 55} :auchencairn :galloway :scotland])
-;; (distance-between {:x 5 :y 5} [:auchencairn :galloway :scotland])
-
 (defn interest-in-location
   "Integer representation of how interesting this `location` is to this
   `gossip`."
   [gossip location]
   (cond
+    (and (map? location) (number? (:x location)) (number? (:y location)))
+    (if-let [home (:home gossip)]
+      (let [d (distance-between location home)
+            i (/ 10000 d) ;; 10000 at metre scale is 10km; interest should
+            ;;fall off with distance from home, but possibly on a log scale
+            ]
+        (if (> i 1) i 0))
+      0)
     (coll? location)
     (reduce
       +
       (map
         #(interest-in-location gossip %)
         location))
-    (and (map? location) (:x location) (:y location))
-    (if-let [home (:home gossip)]
-      (let [d (distance-between location home)
-            i (/ 10000 d) ;; 10000 at metre scale is 10km; interest should
-            ;;fall of with distance from home, but possibly on a log scale
-            ]
-        (if (i > 1) i 0)
-        i))
     :else
     (count
       (filter
         #(some (fn [x] (= x location)) (:location %))
-        (:knowledge gossip)))))
+        (cons {:location (:home gossip)} (:knowledge gossip))))))
 
-;; (interest-in-location
-;;   {:knowledge [{:verb :steal
-;;              :actor :albert
-;;              :other :belinda
-;;              :object :foo
-;;              :location [{:x 35 :y 23} :auchencairn :galloway]}]}
-;;   :galloway)
-
-;; (interest-in-location
-;;   {:knowledge [{:verb :steal
-;;              :actor :albert
-;;              :other :belinda
-;;              :object :foo
-;;              :location [{:x 35 :y 23} :auchencairn :galloway]}]}
-;;   [:galloway :scotland])
-
-
-;; (interest-in-location
-;;   {:knowledge [{:verb :steal
-;;              :actor :albert
-;;              :other :belinda
-;;              :object :foo
-;;              :location [{:x 35 :y 23} :auchencairn :galloway]}]}
-;;   :dumfries)
-
-;; (interest-in-location
-;;   {:home {:x 35 :y 23}}
-;;   {:x 35 :y 24})
+;; (interest-in-location {:home [{0, 0} :test-home] :knowledge []} [:test-home])
 
 (defn interesting-location?
   "True if the location of this news `item` is interesting to this `gossip`."
   [gossip item]
-  (> (interest-in-location gossip (:location item)) 1))
+  (> (interest-in-location gossip (:location item)) 0))
+
+(defn interesting-object?
+  [gossip object]
+  ;; TODO: Not yet (really) implemented
+  true)
+
+(defn interesting-topic?
+  [gossip topic]
+  ;; TODO: Not yet (really) implemented
+  true)
 
 (defn interesting-item?
   "True if anything about this news `item` is interesting to this `gossip`."
@@ -212,40 +182,75 @@
                    #(= % :verb)
                    (keys rule))))))
 
-;; (infer {:verb :marry :actor :adam :other :belinda}
-;;        {:verb :marry :actor :other :other :actor})
-;; (infer {:verb :rape :actor :adam :other :belinda}
-;;        {:verb :attack})
-;; (infer {:verb :rape :actor :adam :other :belinda}
-;;        {:verb :sex :actor :other :other :actor})
+(declare learn-news-item)
+
+(defn make-all-inferences
+  "Return a list of knowledge entries that can be inferred from this news
+  `item`."
+  [item]
+  (set
+    (reduce
+      concat
+      (map
+        #(:knowledge (learn-news-item {} (infer item %) false))
+        (:inferences (news-topics (:verb item)))))))
+
+(defn degrade-character
+  "Return a character specification like this `character`, but comprising
+  only those properties this `gossip` is interested in."
+  [gossip character]
+  ;; TODO: Not yet (really) implemented
+  character)
+
+(defn degrade-location
+  "Return a location specification like this `location`, but comprising
+  only those elements this `gossip` is interested in. If none, return
+  `nil`."
+  [gossip location]
+  (let [l (if
+    (coll? location)
+    (filter
+      #(when (interesting-location? gossip %) %)
+      location))]
+    (when-not (empty? l) l)))
 
 (defn learn-news-item
   "Return a gossip like this `gossip`, which has learned this news `item` if
   it is of interest to them."
+  ;; TODO: Not yet implemented
   ([gossip item]
-   (learn-news-item gossip item false))
+   (learn-news-item gossip item true))
   ([gossip item follow-inferences?]
    (if
      (interesting-item? gossip item)
-     (let [g (assoc gossip :knowledge
-               (cons
-                 (assoc
-                   item
-                   :nth-hand (if
-                               (number? (:nth-hand item))
-                               (inc (:nth-hand item))
-                               1)
-                   ;; ought to degrate the location
-                   ;; ought to maybe-degrade characters we're not yet interested in
-                   )
-                 ;; ought not to add knowledge items we already have, except
-                 ;; to replace if new item is of increased specificity
-                 (:knowledge gossip)))]
+     (let
+       [g (assoc
+            gossip
+            :knowledge
+            (cons
+              (assoc
+                item
+                :nth-hand (if
+                            (number? (:nth-hand item))
+                            (inc (:nth-hand item))
+                            1)
+                :time-stamp (if
+                              (number? (:time-stamp item))
+                              (:time-stamp item)
+                              (game-time))
+                :location (degrade-location gossip (:location item))
+                ;; TODO: ought to maybe-degrade characters we're not yet interested in
+                )
+              ;; TODO: ought not to add knowledge items we already have, except
+              ;; to replace if new item is of increased specificity
+              (:knowledge gossip)))]
        (if follow-inferences?
-         (reduce
-           merge
+         (assoc
            g
-           (map
-             #(learn-news-item gossip (infer item %) false)
-             (:inferences (news-topics (:verb item))))))))))
+           :knowledge
+           (concat (:knowledge g) (make-all-inferences item)))
+         g))
+     gossip)))
+
+
 
