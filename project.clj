@@ -1,4 +1,4 @@
-(defproject the-great-game "0.1.1"
+(defproject the-great-game "0.1.2-SNAPSHOT"
   :cloverage {:output "docs/cloverage"}
   :codox {:metadata {:doc "**TODO**: write docs"
                      :doc/format :markdown}
@@ -17,6 +17,8 @@
             [lein-cucumber "1.0.2"]
             [lein-gorilla "0.4.0"]]
 
+  ;; NOTE WELL: `lein release` won't work until we have a release repository
+  ;; set, which we don't!
   :release-tasks [["vcs" "assert-committed"]
                   ["change" "version" "leiningen.release/bump-version" "release"]
                   ["vcs" "commit"]
