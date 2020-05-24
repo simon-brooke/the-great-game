@@ -3,6 +3,7 @@ pom.xml.asc
 *.jar
 *.class
 *.log
+*.stl
 [0-9a-f]*-init.clj
 /lib/
 /classes/
@@ -18,4 +19,3 @@ pom.xml.asc
 .cpcache/
 *~
 
-doc/.~lock.Population.ods#

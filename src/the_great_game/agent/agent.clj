@@ -1,6 +1,6 @@
 (ns the-great-game.agent.agent
   "Anything in the game world with agency"
-  (:require [the-great-game.objects.object :refer [ProtoObject]]
+  (:require [the-great-game.objects.game-object :refer [ProtoObject]]
             [the-great-game.objects.container :refer [ProtoContainer]]))
 
 ;;  hierarchy of needs probably gets implemented here
