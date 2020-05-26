@@ -4,9 +4,7 @@
 
 ## Stages in creating routes between locations
 
-### The 'procedural' phase
-
-*see also [[Baking-the-world]]*
+*see also [Baking the world](Baking-the-world.html)*
 
 Towards the end of the procedural phase of the build process, every agent within the game world must move through the complete range of their needs-driven repertoire. Merchants must traverse their trading routes; soldiers must patrol routes within their employers domain; primary producers and craftspeople must visit the craftspeople who supply them; every character must visit their local inn, and must move daily between their dwelling and their workplace if different; and so on. They must do this over a considerable period - say 365 simulated days.
 
@@ -16,7 +14,11 @@ The algorithmic part of choosing a route is the same during this baking phase as
 
 Thus the 'weight' of any section of route is a function of the total number of times that route segment has been traversed by an agent during this baking phase. At the end of the baking phase, routes travelled more than `R` times are rendered as roads, `T` times as tracks, and `P` times as footpaths, where `R`, `T` and `P` are all chosen by the game designer but generally `R > T > P`.
 
-### Algorithmic rules
+### Routing
+
+Routing is fundamentally by [A\*](https://www.redblobgames.com/pathfinding/a-star/introduction.html), I think.
+
+#### Algorithmic rules
 
 1. No route may pass through any part of a reserved holding, except the holding which is its origin, if any, and the holding which is its destination (and in any case we won't render paths or roads within holdings, although traversal information may be used to determine whether a holding, or part of it, is paved/cobbled;
 2. No route may pass through any building, with the exception of a city gate;
@@ -24,9 +26,43 @@ Thus the 'weight' of any section of route is a function of the total number of t
 4. Any existing route segment costs only a third as much to traverse as open ground having the same gradient;
 5. A more used route costs less to traverse than a less used route.
 
+#### Step costing:
+
+Step cost is something like:
+
+    (/
+      (-
+        (+ distance
+          (expt height-gained height-gain-exponent)
+          (reduce + (map crossing-penalty watercourses-crossed)))
+        (reduce + (map bridge-bonus bridges-crossed)))
+      (or road-bonus 1))
+
+**Where**
+
+* `distance` traversed is in metres;
+* `height-gained` is in metres;
+* `height-gain-exponent` is tunable;
+* river `crossing-penalty` varies with a (tunable) exponent of the flow;
+* `bridge-bonus` works as follows: bridge bonus for a bridge entirely cancels the river crossing penalty
+for the watercourse the bridge crosses; bridge bonus for a ferry cancels a (tunable) fraction the river
+crossing penalty.
+* road-bonus for a road is substantial - probably about 8; for a track is less than road but greater than footpath, say 5; for a footpath has to be at least 3, to provide an incentive to
+stick to paths. All these values are tunable. Road bonus ought also to increase a small amount with each traversal of the path segment, but that's still to be worked on.
+
+A lot of this is subject to tuning once we have prototype code running.
+
+Somewhere into all this I need to factor tolls charged by local aristons,
+especially for bridges/ferries, and risk factors of hostile action, whether
+by outlaws or by hostile factions. But actually, that is at a per actor
+level, rather than at a pathmaking level: richer actors are less deterred
+by tolls, better armed actors less deterred by threat of hostile action.
+
 ### River crossings
 
-Crossing rivers is expensive - say five times as expensive as level open ground (but this will probably need tuning). Where a river is shallow enough, (i.e. where the amount of water passing is below some threshold) then a path crossing will be rendered as stepping stones and a track crossing as a ford. Where it's deeper than that, a path crossing either isn't rendered at all or is rendered as a light footbridge. A track or road crossing is rendered as a bridge. However, the maximum length of a bridge varies with the amount of traffic on the route segment, and if the crossing exceeds that length then a ferry is used. Road bridges will be more substantial than track bridges, for example in a biome with both timber and stone available road bridges might be rendered as stone bridges while track bridges were rendered as timber. If the watercourse is marked as `navigable`, the bridge must have a lifting section. It is assumed here that bridges are genetic buildings like most other in-game buildings, and so don't need to be individually designed.
+River crossings appear automatically when the number of traversals of a particular route across a watercourse  passes some threshhold. The threshold probably varies with an exponent of the flow; the threshold at which a ferry will appear is lower (by half?) than the threshold for a bridge. Of course river crossings, like roads, can also be pre-designed by game designers.
+
+Where a river is shallow enough, (i.e. where the flow is below some threshold) then a path crossing will be rendered as stepping stones and a track crossing as a ford. Where it's deeper than that, a path crossing either isn't rendered at all or is rendered as a light footbridge. A track or road crossing is rendered as a bridge. However, the maximum length of a bridge varies with the amount of traffic on the route segment, and if the crossing exceeds that length then a ferry is used. Road bridges will be more substantial than track bridges, for example in a biome with both timber and stone available road bridges might be rendered as stone bridges while track bridges were rendered as timber. If the watercourse is marked as `navigable`, the bridge must have a lifting section. It is assumed here that bridges are genetic buildings like most other in-game buildings, and so don't need to be individually designed.
 
 ### Representation
 
@@ -65,17 +101,7 @@ I'm working on a separate library, [walkmap](https://simon-brooke.github.io/walk
 
 ### Pathmaking and scale
 
-Dealing with large heightmaps - doing anything at all with them - is extremely compute intensive. Just converting a 1000x1000 heightmap from STL to SVG is currently taking 8 hours and 15 minutes; and it ends up with a 46 megabyte SVG file! However, most of the time cost is in writing. Reading the STL file takes four and a quarter seconds; converting that STL to SVG in memory takes less than five seconds. So the huge cost is writing the file with Dali.
-
-    walkmap.core=> (time (def stl (decode-binary-stl "../the-great-game/resources/maps/heightmap.stl")))
-    "Elapsed time: 4285.231513 msecs"
-    #'walkmap.core/stl
-    walkmap.core=> (time (def svg (stl-to-svg stl)))
-    "Elapsed time: 4865.798059 msecs"
-    #'walkmap.core/svg
-
-
-"Elapsed time: 2.969569560662E7 msecs"
+Dealing with large heightmaps - doing anything at all with them - is extremely compute intensive.
 
 We cannot effectively do routing at metre scale - which is what we ultimately need in settlements - across the entire thousand kilometre square map in one pass. But also we don't need to because much of the continent is by design relatively unpeopled and relatively untracked. The basic concept of the Steppe is that there are two north/south routes, the one over the Midnight Pass into the Great Place and the one via Hans'hua down to the Cities of the Coast, and those can be part of the 'designed roads' map. So we can basically exclude most of the Steppe from routing altogether. We can also - for equally obvious reasons exclude the ocean. The ocean makes up roughly half of the 1000x1000 kilometre map, the steppe and plateau take up half of what's left, mountain massifs eat into the remainder and my feeling is that much of the eastern part of the continent is probably too arid to be settled. So we probably end up only having to dynamically route about 20% of the entire map.
 
@@ -106,6 +132,10 @@ Taking the augmented route map comprised of
 we can then collect contiguous groups of zones each having at least one holding, where in phase four each zone is a kilometre square and divided into 100x100 grid so that we route at ten metre scale; in phase five we use ten kilometre by ten kilometre zones and we route at 100 metre scale; in phase six, 100 km by 100 km zones and we route at kilometre scale. This process should automatically link up all settlements on the south and west coasts, all those on the north coast, and all in the Great Place; and seeing that the posited pre-designed caravan roads already join the south coast to the north, the north to the Great Place and the Great Place to the south coast, we're done.
 
 At least one of phases three, four, five and six is probably redundant; but without trying I'm not sure which.
+
+#### Relevant actor classes by phase
+
+Craftspeople and primary producers do travel between settlements, but only exceptionally. They mainly travel within at most a few kilometres of home; so they are primarily relevant in phases four and five, and need not be activated during phase six. Similarly, merchants primarily travel between settlements, and rarely within settlements; therefore, they need not be activated in phase four, and probably not even in phase five; but they must do a lot of journeys - substantially their full repertoire - in phase six.
 
 ### Tidying up
 

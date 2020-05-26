@@ -2,7 +2,9 @@
 
 #### Wednesday, 8 May 2019
 
-![Devogilla's Bridge in Dumfries, early foourteenth century](https://2.bp.blogspot.com/-qxkySlJNmtY/XNKvJksmSjI/AAAAAAAAnXU/z1Zv2LmjydMmi_1q2mWdwVALmdfi9OItwCLcBGAs/s1600/Devorgillas-Bridge.jpg)
+![Devorgilla's Bridge in Dumfries, early fourteenth century](https://2.bp.blogspot.com/-qxkySlJNmtY/XNKvJksmSjI/AAAAAAAAnXU/z1Zv2LmjydMmi_1q2mWdwVALmdfi9OItwCLcBGAs/s1600/Devorgillas-Bridge.jpg)
+
+*Devorgilla's Bridge in Dumfries, early fourteenth century. This clearly shows how a genetic buildings approach to bridges can be made to work: a single element is repeated to span the necessary distance. That element can be stretched vertically and laterally to match the location, and can be rendered in different stone finishes to match local geology.*
 
  In previous posts, I've described algorithms for dynamically [populating](Populating-a-game-world.html) and dynamically [settling](Settling-a-game-world.html) a game world. But at kilometre scale (and I think we need a higher resolution than that - something closer to hectare scale), settling the British Isles using my existing algorithms takes about 24 hours of continuous compute on an eight core, 3GHz machine. You cannot do that every time you launch a new game.
 
