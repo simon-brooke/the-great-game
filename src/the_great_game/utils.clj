@@ -33,3 +33,13 @@
              (list (first %) 'm)
              (nth % 1))
           targets)))))
+
+(defn value-or-default
+  "Return the value of this key `k` in this map `m`, or this `dflt` value if
+  there is none."
+  [m k dflt]
+  (or (when (map? m) (m k)) dflt))
+
+;; (value-or-default {:x 0 :y 0 :altitude 7} :altitude 8)
+;; (value-or-default {:x 0 :y 0 :altitude 7} :alt 8)
+;; (value-or-default nil :altitude 8)
