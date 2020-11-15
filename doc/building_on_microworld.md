@@ -6,4 +6,4 @@ First and foremost, it's slow, and both processor and memory hungry. That means 
 
 Of course it would be possible to do a run at one km scale top identify areas which would support settlement, and then to do a run on a ten metre grid on each of those areas to more precisely plot settlement. That's an idea which I haven't yet explored, which might prove fruitful.
 
-Secondly, being a cellular automaton, MicroWorld works on a grid. This means that everything is grid aligned, which is absolutely not what I want! So I think the way to leverage this is to use Microworld to establish which kilometre square cells om the grid should be populated (and roughly with what), and then switch to ad hoc code to populate those cells.
+Secondly, being a cellular automaton, MicroWorld works on a grid. This means that everything is grid aligned, which is absolutely not what I want! So I think the way to leverage this is to use MicroWorld to establish which kilometre square cells om the grid should be populated (and roughly with what), and then switch to *ad hoc* code to populate those cells.
