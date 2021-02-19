@@ -1,4 +1,4 @@
-(defproject the-great-game "0.1.1-SNAPSHOT"
+(defproject the-great-game "0.1.1"
   :cloverage {:output "docs/cloverage"}
   :codox {:metadata {:doc "**TODO**: write docs"
                      :doc/format :markdown}
