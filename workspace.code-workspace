@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../gossip"
+		},
+		{
+			"path": "../walkmap"
+		},
+		{
+			"path": "../genbuildings"
+		}
+	],
+	"settings": {}
+}

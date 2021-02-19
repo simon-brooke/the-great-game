@@ -1,0 +1,65 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../../coverage.css"/>  <title> the_great_game/objects/game_object.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;the-great-game.objects.game-object
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;&quot;Anything&nbsp;at&nbsp;all&nbsp;in&nbsp;the&nbsp;game&nbsp;world&quot;)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                004&nbsp;&nbsp;(defprotocol&nbsp;ProtoObject
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;&nbsp;&nbsp;&quot;An&nbsp;object&nbsp;in&nbsp;the&nbsp;world&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;&nbsp;&nbsp;(id&nbsp;[object]&nbsp;&quot;Returns&nbsp;the&nbsp;unique&nbsp;id&nbsp;of&nbsp;this&nbsp;object.&quot;)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;&nbsp;&nbsp;(reify-object
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                008&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[object]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Adds&nbsp;this&nbsp;`object`&nbsp;to&nbsp;the&nbsp;global&nbsp;object&nbsp;list.&nbsp;If&nbsp;the&nbsp;`object`&nbsp;has&nbsp;a
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;non-nil&nbsp;value&nbsp;for&nbsp;its&nbsp;`id`&nbsp;method,&nbsp;keys&nbsp;it&nbsp;to&nbsp;that&nbsp;id&nbsp;-&nbsp;**but**&nbsp;if&nbsp;the
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;value&nbsp;is&nbsp;already&nbsp;in&nbsp;use,&nbsp;throws&nbsp;a&nbsp;hard&nbsp;exception.&nbsp;Returns&nbsp;the&nbsp;id&nbsp;to
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;the&nbsp;object&nbsp;is&nbsp;keyed&nbsp;in&nbsp;the&nbsp;global&nbsp;object&nbsp;list.&quot;))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                013&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                014&nbsp;&nbsp;(defrecord&nbsp;GameObject
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                015&nbsp;&nbsp;&nbsp;&nbsp;[id]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;&quot;An&nbsp;object&nbsp;in&nbsp;the&nbsp;world&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;ProtoObject
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                018&nbsp;&nbsp;&nbsp;&nbsp;(id&nbsp;[_]&nbsp;id)
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                019&nbsp;&nbsp;&nbsp;&nbsp;(reify-object&nbsp;[object]&nbsp;&quot;TODO:&nbsp;doesn&#x27;t&nbsp;work&nbsp;yet&quot;))
+                </span><br/>
+ </body>
+</html>
