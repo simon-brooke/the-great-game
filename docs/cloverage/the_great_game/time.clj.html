@@ -1,0 +1,440 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../coverage.css"/>  <title> the_great_game/time.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;the-great-game.time
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.string&nbsp;:as&nbsp;s]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                004&nbsp;&nbsp;(def&nbsp;game-start-time
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;&nbsp;&nbsp;&quot;The&nbsp;start&nbsp;time&nbsp;of&nbsp;this&nbsp;run.&quot;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                006&nbsp;&nbsp;&nbsp;&nbsp;(System&#x2F;currentTimeMillis))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                008&nbsp;&nbsp;(def&nbsp;^:const&nbsp;game-day-length
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;&nbsp;&nbsp;&quot;The&nbsp;Java&nbsp;clock&nbsp;advances&nbsp;in&nbsp;milliseconds,&nbsp;which&nbsp;is&nbsp;fine.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;&nbsp;&nbsp;But&nbsp;we&nbsp;need&nbsp;game-days&nbsp;to&nbsp;be&nbsp;shorter&nbsp;than&nbsp;real&nbsp;world&nbsp;days.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;Witcher&nbsp;3&nbsp;game&nbsp;day&nbsp;is&nbsp;1&nbsp;hour&nbsp;36&nbsp;minutes,&nbsp;or&nbsp;96&nbsp;minutes,&nbsp;which&nbsp;is
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                012&nbsp;&nbsp;&nbsp;&nbsp;presumably&nbsp;researched.&nbsp;Round&nbsp;it&nbsp;up&nbsp;to&nbsp;100&nbsp;minutes&nbsp;for&nbsp;easier
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;calculation.&quot;
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                014&nbsp;&nbsp;&nbsp;&nbsp;(*&nbsp;100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;minutes&nbsp;per&nbsp;game&nbsp;day
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                015&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;seconds&nbsp;per&nbsp;minute
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1000))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;milliseconds&nbsp;per&nbsp;second
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                017&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                018&nbsp;&nbsp;(defn&nbsp;now
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                019&nbsp;&nbsp;&nbsp;&nbsp;&quot;For&nbsp;now,&nbsp;we&#x27;ll&nbsp;use&nbsp;Java&nbsp;timestamp&nbsp;for&nbsp;time;&nbsp;ultimately,&nbsp;we&nbsp;need&nbsp;a
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;concept&nbsp;of&nbsp;game-time&nbsp;which&nbsp;allows&nbsp;us&nbsp;to&nbsp;drive&nbsp;day&#x2F;night&nbsp;cycle,&nbsp;seasons,
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                021&nbsp;&nbsp;&nbsp;&nbsp;et&nbsp;cetera,&nbsp;but&nbsp;what&nbsp;matters&nbsp;about&nbsp;time&nbsp;is&nbsp;that&nbsp;it&nbsp;is&nbsp;a&nbsp;value&nbsp;which
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;increases.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                023&nbsp;&nbsp;&nbsp;&nbsp;[]
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                024&nbsp;&nbsp;&nbsp;&nbsp;(System&#x2F;currentTimeMillis))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                025&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                026&nbsp;&nbsp;(def&nbsp;^:const&nbsp;canonical-ordering-of-houses
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                027&nbsp;&nbsp;&nbsp;&nbsp;&quot;The&nbsp;canonical&nbsp;ordering&nbsp;of&nbsp;religious&nbsp;houses.&quot;
+                </span><br/>
+<span class="covered" title="10 out of 10 forms covered">
+                028&nbsp;&nbsp;&nbsp;&nbsp;[:eye
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                029&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:foot
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                030&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:nose
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                031&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:hand
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                032&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:ear
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                033&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:mouth
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:stomach
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:furrow
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:plough])
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                037&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                038&nbsp;&nbsp;(def&nbsp;^:const&nbsp;days-of-week
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                039&nbsp;&nbsp;&nbsp;&nbsp;&quot;The&nbsp;eight-day&nbsp;week&nbsp;of&nbsp;the&nbsp;game&nbsp;world.&nbsp;This&nbsp;differs&nbsp;from&nbsp;the&nbsp;canonical
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                040&nbsp;&nbsp;&nbsp;&nbsp;ordering&nbsp;of&nbsp;houses&nbsp;in&nbsp;that&nbsp;it&nbsp;omits&nbsp;the&nbsp;eye.&quot;
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                041&nbsp;&nbsp;&nbsp;&nbsp;(rest&nbsp;canonical-ordering-of-houses))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                042&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                043&nbsp;&nbsp;(def&nbsp;^:const&nbsp;days-in-week
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                044&nbsp;&nbsp;&nbsp;&nbsp;&quot;This&nbsp;world&nbsp;has&nbsp;an&nbsp;eight&nbsp;day&nbsp;week.&quot;
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                045&nbsp;&nbsp;&nbsp;&nbsp;(count&nbsp;days-of-week))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                046&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                047&nbsp;&nbsp;(def&nbsp;^:const&nbsp;seasons-of-year
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                048&nbsp;&nbsp;&nbsp;&nbsp;&quot;The&nbsp;ordering&nbsp;of&nbsp;seasons&nbsp;in&nbsp;the&nbsp;year&nbsp;is&nbsp;different&nbsp;from&nbsp;the&nbsp;canonical
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                049&nbsp;&nbsp;&nbsp;&nbsp;ordering&nbsp;of&nbsp;the&nbsp;houses,&nbsp;for&nbsp;reasons&nbsp;of&nbsp;the&nbsp;agricultural&nbsp;cycle.&quot;
+                </span><br/>
+<span class="covered" title="10 out of 10 forms covered">
+                050&nbsp;&nbsp;&nbsp;&nbsp;[:foot
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:nose
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                052&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:hand
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                053&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:ear
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                054&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:mouth
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                055&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:stomach
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                056&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:plough
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                057&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:furrow
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                058&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:eye])
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                059&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                060&nbsp;&nbsp;(def&nbsp;^:const&nbsp;seasons-in-year
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                061&nbsp;&nbsp;&nbsp;&nbsp;&quot;Nine&nbsp;seasons&nbsp;in&nbsp;a&nbsp;year,&nbsp;one&nbsp;for&nbsp;each&nbsp;house&nbsp;(although&nbsp;the&nbsp;order&nbsp;is
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                062&nbsp;&nbsp;&nbsp;&nbsp;different.&quot;
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                063&nbsp;&nbsp;&nbsp;&nbsp;(count&nbsp;seasons-of-year))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                064&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                065&nbsp;&nbsp;(def&nbsp;^:const&nbsp;weeks-of-season
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                066&nbsp;&nbsp;&nbsp;&nbsp;&quot;To&nbsp;fit&nbsp;nine&nbsp;seasons&nbsp;of&nbsp;eight&nbsp;day&nbsp;weeks&nbsp;into&nbsp;365&nbsp;days,&nbsp;each&nbsp;must&nbsp;be&nbsp;of
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                067&nbsp;&nbsp;&nbsp;&nbsp;five&nbsp;weeks.&quot;
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                068&nbsp;&nbsp;&nbsp;&nbsp;[:first&nbsp;:second&nbsp;:third&nbsp;:fourth&nbsp;:fifth])
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                069&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                070&nbsp;&nbsp;(def&nbsp;^:const&nbsp;weeks-in-season
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                071&nbsp;&nbsp;&nbsp;&nbsp;&quot;To&nbsp;fit&nbsp;nine&nbsp;seasons&nbsp;of&nbsp;eight&nbsp;day&nbsp;weeks&nbsp;into&nbsp;365&nbsp;days,&nbsp;each&nbsp;must&nbsp;be&nbsp;of
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                072&nbsp;&nbsp;&nbsp;&nbsp;five&nbsp;weeks.&quot;
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                073&nbsp;&nbsp;&nbsp;&nbsp;(count&nbsp;weeks-of-season))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                074&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                075&nbsp;&nbsp;(def&nbsp;^:const&nbsp;days-in-season
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                076&nbsp;&nbsp;&nbsp;&nbsp;(*&nbsp;weeks-in-season&nbsp;days-in-week))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                077&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                078&nbsp;&nbsp;(defn&nbsp;game-time
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                079&nbsp;&nbsp;&nbsp;&nbsp;&quot;With&nbsp;no&nbsp;arguments,&nbsp;the&nbsp;current&nbsp;game&nbsp;time.&nbsp;If&nbsp;a&nbsp;Java&nbsp;`timestamp`&nbsp;value&nbsp;is
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                080&nbsp;&nbsp;&nbsp;&nbsp;passed&nbsp;(as&nbsp;a&nbsp;`long`),&nbsp;the&nbsp;game&nbsp;time&nbsp;represented&nbsp;by&nbsp;that&nbsp;value.&quot;
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                081&nbsp;&nbsp;&nbsp;&nbsp;([]&nbsp;(game-time&nbsp;(now)))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                082&nbsp;&nbsp;&nbsp;&nbsp;([timestamp]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                083&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(-&nbsp;timestamp&nbsp;game-start-time)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                084&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="54 out of 54 forms covered">
+                085&nbsp;&nbsp;(defmacro&nbsp;day-of-year
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                086&nbsp;&nbsp;&nbsp;&nbsp;&quot;The&nbsp;day&nbsp;of&nbsp;the&nbsp;year&nbsp;represented&nbsp;by&nbsp;this&nbsp;`game-time`,&nbsp;ignoring&nbsp;leap&nbsp;years.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                087&nbsp;&nbsp;&nbsp;&nbsp;[game-time]
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                088&nbsp;&nbsp;&nbsp;&nbsp;`(mod&nbsp;(long&nbsp;(&#x2F;&nbsp;~game-time&nbsp;game-day-length))&nbsp;365))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                089&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                090&nbsp;&nbsp;(def&nbsp;waiting-day?
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                091&nbsp;&nbsp;&nbsp;&nbsp;&quot;Does&nbsp;this&nbsp;`game-time`&nbsp;represent&nbsp;a&nbsp;waiting&nbsp;day?&quot;
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                092&nbsp;&nbsp;&nbsp;&nbsp;(memoize
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                093&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;we&#x27;re&nbsp;likely&nbsp;to&nbsp;call&nbsp;this&nbsp;several&nbsp;times&nbsp;in&nbsp;quick&nbsp;succession&nbsp;on&nbsp;the
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                094&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;same&nbsp;timestamp
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                095&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fn&nbsp;[game-time]
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                096&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&gt;=
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                097&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(day-of-year&nbsp;game-time)
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                098&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*&nbsp;seasons-in-year&nbsp;weeks-in-season&nbsp;days-in-week)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                099&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                100&nbsp;&nbsp;(defn&nbsp;day
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                101&nbsp;&nbsp;&nbsp;&nbsp;&quot;Day&nbsp;of&nbsp;the&nbsp;eight-day&nbsp;week&nbsp;represented&nbsp;by&nbsp;this&nbsp;`game-time`.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                102&nbsp;&nbsp;&nbsp;&nbsp;[game-time]
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                103&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[day-of-week&nbsp;(mod&nbsp;(day-of-year&nbsp;game-time)&nbsp;days-in-week)]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                104&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(waiting-day?&nbsp;game-time)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                105&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth&nbsp;weeks-of-season&nbsp;day-of-week)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth&nbsp;days-of-week&nbsp;day-of-week))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                107&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                108&nbsp;&nbsp;(defn&nbsp;week
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                109&nbsp;&nbsp;&nbsp;&nbsp;&quot;Week&nbsp;of&nbsp;season&nbsp;represented&nbsp;by&nbsp;this&nbsp;`game-time`.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                110&nbsp;&nbsp;&nbsp;&nbsp;[game-time]
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                111&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[day-of-season&nbsp;(mod&nbsp;(day-of-year&nbsp;game-time)&nbsp;days-in-season)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                112&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;week&nbsp;(&#x2F;&nbsp;day-of-season&nbsp;days-in-week)]
+                </span><br/>
+<span class="partial" title="4 out of 5 forms covered">
+                113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(waiting-day?&nbsp;game-time)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                114&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:waiting
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                115&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth&nbsp;weeks-of-season&nbsp;week))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                116&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                117&nbsp;&nbsp;(defn&nbsp;season
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                118&nbsp;&nbsp;&nbsp;&nbsp;[game-time]
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                119&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[season&nbsp;(int&nbsp;(&#x2F;&nbsp;(day-of-year&nbsp;game-time)&nbsp;days-in-season))]
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                120&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(waiting-day?&nbsp;game-time)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                121&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:waiting
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                122&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth&nbsp;seasons-of-year&nbsp;season))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                123&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                124&nbsp;&nbsp;(defn&nbsp;date-string
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                125&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;correctly&nbsp;formatted&nbsp;date&nbsp;for&nbsp;this&nbsp;`game-time`&nbsp;in&nbsp;the&nbsp;calendar&nbsp;of
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                126&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Great&nbsp;Place.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                127&nbsp;&nbsp;&nbsp;&nbsp;[game-time]
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                128&nbsp;&nbsp;&nbsp;&nbsp;(s&#x2F;join
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                129&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;&nbsp;&quot;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                130&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                131&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(waiting-day?&nbsp;game-time)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                132&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(s&#x2F;capitalize
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                133&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(name
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                134&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                135&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;weeks-of-season
+                </span><br/>
+<span class="covered" title="8 out of 8 forms covered">
+                136&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(mod&nbsp;(day-of-year&nbsp;game-time)&nbsp;days-in-week))))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                137&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;waiting&nbsp;day&quot;]
+                </span><br/>
+<span class="covered" title="9 out of 9 forms covered">
+                138&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(s&#x2F;capitalize&nbsp;(name&nbsp;(week&nbsp;game-time)))
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                139&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(s&#x2F;capitalize&nbsp;(name&nbsp;(day&nbsp;game-time)))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                140&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;of&nbsp;the&quot;
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                141&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(s&#x2F;capitalize&nbsp;(name&nbsp;(season&nbsp;game-time)))])))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                142&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                143&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                144&nbsp;&nbsp;
+                </span><br/>
+ </body>
+</html>

@@ -10,7 +10,18 @@ The structure of a modern Role Playing Came revolves around 'quests': tasks that
 6. Syntax quests
 7. Hybrids
 
-'Gather quests' are more frequently referred to in the literature as 'fetch quests', and 'kill quests' are simply a specialised form of fetch quest where the item to be fetched is a trophy of the kill. A delivery quest is a sort of reverse fetch quest: instead of going to some location or NPC and getting a specific item to return to the quest giver, the player is tasked to take a specific item from the quest giver to some location or NPC.
+'Gather quests' are more frequently referred to in the literature as 'fetch quests', and 'kill quests' are simply a specialised form of fetch quest where the item to be fetched is a trophy of the kill. And the trophy could be just the knowledge that the kill has happened. A delivery quest is a sort of reverse fetch quest: instead of going to some location or NPC and getting a specific item to return to the quest giver, the player is tasked to take a specific item from the quest giver to some location or NPC.
+
+Note, however, that if we consider a delivery quest to have four locations, where some of these locations may be conincident, then a delivery quest and a fetch quest become the same thing. Thus
+
+1. The location of the quest giver at the beginning of the quest;
+2. The location from which the quest object must be collected;
+3. The location to which the quest object must be delivered;
+4. The location of the quest giver at the end of the quest.
+
+This characterisation assumes that at the end of each quest, the player must rendezvous with the quest giver at the end of the quest, either to report completion or to collect a reward. Obviously, there could be some quests where this fourth location is not required, because there is no need to report back (for example, if the quest giver was dying/has died) and no reward to be collected.
+
+Note that a location is not necessarily a fixed x/y location on the map; in a kill quest, for example, location 2 is the current location of the target, and moves when the target moves; location 3 and 4 are both normally the current location of the quest giver, and move when the quest giver moves.
 
 Hybrids are in effect chains of quests: do this task in order to get this precondition of this other task, in order to get the overall objective; obviously such chains can be deep and involved - the 'main quest' of every role playing game I know of is a chain or hybrid quest.
 
@@ -45,3 +56,7 @@ Obviously, this doesn't stop you doing jobs you get directly paid/rewarded for, 
 Related to this notion is the notion that, if you are asked to do a task by a character and you do it well, whether for pay or as a favour, your reputation for being competent in tasks of that kind will improve and the more likely it is that other characters will ask you to do similar tasks; and this will apply to virtually anything another character can ask of you in the game world, from carrying out an assassination to delivering a message to finding a quantiy of some specific commodity to having sex.
 
 So quests can emerge organically from the mechanics of the world and be richly varied; I'm confident that will work. What I'm not confident of is that they can be narratively satisfying. This relates directly to the generation of speech.
+
+## Stuff to consider
+
+The games [Middle Earth: Shadow of Mordor](https://en.wikipedia.org/wiki/Middle-earth:_Shadow_of_Mordor), and [Middle Earth: Shadow of War](https://en.wikipedia.org/wiki/Middle-earth:_Shadow_of_War) have a procedural story system called [Nemesis](https://youtu.be/Lm_AzK27mZY), which is worth a look.

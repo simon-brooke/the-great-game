@@ -1,6 +1,7 @@
 (ns the-great-game.gossip.gossip
-  "Interchange of news events between agents agents"
-  (:require [the-great-game.utils :refer [deep-merge]]))
+  "Interchange of news events between gossip agents"
+  (:require [the-great-game.utils :refer [deep-merge]]
+            [the-great-game.gossip.news-items :refer [learn-news-item]]))
 
 ;; Note that habitual travellers are all gossip agents; specifically, at this
 ;; stage, that means merchants. When merchants are moved we also need to
@@ -43,7 +44,7 @@
 (defn move-gossip
   "Return a world like this `world` but with this `gossip` moved to this
   `new-location`. Many gossips are essentially shadow-records of agents of
-  other types, and the movement if the gossip should be controlled by the
+  other types, and the movement of the gossip should be controlled by the
   run function of the type of the record they shadow. The [[#run]] function
   below does NOT call this function."
   [gossip world new-location]

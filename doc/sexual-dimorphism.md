@@ -26,7 +26,7 @@ Another significant point is that women's ability to bear children ceases at a m
 
 ## Why have sex at all?
 
-If a character has 'having children' - the **Ancestor** aspiration, in my typology - as their key aim, then they will want to have sex. But to have children in this sense is to have acknowledged children, so while a male character may be motivated to have multiple female partners, he will never the less have some degree of long term committment to them, and will want both to feel confident that the children are his and to be recognised by their father.
+If a character has 'having children' - the [**Ancestor**](intro.html#aspirations-and-goals) aspiration, in my typology - as their key aim, then they will want to have sex. But to have children in this sense is to have acknowledged children, so while a male character may be motivated to have multiple female partners, he will never the less have some degree of long term committment to them, and will want both to feel confident that the children are his and to be recognised by their father.
 
 From the point of view of seeking to become an Ancestor, there is little benefit to the woman in having multiple partners, except in very harsh environments. It will be easier to give one partner confidence that all your children are his, and while a man can increase his number of potential progeny by having multiple wives, mistresses or other classes of long-term female sexual partners, a woman cannot.
 
@@ -42,4 +42,4 @@ Sex, done right, is an extremely pleasant pastime. Sex can also be used to creat
 
 For women, sex with other women carries with it no risk of pregnancy, so can be enjoyed or used for any of these purposes in very much the same way as it can by men; in other words, particularly for women, homosexual sex can be more lighthearted and carefree than heterosexual sex. To what extend our notions of homosexuality and heterosexuality are cultural I simply don't know. But because no children will result, a woman can afford to be more promiscuous with other women than she can with men.
 
-## How does this impact on
+## 
