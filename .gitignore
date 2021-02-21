@@ -5,6 +5,7 @@ pom.xml.asc
 *.log
 *.stl
 [0-9a-f]*-init.clj
+/bin/
 /lib/
 /classes/
 /target/
@@ -22,3 +23,6 @@ pom.xml.asc
 
 .calva/output-window/output.calva-repl
 .settings/
+.project
+
+.classpath
