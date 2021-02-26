@@ -3,7 +3,9 @@ pom.xml.asc
 *.jar
 *.class
 *.log
+*.stl
 [0-9a-f]*-init.clj
+/bin/
 /lib/
 /classes/
 /target/
@@ -18,4 +20,9 @@ pom.xml.asc
 .cpcache/
 *~
 
-doc/.~lock.Population.ods#
+
+.settings/
+
+.classpath
+
+.project
