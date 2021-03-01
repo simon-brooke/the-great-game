@@ -1,6 +1,6 @@
 # Gossip, scripted plot, and Johnny Silverhand
 
-I've been writing literally for years -- since [[Voice acting considered harmful]] in 2015 -- about game worlds in which the player speaks to non-player characters just by speaking the words they choose in their normal voice, and the non-player character replies using a pipeline that goes, essentially,
+I've been writing literally for years -- since [Voice acting considered harmful](Voice-acting-considered-harmful.html) in 2015 -- about game worlds in which the player speaks to non-player characters just by speaking the words they choose in their normal voice, and the non-player character replies using a pipeline that goes, essentially,
 
 1. Alexa/Siri style speech interpretation;
 2. A decision on whether to co-operate based on the particular NPC's general demeanor and particular attitude to the player;
