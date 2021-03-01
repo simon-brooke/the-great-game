@@ -47,7 +47,7 @@ I already have working code for non-player character merchants, who move goods f
 
 Where a non-player character can act, so can a player character: when a (non-player character) merchant seeks to hire a caravan guard and a player character responds, that's an organic escort quest.
 
-The key idea behind organic quests is that the circumstance and requirments for quests emerges as an emergent behaviour out of the mechanics of the game world. A non-player character doesn't know that there is a player character who is different from them; rather, when a non-player character needs something they can't readily achieve for themselves, they will ask other characters to help, and that may include the player character.
+The key idea behind organic quests is that the circumstance and requirements for quests emerge as an emergent behaviour out of the mechanics of the game world. A non-player character doesn't know that there is a player character who is different from them; rather, when a non-player character needs something they can't readily achieve for themselves, they will ask other characters to help, and that may include the player character.
 
 This means, of course, that characters need a goal-seeking planning algorithm to decide their actions, with one option in any plan being 'ask for help'. Thus, 'asking for help' becomes a mechanism within the game, a normal behaviour. Ideally non-player characters will keep track of quite complex webs of loyalty and of obligation - debts of honour, duties of hospitality, collective loyalties. So that, if you do a favour for some character in the world, that character's tribe, friends, obligation circle, whatever, are now more likely to do favours for you.
 
