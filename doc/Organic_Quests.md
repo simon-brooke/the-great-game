@@ -10,7 +10,18 @@ The structure of a modern Role Playing Came revolves around 'quests': tasks that
 6. Syntax quests
 7. Hybrids
 
-'Gather quests' are more frequently referred to in the literature as 'fetch quests', and 'kill quests' are simply a specialised form of fetch quest where the item to be fetched is a trophy of the kill. A delivery quest is a sort of reverse fetch quest: instead of going to some location or NPC and getting a specific item to return to the quest giver, the player is tasked to take a specific item from the quest giver to some location or NPC.
+'Gather quests' are more frequently referred to in the literature as 'fetch quests', and 'kill quests' are simply a specialised form of fetch quest where the item to be fetched is a trophy of the kill. And the trophy could be just the knowledge that the kill has happened. A delivery quest is a sort of reverse fetch quest: instead of going to some location or NPC and getting a specific item to return to the quest giver, the player is tasked to take a specific item from the quest giver to some location or NPC.
+
+Note, however, that if we consider a delivery quest to have four locations, where some of these locations may be coincident, then a delivery quest and a fetch quest become the same thing. Thus
+
+1. The location of the quest giver at the beginning of the quest;
+2. The location from which the quest object must be collected;
+3. The location to which the quest object must be delivered;
+4. The location of the quest giver at the end of the quest.
+
+This characterisation assumes that at the end of each quest, the player must rendezvous with the quest giver, either to report completion or to collect a reward. Obviously, there could be some quests where this fourth location is not required, because there is no need to report back (for example, if the quest giver was dying/has died) and no reward to be collected.
+
+Note that a location is not necessarily a fixed x/y location on the map; in a kill quest, for example, location 2 is the current location of the target, and moves when the target moves; location 3 and 4 are both normally the current location of the quest giver, and move when the quest giver moves.
 
 Hybrids are in effect chains of quests: do this task in order to get this precondition of this other task, in order to get the overall objective; obviously such chains can be deep and involved - the 'main quest' of every role playing game I know of is a chain or hybrid quest.
 
@@ -32,11 +43,11 @@ Given that quests are as simple as this, it's obvious that narrative sophisticat
 
 But, if we're thinking of a game with much more intelligent non-player characters with much more conversational repertoir, as I am, can satisfying quests emerge organically? In space trading games such as [Elite](https://www.telegraph.co.uk/games/11051122/Elite-the-game-that-changed-the-world.html), a primary activity is moving goods from markets with surplus (and thus low prices) to markets with shortage (and thus high prices). This is, in effect, a game made up of deliver quests - but rather than deliver quests which are scripted, they are deliver quests which arise organically out of the structure of the game world.
 
-I already have working code for non-player character merchants, who move goods from city to city based on market information available to them. For player characters to join in this trading is an organic activity emerging from the structure of the world, which provides an activity. But moving merchants provides a market opportunity for bandits, who can intercept and steal cargoes, and so for mercenaries, who can protect cargoes from bandits, and so on. And because I have an architecture that allows non-player characters to fill economic niches, there will be non-player characters in all these niches.
+I already have working code for non-player character merchants, who move goods from city to city based on market information available to them. For player characters to join in this trading is an organic activity emerging from the structure of the world. But moving merchants provides a market opportunity for bandits, who can intercept and steal cargoes, and so for mercenaries, who can protect cargoes from bandits, and so on. And because I have an architecture that allows non-player characters to change occupation to fill economic niches, there will be non-player characters in all these niches.
 
 Where a non-player character can act, so can a player character: when a (non-player character) merchant seeks to hire a caravan guard and a player character responds, that's an organic escort quest.
 
-The key idea behind organic quests is that the circumstance and requirments for quests emerges as an emergent behaviour out of the mechanics of the game world. A non-player character doesn't know that there is a player character who is different from them; rather, when a non-player character needs something they can't readily achieve for themselves, they will ask other characters to help, and that may include the player character.
+The key idea behind organic quests is that the circumstance and requirements for quests emerge as an emergent behaviour out of the mechanics of the game world. A non-player character doesn't know that there is a player character who is different from them; rather, when a non-player character needs something they can't readily achieve for themselves, they will ask other characters to help, and that may include the player character.
 
 This means, of course, that characters need a goal-seeking planning algorithm to decide their actions, with one option in any plan being 'ask for help'. Thus, 'asking for help' becomes a mechanism within the game, a normal behaviour. Ideally non-player characters will keep track of quite complex webs of loyalty and of obligation - debts of honour, duties of hospitality, collective loyalties. So that, if you do a favour for some character in the world, that character's tribe, friends, obligation circle, whatever, are now more likely to do favours for you.
 
@@ -45,3 +56,9 @@ Obviously, this doesn't stop you doing jobs you get directly paid/rewarded for, 
 Related to this notion is the notion that, if you are asked to do a task by a character and you do it well, whether for pay or as a favour, your reputation for being competent in tasks of that kind will improve and the more likely it is that other characters will ask you to do similar tasks; and this will apply to virtually anything another character can ask of you in the game world, from carrying out an assassination to delivering a message to finding a quantiy of some specific commodity to having sex.
 
 So quests can emerge organically from the mechanics of the world and be richly varied; I'm confident that will work. What I'm not confident of is that they can be narratively satisfying. This relates directly to the generation of speech.
+
+## Stuff to consider
+
+The games [Middle Earth: Shadow of Mordor](https://en.wikipedia.org/wiki/Middle-earth:_Shadow_of_Mordor), and [Middle Earth: Shadow of War](https://en.wikipedia.org/wiki/Middle-earth:_Shadow_of_War) have a procedural story system called [Nemesis](https://youtu.be/Lm_AzK27mZY), which is worth a look.
+
+There's an interesting [critique of Red Dead Redemption 2](https://www.youtube.com/watch?v=MvJPKOLDSos&feature=emb_logo) which is relevant to what I'm saying here.
