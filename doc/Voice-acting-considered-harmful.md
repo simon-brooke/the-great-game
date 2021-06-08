@@ -5,9 +5,18 @@
 ![The Witcher: Conversation with Kalkstein](https://3.bp.blogspot.com/-ZI90HLjEcuo/VO4f-yXP3sI/AAAAAAAAZt4/C0hQ7hScWyM/s1600/witcher_conversation.jpg)
 
  Long, long, time ago, I can still remember when... we played (and wrote) adventure games where the user typed at a command line, and the system printed back at them. A Read-Eval-Print loop in the classic Lisp sense, and I wrote my adventure games in Lisp. I used the same opportunistic parser whether the developer was building the game
-  Create a new room north of here called dungeon-3 the player was playing the game
-  Pick up the rusty sword and go north or the player was talking to a non-player character
-  Say to the wizard 'can you tell me the way to the castle' Of course, the parser didn't 'understand' English. It worked on trees of words, in which terminal nodes were actions and branching nodes were key words, and it had the property that any word it didn't recognise at that point in sentence was a noise word and could be ignored. A few special hacks (such as 'the', 'a', or 'an' was an indicator that what came next was probably a noun phrase, and thus that if there was more than one sword in the player's immediate environment the one that was wanted was the one tagged with the adjective 'rusty'), and you ended up with a parser that most of the time convincingly interpreted most of what the player threw at it.
+
+>  Create a new room north of here called dungeon-3
+
+the player was playing the game
+
+>  Pick up the rusty sword and go north
+
+or the player was talking to a non-player character
+
+>  Say to the wizard 'can you tell me the way to the castle'
+
+Of course, the parser didn't 'understand' English. It worked on trees of words, in which terminal nodes were actions and branching nodes were key words, and it had the property that any word it didn't recognise at that point in sentence was a noise word and could be ignored. A few special hacks (such as 'the', 'a', or 'an' was an indicator that what came next was probably a noun phrase, and thus that if there was more than one sword in the player's immediate environment the one that was wanted was the one tagged with the adjective 'rusty'), and you ended up with a parser that most of the time convincingly interpreted most of what the player threw at it.
 
  Text adventures fell into desuetude partly because they weren't graphic, but mainly because people didn't find typing natural, or became dissatisfied with the repertoire of their parsers. Trying to find exactly the right combination tokens to persuade the game to carry out some simple action is not 'fun', it's just frustrating, and it turned people off. Which is a shame because just at the time when people were abandoning text adventures we were beginning to have command parsers which were actually pretty good. Mine, I think, were good - you could have a pretty natural conversation with them, and in 'building' mode, when it hit a 'sorry I don't understand' point, it allowed you to input a path of keywords and a Lisp function so that in future it would understand.
 

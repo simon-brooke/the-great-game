@@ -5,13 +5,16 @@
           :output-path "docs/codox"
           :source-uri "https://github.com/simon-brooke/the-great-game/blob/master/{filepath}#L{line}"}
   :cucumber-feature-paths ["test/features/"]
-  :dependencies [[com.taoensso/timbre "4.10.0"]
-                 [environ "1.1.0"]
+  :dependencies [[com.taoensso/timbre "5.1.2"]
+                 [environ "1.2.0"]
+                 [jme-clj "0.1.13"]
+;;                 [jme3-core "3.4.0-stable"]
                  [journeyman-cc/walkmap "0.1.0-SNAPSHOT"]
                  [me.raynes/fs "1.4.6"]
                  [mw-engine "0.1.6-SNAPSHOT"]
+                 [org.apache.commons/commons-math3 "3.6.1"] ;; for mersenne-twister implementation
                  [org.clojure/algo.generic "0.1.3"]
-                 [org.clojure/clojure "1.8.0"]
+                 [org.clojure/clojure "1.10.3"]
                  [org.clojure/math.numeric-tower "0.0.4"]
                  ]
   :description "Prototype code towards the great game I've been writing about for ten years, and know I will never finish."

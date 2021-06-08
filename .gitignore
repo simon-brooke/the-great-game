@@ -18,6 +18,8 @@ pom.xml.asc
 .lein-failures
 .nrepl-port
 .cpcache/
+.calva/
+.idea/
 *~
 
 
@@ -25,4 +27,14 @@ pom.xml.asc
 .settings/
 .project
 
+.lsp/sqlite.db
+
+libbulletjme.so
+
+liblwjgl64.so
+
+libopenal64.so
+
+.settings/
 .classpath
+.project
