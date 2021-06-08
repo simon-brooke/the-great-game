@@ -1,6 +1,6 @@
 (ns cc.journeyman.the-great-game.world.routes-test
   (:require [clojure.test :refer :all]
-            [cc.journeyman.the-great-game.world.routes :refer :all]
+            [cc.journeyman.the-great-game.world.routes :refer [find-routes]]
             [cc.journeyman.the-great-game.world.world :refer [default-world]]))
 
 

@@ -1,11 +1,12 @@
 (ns cc.journeyman.the-great-game.agent.agent
-  "Anything in the game world with agency"
-  (:require [the-great-game.objects.game-object :refer [ProtoObject]]
-            [the-great-game.objects.container :refer [ProtoContainer]]))
+  "Anything in the game world with agency; primarily but not exclusively
+   characters."
+  (:require [cc.journeyman.the-great-game.objects.game-object :refer [ProtoObject]]
+            [cc.journeyman.the-great-game.objects.container :refer [ProtoContainer]]))
 
-;;  hierarchy of needs probably gets implemented here
-;;  I'm probably going to want to defprotocol stuff, to define the hierarchy
-;;  of things in the gameworld; either that or drop to Java, wich I'd rather not do.
+;;;  hierarchy of needs probably gets implemented here
+;;;  I'm probably going to want to defprotocol stuff, to define the hierarchy
+;;;  of things in the gameworld; either that or drop to Java, wich I'd rather not do.
 
 (defprotocol ProtoAgent
   "An object which can act in the world"
@@ -37,7 +38,7 @@
 
 (defrecord Agent
   ;; "A default agent."
-  [name home tribe]
+  [name craft home culture]
   ProtoObject
   ProtoContainer
   ProtoAgent

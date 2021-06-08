@@ -17,7 +17,17 @@ pom.xml.asc
 .lein-failures
 .nrepl-port
 .cpcache/
+.calva/
+.idea/
 *~
 
 
 .calva/output-window/output.calva-repl
+
+.lsp/sqlite.db
+
+libbulletjme.so
+
+liblwjgl64.so
+
+libopenal64.so

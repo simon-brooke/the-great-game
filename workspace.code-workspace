@@ -11,6 +11,12 @@
 		},
 		{
 			"path": "../genbuildings"
+		},
+		{
+			"path": "../GreatGameTerrain"
+		},
+		{
+			"path": "../jme-clj"
 		}
 	],
 	"settings": {}
