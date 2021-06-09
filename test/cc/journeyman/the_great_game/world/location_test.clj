@@ -1,6 +1,6 @@
 (ns cc.journeyman.the-great-game.world.location-test
-  (:require [clojure.test :refer :all]
-            [cc.journeyman.the-great-game.world.location :refer :all]))
+  (:require [clojure.test :refer [deftest is testing]]
+            [cc.journeyman.the-great-game.world.location :refer [distance-between get-coords]]))
 
 (deftest get-coords-test
   (testing "Get coordinates of location"

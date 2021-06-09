@@ -229,7 +229,7 @@
            {:verb (:verb rule)}
            (map (fn [k] {k (apply (k rule) (list item))})
                 (remove
-                 #(= % :verb)
+                 #{:verb}
                  (keys rule))))))
 
 (declare learn-news-item)

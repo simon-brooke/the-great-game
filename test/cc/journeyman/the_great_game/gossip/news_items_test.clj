@@ -1,5 +1,5 @@
 (ns cc.journeyman.the-great-game.gossip.news-items-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest is testing]]
             [cc.journeyman.the-great-game.gossip.news-items :refer 
              [degrade-location infer interest-in-location interesting-location?
               learn-news-item make-all-inferences]]))

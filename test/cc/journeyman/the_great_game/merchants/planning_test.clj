@@ -1,5 +1,5 @@
 (ns cc.journeyman.the-great-game.merchants.planning-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest is testing]]
             [cc.journeyman.the-great-game.utils :refer [deep-merge]]
             [cc.journeyman.the-great-game.world.world :refer [default-world]]
             [cc.journeyman.the-great-game.merchants.planning :refer [plan-trade select-cargo]]))
