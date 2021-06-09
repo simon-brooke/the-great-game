@@ -1,5 +1,5 @@
 (ns cc.journeyman.the-great-game.time-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest is testing]]
 ;;            [clojure.core.async :refer [thread <!]]
             [cc.journeyman.the-great-game.time :refer 
              [date-string day days-in-season days-in-week game-day-length

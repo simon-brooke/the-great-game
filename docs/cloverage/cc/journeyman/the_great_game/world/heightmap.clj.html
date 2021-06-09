@@ -1,0 +1,485 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../../../../coverage.css"/>  <title> cc/journeyman/the_great_game/world/heightmap.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;cc.journeyman.the-great-game.world.heightmap
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;&quot;Functions&nbsp;dealing&nbsp;with&nbsp;the&nbsp;tessellated&nbsp;multi-layer&nbsp;heightmap.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.math.numeric-tower&nbsp;:refer&nbsp;[expt&nbsp;sqrt]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[mw-engine.core&nbsp;:refer&nbsp;[]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[mw-engine.heightmap&nbsp;:refer&nbsp;[apply-heightmap]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[mw-engine.utils&nbsp;:refer&nbsp;[get-cell&nbsp;in-bounds?&nbsp;map-world]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[cc.journeyman.the-great-game.utils&nbsp;:refer&nbsp;[value-or-default]]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                008&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;;;&nbsp;It&#x27;s&nbsp;not&nbsp;at&nbsp;all&nbsp;clear&nbsp;to&nbsp;me&nbsp;yet&nbsp;what&nbsp;the&nbsp;workflow&nbsp;for&nbsp;getting&nbsp;a&nbsp;MicroWorld
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;;;&nbsp;map&nbsp;into&nbsp;The&nbsp;Great&nbsp;Game,&nbsp;and&nbsp;whether&nbsp;it&nbsp;passes&nbsp;through&nbsp;Walkmap&nbsp;to&nbsp;get&nbsp;here.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;;;&nbsp;This&nbsp;file&nbsp;as&nbsp;currently&nbsp;written&nbsp;assumes&nbsp;it&nbsp;doesn&#x27;t.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                012&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                013&nbsp;&nbsp;;;&nbsp;It&#x27;s&nbsp;utterly&nbsp;impossible&nbsp;to&nbsp;hold&nbsp;a&nbsp;whole&nbsp;continent&nbsp;at&nbsp;one&nbsp;metre&nbsp;scale&nbsp;in
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                014&nbsp;&nbsp;;;&nbsp;memory&nbsp;at&nbsp;one&nbsp;time.&nbsp;So&nbsp;we&nbsp;have&nbsp;to&nbsp;be&nbsp;able&nbsp;to&nbsp;regenerate&nbsp;high&nbsp;resolution
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                015&nbsp;&nbsp;;;&nbsp;surfaces&nbsp;from&nbsp;much&nbsp;lower&nbsp;resolution&nbsp;heightmaps.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;;;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                017&nbsp;&nbsp;;;&nbsp;Thus&nbsp;to&nbsp;reproduce&nbsp;a&nbsp;segment&nbsp;of&nbsp;surface&nbsp;at&nbsp;a&nbsp;particular&nbsp;level&nbsp;of&nbsp;detail,
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                018&nbsp;&nbsp;;;&nbsp;we:
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                019&nbsp;&nbsp;;;&nbsp;1.&nbsp;load&nbsp;the&nbsp;base&nbsp;heightmap&nbsp;into&nbsp;a&nbsp;grid&nbsp;(see
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                020&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;`mw-engine.heightmap&#x2F;apply-heightmap`);
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                021&nbsp;&nbsp;;;&nbsp;2.&nbsp;scale&nbsp;the&nbsp;base&nbsp;hightmap&nbsp;to&nbsp;kilometre&nbsp;scale&nbsp;(see&nbsp;`scale-grid`);
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                022&nbsp;&nbsp;;;&nbsp;3.&nbsp;exerpt&nbsp;the&nbsp;portion&nbsp;of&nbsp;that&nbsp;that&nbsp;we&nbsp;want&nbsp;to&nbsp;reproduce&nbsp;(see&nbsp;`exerpt-grid`);
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                023&nbsp;&nbsp;;;&nbsp;4.&nbsp;interpolate&nbsp;that&nbsp;grid&nbsp;to&nbsp;get&nbsp;the&nbsp;resolution&nbsp;we&nbsp;require&nbsp;(see
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                024&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;`interpolate-grid`);
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                025&nbsp;&nbsp;;;&nbsp;5.&nbsp;create&nbsp;an&nbsp;appropriate&nbsp;purturbation&nbsp;grid&nbsp;from&nbsp;the&nbsp;noise&nbsp;map(s)&nbsp;for&nbsp;the
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                026&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;same&nbsp;coordinates&nbsp;to&nbsp;break&nbsp;up&nbsp;the&nbsp;smooth&nbsp;interpolation;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                027&nbsp;&nbsp;;;&nbsp;6.&nbsp;sum&nbsp;the&nbsp;altitudes&nbsp;of&nbsp;the&nbsp;two&nbsp;grids.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                028&nbsp;&nbsp;;;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                029&nbsp;&nbsp;;;&nbsp;In&nbsp;production&nbsp;this&nbsp;will&nbsp;have&nbsp;to&nbsp;be&nbsp;done&nbsp;**very**&nbsp;fast!
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                030&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                031&nbsp;&nbsp;(def&nbsp;^:dynamic&nbsp;*base-map*&nbsp;&quot;resources&#x2F;maps&#x2F;heightmap.png&quot;)
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                032&nbsp;&nbsp;(def&nbsp;^:dynamic&nbsp;*noise-map*&nbsp;&quot;resources&#x2F;maps&#x2F;noise.png&quot;)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                033&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                034&nbsp;&nbsp;(defn&nbsp;scale-grid
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                035&nbsp;&nbsp;&nbsp;&nbsp;&quot;multiply&nbsp;all&nbsp;`:x`&nbsp;and&nbsp;`:y`&nbsp;values&nbsp;in&nbsp;this&nbsp;`grid`&nbsp;by&nbsp;this&nbsp;`n`.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                036&nbsp;&nbsp;&nbsp;&nbsp;[grid&nbsp;n]
+                </span><br/>
+<span class="not-covered" title="0 out of 19 forms covered">
+                037&nbsp;&nbsp;&nbsp;&nbsp;(map-world&nbsp;grid&nbsp;(fn&nbsp;[w&nbsp;c&nbsp;x]&nbsp;(assoc&nbsp;c&nbsp;:x&nbsp;(*&nbsp;(:x&nbsp;c)&nbsp;n)&nbsp;:y&nbsp;(*&nbsp;(:y&nbsp;c)&nbsp;n)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                038&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                039&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                040&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                041&nbsp;&nbsp;;;&nbsp;Each&nbsp;of&nbsp;the&nbsp;east-west&nbsp;curve&nbsp;and&nbsp;the&nbsp;north-south&nbsp;curve&nbsp;are&nbsp;of&nbsp;course&nbsp;two
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                042&nbsp;&nbsp;;;&nbsp;dimensional&nbsp;curves;&nbsp;the&nbsp;east-west&nbsp;curve&nbsp;is&nbsp;in&nbsp;the&nbsp;:x&#x2F;:z&nbsp;plane&nbsp;and&nbsp;the
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                043&nbsp;&nbsp;;;&nbsp;north-south&nbsp;curve&nbsp;is&nbsp;in&nbsp;the&nbsp;:y&#x2F;:z&nbsp;plane&nbsp;(except,&nbsp;perhaps&nbsp;unwisely,
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                044&nbsp;&nbsp;;;&nbsp;we&#x27;ve&nbsp;been&nbsp;using&nbsp;:altitude&nbsp;to&nbsp;label&nbsp;the&nbsp;:z&nbsp;plane).&nbsp;We&nbsp;have&nbsp;a&nbsp;library
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                045&nbsp;&nbsp;;;&nbsp;function&nbsp;`walkmap.edge&#x2F;intersection2d`,&nbsp;but&nbsp;as&nbsp;currently&nbsp;written&nbsp;it
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                046&nbsp;&nbsp;;;&nbsp;can&nbsp;only&nbsp;find&nbsp;intersections&nbsp;in&nbsp;:x&#x2F;:y&nbsp;plane.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                047&nbsp;&nbsp;;;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                048&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;rewrite&nbsp;the&nbsp;function&nbsp;so&nbsp;that&nbsp;it&nbsp;can&nbsp;use&nbsp;arbitrary&nbsp;coordinates.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                049&nbsp;&nbsp;;;&nbsp;AFTER&nbsp;TRYING:&nbsp;OK,&nbsp;there&nbsp;are&nbsp;too&nbsp;many&nbsp;assumptions&nbsp;about&nbsp;the&nbsp;way&nbsp;that
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                050&nbsp;&nbsp;;;&nbsp;function&nbsp;is&nbsp;written&nbsp;to&nbsp;allow&nbsp;for&nbsp;easy&nbsp;rotation.&nbsp;TODO:&nbsp;think!
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                051&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                052&nbsp;&nbsp;(defn&nbsp;interpolate-altitude
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                053&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;the&nbsp;altitude&nbsp;of&nbsp;the&nbsp;point&nbsp;at&nbsp;`x-offset`,&nbsp;`y-offset`&nbsp;within&nbsp;this
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                054&nbsp;&nbsp;&nbsp;&nbsp;`cell`&nbsp;having&nbsp;this&nbsp;`src-width`,&nbsp;taken&nbsp;from&nbsp;this&nbsp;`grid`.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                055&nbsp;&nbsp;&nbsp;&nbsp;[cell&nbsp;grid&nbsp;src-width&nbsp;x-offset&nbsp;y-offset&nbsp;]
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                056&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[c-alt&nbsp;(:altitude&nbsp;cell)
+                </span><br/>
+<span class="not-covered" title="0 out of 17 forms covered">
+                057&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n-alt&nbsp;(or&nbsp;(:altitude&nbsp;(get-cell&nbsp;grid&nbsp;(:x&nbsp;cell)&nbsp;(dec&nbsp;(:y&nbsp;cell))))&nbsp;c-alt)
+                </span><br/>
+<span class="not-covered" title="0 out of 17 forms covered">
+                058&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w-alt&nbsp;(or&nbsp;(:altitude&nbsp;(get-cell&nbsp;grid&nbsp;(inc&nbsp;(:x&nbsp;cell))&nbsp;(:y&nbsp;cell)))&nbsp;c-alt)
+                </span><br/>
+<span class="not-covered" title="0 out of 17 forms covered">
+                059&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s-alt&nbsp;(or&nbsp;(:altitude&nbsp;(get-cell&nbsp;grid&nbsp;(:x&nbsp;cell)&nbsp;(inc&nbsp;(:y&nbsp;cell))))&nbsp;c-alt)
+                </span><br/>
+<span class="not-covered" title="0 out of 17 forms covered">
+                060&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e-alt&nbsp;(or&nbsp;(:altitude&nbsp;(get-cell&nbsp;grid&nbsp;(dec&nbsp;(:x&nbsp;cell))&nbsp;(:y&nbsp;cell)))&nbsp;c-alt)]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                061&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;construct&nbsp;two&nbsp;curves&nbsp;(arcs&nbsp;of&nbsp;circles&nbsp;good&nbsp;enough&nbsp;for&nbsp;now)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                062&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;n-alt...c-alt...s-alt&nbsp;and&nbsp;e-alt...c-alt...w-alt;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                063&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;then&nbsp;interpolate&nbsp;x-offset&nbsp;along&nbsp;e-alt...c-alt...w-alt&nbsp;and&nbsp;y-offset
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                064&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;along&nbsp;n-alt...c-alt...s-alt;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                065&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;then&nbsp;return&nbsp;the&nbsp;average&nbsp;of&nbsp;the&nbsp;two
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                066&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                067&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                068&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                069&nbsp;&nbsp;(defn&nbsp;interpolate-cell
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                070&nbsp;&nbsp;&nbsp;&nbsp;&quot;Construct&nbsp;a&nbsp;grid&nbsp;(array&nbsp;of&nbsp;arrays)&nbsp;of&nbsp;cells&nbsp;each&nbsp;of&nbsp;width&nbsp;`target-width`
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                071&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;this&nbsp;`cell`,&nbsp;of&nbsp;width&nbsp;`src-width`,&nbsp;taken&nbsp;from&nbsp;this&nbsp;`grid`&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                072&nbsp;&nbsp;&nbsp;&nbsp;[cell&nbsp;grid&nbsp;src-width&nbsp;target-width]
+                </span><br/>
+<span class="not-covered" title="0 out of 12 forms covered">
+                073&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[offsets&nbsp;(map&nbsp;#(*&nbsp;target-width&nbsp;%)&nbsp;(range&nbsp;(&#x2F;&nbsp;src-width&nbsp;target-width)))]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                074&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(into
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                075&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                076&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                077&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fn&nbsp;[r]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                078&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(into
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                079&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                080&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                081&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fn&nbsp;[c]
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                082&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(assoc&nbsp;cell
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                083&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:x&nbsp;(+&nbsp;(:x&nbsp;cell)&nbsp;c)
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                084&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:y&nbsp;(+&nbsp;(:y&nbsp;cell)&nbsp;r)
+                </span><br/>
+<span class="not-covered" title="0 out of 7 forms covered">
+                085&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:altitude&nbsp;(interpolate-altitude&nbsp;cell&nbsp;grid&nbsp;src-width&nbsp;c&nbsp;r)))
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                086&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offsets)))
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                087&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offsets))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                088&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                089&nbsp;&nbsp;(defn&nbsp;interpolate-grid
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                090&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;a&nbsp;grid&nbsp;interpolated&nbsp;from&nbsp;this&nbsp;`grid`&nbsp;of&nbsp;rows,&nbsp;cols&nbsp;given&nbsp;scaling
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                091&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;this&nbsp;`src-width`&nbsp;to&nbsp;this&nbsp;`target-width`&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                092&nbsp;&nbsp;&nbsp;&nbsp;[grid&nbsp;src-width&nbsp;target-width]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                093&nbsp;&nbsp;&nbsp;&nbsp;(reduce
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                094&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;concat
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                095&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(into
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                096&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                097&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                098&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fn&nbsp;[row]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                099&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reduce
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fn&nbsp;[g1&nbsp;g2]
+                </span><br/>
+<span class="not-covered" title="0 out of 15 forms covered">
+                101&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(into&nbsp;[]&nbsp;(map&nbsp;#(into&nbsp;[]&nbsp;(concat&nbsp;%1&nbsp;%2))&nbsp;g1&nbsp;g2)))
+                </span><br/>
+<span class="not-covered" title="0 out of 13 forms covered">
+                102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(into&nbsp;[]&nbsp;(map&nbsp;#(interpolate-cell&nbsp;%&nbsp;grid&nbsp;src-width&nbsp;target-width)&nbsp;row))))
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                103&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                104&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                105&nbsp;&nbsp;(defn&nbsp;excerpt-grid
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                106&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;that&nbsp;section&nbsp;of&nbsp;this&nbsp;`grid`&nbsp;where&nbsp;the&nbsp;`:x`&nbsp;co-ordinate&nbsp;of&nbsp;each&nbsp;cell
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                107&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;greater&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;this&nbsp;`x-offset`,&nbsp;the&nbsp;`:y`&nbsp;co-ordinate&nbsp;is&nbsp;greater
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                108&nbsp;&nbsp;&nbsp;&nbsp;than&nbsp;or&nbsp;equal&nbsp;to&nbsp;this&nbsp;`y-offset`,&nbsp;whose&nbsp;width&nbsp;is&nbsp;not&nbsp;greater&nbsp;than&nbsp;this
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                109&nbsp;&nbsp;&nbsp;&nbsp;`width`,&nbsp;and&nbsp;whose&nbsp;height&nbsp;is&nbsp;not&nbsp;greater&nbsp;than&nbsp;this&nbsp;`height`.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                110&nbsp;&nbsp;&nbsp;&nbsp;[grid&nbsp;x-offset&nbsp;y-offset&nbsp;width&nbsp;height]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                111&nbsp;&nbsp;&nbsp;&nbsp;(into
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                112&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(remove
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                114&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil?
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                115&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                116&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fn&nbsp;[row]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                117&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(when
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                118&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(and
+                </span><br/>
+<span class="not-covered" title="0 out of 7 forms covered">
+                119&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&gt;=&nbsp;(:y&nbsp;(first&nbsp;row))&nbsp;y-offset)
+                </span><br/>
+<span class="not-covered" title="0 out of 8 forms covered">
+                120&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;&nbsp;(:y&nbsp;(first&nbsp;row))&nbsp;(+&nbsp;y-offset&nbsp;height)))
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                121&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(into
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                122&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                123&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(remove
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                124&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nil?
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                125&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                126&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fn&nbsp;[cell]
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                127&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(when
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(and
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                129&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&gt;=&nbsp;(:x&nbsp;cell)&nbsp;x-offset)
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                130&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;&nbsp;(:x&nbsp;cell)&nbsp;(+&nbsp;x-offset&nbsp;width)))
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                131&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cell))
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                132&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;row)))))
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                133&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grid))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                134&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                135&nbsp;&nbsp;(defn&nbsp;get-surface
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                136&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return,&nbsp;as&nbsp;a&nbsp;vector&nbsp;of&nbsp;vectors&nbsp;of&nbsp;cells&nbsp;represented&nbsp;as&nbsp;Clojure&nbsp;maps,&nbsp;a
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                137&nbsp;&nbsp;&nbsp;&nbsp;segment&nbsp;of&nbsp;surface&nbsp;from&nbsp;this&nbsp;`base-map`&nbsp;as&nbsp;modified&nbsp;by&nbsp;this
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                138&nbsp;&nbsp;&nbsp;&nbsp;`noise-map`&nbsp;at&nbsp;this&nbsp;`cell-size`&nbsp;starting&nbsp;at&nbsp;this&nbsp;`x-offset`&nbsp;and&nbsp;`y-offset`
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                139&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;having&nbsp;this&nbsp;`width`&nbsp;and&nbsp;`height`.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                140&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                141&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;`base-map`&nbsp;and&nbsp;`noise-map`&nbsp;are&nbsp;not&nbsp;supplied,&nbsp;the&nbsp;bindings&nbsp;of&nbsp;`*base-map*`
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                142&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;`*noise-map*`&nbsp;will&nbsp;be&nbsp;used,&nbsp;respectively.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                143&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                144&nbsp;&nbsp;&nbsp;&nbsp;`base-map`&nbsp;and&nbsp;`noise-map`&nbsp;may&nbsp;be&nbsp;passed&nbsp;either&nbsp;as&nbsp;strings,&nbsp;assumed&nbsp;to&nbsp;be
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                145&nbsp;&nbsp;&nbsp;&nbsp;file&nbsp;paths&nbsp;of&nbsp;PNG&nbsp;files,&nbsp;or&nbsp;as&nbsp;MicroWorld&nbsp;style&nbsp;world&nbsp;arrays.&nbsp;It&nbsp;is&nbsp;assumed
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                146&nbsp;&nbsp;&nbsp;&nbsp;that&nbsp;one&nbsp;pixel&nbsp;in&nbsp;`base-map`&nbsp;represents&nbsp;one&nbsp;square&nbsp;kilometre&nbsp;in&nbsp;the&nbsp;game
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                147&nbsp;&nbsp;&nbsp;&nbsp;world.&nbsp;It&nbsp;is&nbsp;assumed&nbsp;that&nbsp;`cell-size`,&nbsp;`x-offset`,&nbsp;`y-offset`,&nbsp;`width`&nbsp;and
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                148&nbsp;&nbsp;&nbsp;&nbsp;`height`&nbsp;are&nbsp;integer&nbsp;numbers&nbsp;of&nbsp;metres.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                149&nbsp;&nbsp;&nbsp;&nbsp;([cell-size&nbsp;x-offset&nbsp;y-offset&nbsp;width&nbsp;height]
+                </span><br/>
+<span class="not-covered" title="0 out of 9 forms covered">
+                150&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(get-surface&nbsp;*base-map*&nbsp;*noise-map*&nbsp;cell-size&nbsp;x-offset&nbsp;y-offset&nbsp;width&nbsp;height))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                151&nbsp;&nbsp;&nbsp;&nbsp;([base-map&nbsp;noise-map&nbsp;cell-size&nbsp;x-offset&nbsp;y-offset&nbsp;width&nbsp;height]
+                </span><br/>
+<span class="not-covered" title="0 out of 12 forms covered">
+                152&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[b&nbsp;(if&nbsp;(seq?&nbsp;base-map)&nbsp;base-map&nbsp;(scale-grid&nbsp;(apply-heightmap&nbsp;base-map)&nbsp;1000))
+                </span><br/>
+<span class="not-covered" title="0 out of 8 forms covered">
+                153&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;(if&nbsp;(seq?&nbsp;noise-map)&nbsp;noise-map&nbsp;(apply-heightmap&nbsp;noise-map))]
+                </span><br/>
+<span class="not-covered" title="0 out of 11 forms covered">
+                154&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(and&nbsp;(in-bounds?&nbsp;b&nbsp;x-offset&nbsp;y-offset)
+                </span><br/>
+<span class="not-covered" title="0 out of 8 forms covered">
+                155&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(in-bounds?&nbsp;b&nbsp;(+&nbsp;x-offset&nbsp;width)&nbsp;(+&nbsp;y-offset&nbsp;height)))
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                156&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b&nbsp;;;&nbsp;actually&nbsp;do&nbsp;stuff
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                157&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(throw&nbsp;(Exception.&nbsp;&quot;Surface&nbsp;out&nbsp;of&nbsp;bounds&nbsp;for&nbsp;map.&quot;)))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                158&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                159&nbsp;&nbsp;
+                </span><br/>
+ </body>
+</html>

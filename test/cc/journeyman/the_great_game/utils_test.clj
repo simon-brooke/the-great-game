@@ -1,5 +1,5 @@
 (ns cc.journeyman.the-great-game.utils-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :refer [deftest is testing]]
             [cc.journeyman.the-great-game.utils :refer [cyclic?]]))
 
 (deftest cyclic-tests

@@ -43,5 +43,3 @@
 
  ;; (.settlement (OrientedLocation. 123.45 543.76 12.34 0.00 {}))
 
-
-;; (OrientedLocation. 123.45 543.76 12.34 0.00 {})

@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "../jme-clj"
+		},
+		{
+			"path": "../MicroWorld/mw-engine"
 		}
 	],
 	"settings": {}

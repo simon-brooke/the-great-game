@@ -12,8 +12,10 @@
     which the object is keyed in the global object list."))
 
 (defrecord GameObject
-  [id]
+           [id]
   ;; "An object in the world"
   ProtoObject
   (id [_] id)
-  (reify-object [object] "TODO: doesn't work yet"))
+  (reify-object [object]
+    "TODO: doesn't work yet"
+    object))

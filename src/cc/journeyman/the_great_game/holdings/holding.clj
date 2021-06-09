@@ -29,14 +29,18 @@
   ;; is needed to ensure this!
   ProtoContainer
   ProtoHolding
-  (frontage [holding]
-            ;; TODO: this is WRONG, but will work for now. The frontage should
-            ;; be the side of the perimeter nearest to the nearest existing 
-            ;; route.
+  (frontage 
+    [holding]
+   "TODO: this is WRONG, but will work for now. The frontage should
+    be the side of the perimeter nearest to the nearest existing 
+    route."
     [(first (perimeter holding)) (nth (perimeter holding) 1)])
-  (building-origin [holding]
-                   ;; TODO: again this is wrong. The default building origin
-                   ;; should be the right hand end of the frontage when viewed
-                   ;; from outside the holding.
-                   (first (frontage holding)))
+  (building-origin 
+   [holding]
+   "TODO: again this is WRONG. The default building origin for rectangular 
+    buildings should be the right hand end of the frontage when viewed
+    from outside the holding. But that's not general; celtic-style circular
+    buildings should normally be in the centre of their holdings. So probably
+    building-origin becomes a method of building-family rather than of holding."
+   (first (frontage holding)))
   ProtoObject)
