@@ -1,5 +1,5 @@
 (ns cc.journeyman.the-great-game.gossip.news-items
-  "Categories of news events interesting to gossip agents.
+  "Using news items (propositions) to transfer knowledge between gossip agents.
    
    The ideas here are based on the essay [The spread of knowledge in a large
    game world](The-spread-of-knowledge-in-a-large-game-world.html), q.v.; 
@@ -22,7 +22,8 @@
    list of propositions, each of which must be checked every time any new
    proposition is offered. This is woefully inefficient. "
   (:require [cc.journeyman.the-great-game.world.location :refer [distance-between]]
-            [cc.journeyman.the-great-game.time :refer [game-time]]))
+            [cc.journeyman.the-great-game.time :refer [game-time]]
+            [taoensso.timbre :as l]))
 
 
 (def news-topics
@@ -155,8 +156,8 @@
 
 (defn interesting-location?
   "True if the location of this news `item` is interesting to this `gossip`."
-  [gossip item]
-  (> (interest-in-location gossip (:location item)) 0))
+  [gossip location]
+  (> (interest-in-location gossip location) 0))
 
 (defn interesting-object?
   [gossip object]
@@ -190,13 +191,16 @@
    learning that 'someone killed Sweet Daisy', but there is point in learning
    'someone killed Sweet Daisy _with poison_'."
   [new-item known-item]
-  (reduce
-   #(and %1 %2)
-   (map #(if
-          (known-item %) ;; if known-item has this key
-           (compatible-value? (new-item %) (known-item %))
-           true)
-        (remove #{:nth-hand :confidence :learned-from} (keys new-item)))))
+  (if
+   (reduce
+    #(and %1 %2)
+    (map #(if
+           (known-item %) ;; if known-item has this key
+            (compatible-value? (new-item %) (known-item %))
+            true)
+         (remove #{:nth-hand :confidence :learned-from} (keys new-item))))
+    true
+    false))
 
 (defn known-item?
   "True if this news `item` is already known to this `gossip`.
@@ -205,9 +209,13 @@
    the same _or more specific_ values for all the keys of this `item` except
    `:nth-hand`, `:confidence` and `:learned-from`."
   [gossip item]
-  (reduce
-   #(or %1 %2)
-   (filter true? (map #(compatible-item? item %) (:knowledge gossip)))))
+  (if
+   (reduce
+    #(or %1 %2)
+    false
+    (filter true? (map #(compatible-item? item %) (:knowledge gossip))))
+    true
+    false))
 
 (defn interesting-item?
   "True if anything about this news `item` is interesting to this `gossip`."
@@ -220,30 +228,39 @@
         (interesting-object? gossip (:object item))
         (interesting-topic? gossip (:verb item)))))
 
+(defn inc-or-one
+  "If this `val` is a number, return that number incremented by one; otherwise,
+   return 1. TODO: should probably be in `utils`."
+  [val]
+  (if
+   (number? val)
+    (inc val)
+    1))
+
 (defn infer
-  "Infer a new knowledge item from this `item`, following this `rule`"
+  "Infer a new knowledge item from this `item`, following this `rule`."
   [item rule]
+;;  (l/info "Applying rule '" rule "' to item '" item "'")
   (reduce merge
           item
           (cons
-           {:verb (:verb rule)}
-           (map (fn [k] {k (apply (k rule) (list item))})
+           {:verb (:verb rule)
+            :nth-hand (inc-or-one (:nth-hand item))}
+           (map (fn [k] {k (item (rule k))})
                 (remove
-                 #{:verb}
+                 #{:verb :nth-hand}
                  (keys rule))))))
 
 (declare learn-news-item)
 
 (defn make-all-inferences
-  "Return a list of knowledge entries that can be inferred from this news
+  "Return a set of knowledge entries that can be inferred from this news
   `item`."
   [item]
   (set
-   (reduce
-    concat
     (map
-     #(:knowledge (learn-news-item {} (infer item %) false))
-     (:inferences (news-topics (:verb item)))))))
+     #(infer item %)
+     (:inferences (news-topics (:verb item))))))
 
 (defn degrade-character
   "Return a character specification like this `character`, but comprising
@@ -263,15 +280,6 @@
              #(when (interesting-location? gossip %) %)
              location))]
     (when-not (empty? l) l)))
-
-(defn inc-or-one
-  "If this `val` is a number, return that number incremented by one; otherwise,
-   return 1. TODO: should probably be in `utils`."
-  [val]
-  (if
-   (number? val)
-    (inc val)
-    1))
 
 (defn learn-news-item
   "Return a gossip like this `gossip`, which has learned this news `item` if

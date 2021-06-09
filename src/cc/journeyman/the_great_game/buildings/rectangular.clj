@@ -115,36 +115,6 @@
                           :cultures #{:coastal}
                           :modules []}})
 
-;; TODO: So, modules need to contain
-;;
-;; 1. Ground floor modules, having external doors;
-;; 2. Craft modules -- workshops -- which will normally be ground floor (except
-;; weavers) and may have the constraint that no upper floor module can cover them;
-;; 3. Upper floor modules, having NO external doors (but linking internal doors);
-;; 4. Roof modules
-;; 
-;; There also needs to be an undercroft or platform module, such that the area of 
-;; the top of the platform is identical with the footprint of the building, and 
-;; the altitude of the top of the platform is equal to the altitude of the 
-;; terrain at the heighest corner of the building; so that the actual 
-;; building doesn't float in the air, and also so that none of the doors or windows
-;; are partly underground.
-;;
-;; Each module needs to wrap an actual 3d model created in Blender or whatever, 
-;; and have a list of optional textures with which that model can be rendered. 
-;; So an upper floor bedroom module might have the following renders:
-;;
-;; 1. Bare masonry - constrained to upland or plateau terrain, and to coastal culture
-;; 2. Painted masonry - constrained to upland or plateau terrain, and to coastal culture
-;; 3. Half-timbered - not available on plateau terrain
-;; 4. Weatherboarded - constrained to forest terrain
-;; 5. Brick - constrained to arable or arid terrain
-;;
-;; of course these are only examples, and also, it's entirely possible to have
-;; for example multiple different weatherboard renders for the same module. 
-;; There needs to be a way of rendering what can be built above what: for
-;; example, you can't have a masonry clad module over a half timbered one, 
-;; but you can have a half-timbered one over a masonry one
 
 (defn building-family
   "A building family is essentially a collection of models of building modules

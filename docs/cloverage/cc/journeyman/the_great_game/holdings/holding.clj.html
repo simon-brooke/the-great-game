@@ -1,0 +1,146 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../../../../coverage.css"/>  <title> cc/journeyman/the_great_game/holdings/holding.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;cc.journeyman.the-great-game.holdings.holding
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[cc.journeyman.the-great-game.agent.agent&nbsp;:refer&nbsp;[ProtoAgent]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[cc.journeyman.the-great-game.objects.container&nbsp;:refer&nbsp;[ProtoContainer]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[cc.journeyman.the-great-game.objects.game-object&nbsp;:refer&nbsp;[ProtoObject]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[cc.journeyman.the-great-game.location.location&nbsp;:refer&nbsp;[OrientedLocation]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[cc.journeyman.the-great-game.world.routes&nbsp;:refer&nbsp;[]]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                008&nbsp;&nbsp;;;;&nbsp;A&nbsp;holding&nbsp;is&nbsp;a&nbsp;polygonal&nbsp;area&nbsp;of&nbsp;the&nbsp;map&nbsp;which&nbsp;does&nbsp;not
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;;;;&nbsp;intersect&nbsp;with&nbsp;any&nbsp;other&nbsp;holding,&nbsp;or&nbsp;with&nbsp;any&nbsp;road&nbsp;or&nbsp;water&nbsp;feature.&nbsp;For&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;;;;&nbsp;the&nbsp;time&nbsp;being&nbsp;we&#x27;ll&nbsp;make&nbsp;the&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;;;;&nbsp;simplifying&nbsp;assumption&nbsp;that&nbsp;every&nbsp;holding&nbsp;is&nbsp;a&nbsp;rectangular&nbsp;strip,&nbsp;and&nbsp;that
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                012&nbsp;&nbsp;;;;&nbsp;&#x27;urban&#x27;&nbsp;holdings&nbsp;are&nbsp;of&nbsp;a&nbsp;reasonably&nbsp;standard&nbsp;width&nbsp;(see&nbsp;Viking-period&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                013&nbsp;&nbsp;;;;&nbsp;York)&nbsp;and&nbsp;length.&nbsp;Rural&nbsp;holdings&nbsp;(farms,&nbsp;?wood&nbsp;lots)&nbsp;may&nbsp;be&nbsp;much&nbsp;larger.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                014&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                015&nbsp;&nbsp;(defprotocol&nbsp;ProtoHolding
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;(frontage
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[holding]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                018&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Returns&nbsp;a&nbsp;sequence&nbsp;of&nbsp;two&nbsp;locations&nbsp;representing&nbsp;the&nbsp;edge&nbsp;of&nbsp;the&nbsp;polygon
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                019&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;defines&nbsp;this&nbsp;holding&nbsp;which&nbsp;is&nbsp;considered&nbsp;to&nbsp;be&nbsp;the&nbsp;front.&quot;)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;(building-origin
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[holding]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Returns&nbsp;an&nbsp;oriented&nbsp;location&nbsp;-&nbsp;normally&nbsp;the&nbsp;right&nbsp;hand&nbsp;end&nbsp;of&nbsp;the&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frontage,&nbsp;for&nbsp;an&nbsp;urban&nbsp;holding&nbsp;-&nbsp;from&nbsp;which&nbsp;buildings&nbsp;on&nbsp;the&nbsp;holding
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;be&nbsp;built.&quot;))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                025&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                026&nbsp;&nbsp;(defrecord&nbsp;Holding&nbsp;[perimeter&nbsp;holder]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                027&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;Perimeter&nbsp;should&nbsp;be&nbsp;a&nbsp;list&nbsp;of&nbsp;locations&nbsp;in&nbsp;exactly&nbsp;the&nbsp;same&nbsp;sense&nbsp;as&nbsp;a
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                028&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;route&nbsp;in&nbsp;`cc.journeyman.the-great-game.world.routes`.&nbsp;Some&nbsp;sanity&nbsp;checking
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                029&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;is&nbsp;needed&nbsp;to&nbsp;ensure&nbsp;this!
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                030&nbsp;&nbsp;&nbsp;&nbsp;ProtoContainer
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                031&nbsp;&nbsp;&nbsp;&nbsp;ProtoHolding
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                032&nbsp;&nbsp;&nbsp;&nbsp;(frontage&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                033&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[holding]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;TODO:&nbsp;this&nbsp;is&nbsp;WRONG,&nbsp;but&nbsp;will&nbsp;work&nbsp;for&nbsp;now.&nbsp;The&nbsp;frontage&nbsp;should
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;the&nbsp;side&nbsp;of&nbsp;the&nbsp;perimeter&nbsp;nearest&nbsp;to&nbsp;the&nbsp;nearest&nbsp;existing&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;route.&quot;
+                </span><br/>
+<span class="not-covered" title="0 out of 11 forms covered">
+                037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[(first&nbsp;(perimeter&nbsp;holding))&nbsp;(nth&nbsp;(perimeter&nbsp;holding)&nbsp;1)])
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                038&nbsp;&nbsp;&nbsp;&nbsp;(building-origin&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                039&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[holding]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                040&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;TODO:&nbsp;again&nbsp;this&nbsp;is&nbsp;WRONG.&nbsp;The&nbsp;default&nbsp;building&nbsp;origin&nbsp;for&nbsp;rectangular&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                041&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buildings&nbsp;should&nbsp;be&nbsp;the&nbsp;right&nbsp;hand&nbsp;end&nbsp;of&nbsp;the&nbsp;frontage&nbsp;when&nbsp;viewed
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                042&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;outside&nbsp;the&nbsp;holding.&nbsp;But&nbsp;that&#x27;s&nbsp;not&nbsp;general;&nbsp;celtic-style&nbsp;circular
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                043&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buildings&nbsp;should&nbsp;normally&nbsp;be&nbsp;in&nbsp;the&nbsp;centre&nbsp;of&nbsp;their&nbsp;holdings.&nbsp;So&nbsp;probably
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                044&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;building-origin&nbsp;becomes&nbsp;a&nbsp;method&nbsp;of&nbsp;building-family&nbsp;rather&nbsp;than&nbsp;of&nbsp;holding.&quot;
+                </span><br/>
+<span class="not-covered" title="0 out of 5 forms covered">
+                045&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(first&nbsp;(frontage&nbsp;holding)))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                046&nbsp;&nbsp;&nbsp;&nbsp;ProtoObject)
+                </span><br/>
+ </body>
+</html>
