@@ -30,7 +30,7 @@
         plan (select-cargo merchant world)]
     (l/debug "plan-and-buy: merchant" id)
     (cond
-      (not (empty? plan))
+      (seq? plan)
       (let
         [c (:commodity plan)
          p (* (:quantity plan) (:buy-price plan))

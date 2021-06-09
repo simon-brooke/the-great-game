@@ -1,8 +1,12 @@
 (ns cc.journeyman.the-great-game.playroom
-  (require [jme-clj.core :refer :all])
-  (import [com.jme3.math ColorRGBA]))
+  (:require [jme-clj.core :refer [add add-to-root box defsimpleapp fly-cam geo 
+                                  get* get-state load-texture rotate run set* 
+                                  setc set-state start unshaded-mat]])
+  (:import [com.jme3.math ColorRGBA]))
 
 ;; At present this file is just somewhere to play around with jme-clj examples
+
+(declare app)
 
 (defn init []
   (let [cube (geo "jMonkey cube" (box 1 1 1))

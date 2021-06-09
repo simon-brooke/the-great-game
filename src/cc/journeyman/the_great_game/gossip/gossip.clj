@@ -1,11 +1,15 @@
 (ns cc.journeyman.the-great-game.gossip.gossip
-  "Interchange of news events between gossip agents"
+  "Interchange of news events between gossip agents.
+   
+   Note that habitual travellers are all gossip agents; specifically, at this
+   stage, that means merchants. When merchants are moved we also need to
+   update the location of the gossip with the same key.
+   
+   Innkeepers are also gossip agents but do not typically move."
   (:require [cc.journeyman.the-great-game.utils :refer [deep-merge]]
-            [cc.journeyman.the-great-game.gossip.news-items :refer [learn-news-item]]))
+            [cc.journeyman.the-great-game.gossip.news-items :refer [learn-news-item]]
+            ))
 
-;; Note that habitual travellers are all gossip agents; specifically, at this
-;; stage, that means merchants. When merchants are moved we also need to
-;; update the location of the gossip with the same key.
 
 (defn dialogue
   "Dialogue between an `enquirer` and an `agent` in this `world`; returns a
@@ -16,30 +20,26 @@
   enquirer)
 
 (defn gather-news
-  ([world]
-   (reduce
-     deep-merge
-     world
-     (map
-       #(gather-news world %)
-       (keys (:gossips world)))))
-  ([world gossip]
-   (let [g (cond (keyword? gossip)
-                 (-> world :gossips gossip)
-                 (map? gossip)
-                 gossip)]
-     {:gossips
-      {(:id g)
-       (reduce
+  "Gather news for the specified `gossip` in this `world`."
+  [world gossip]
+  (let [g (cond (keyword? gossip)
+                (-> world :gossips gossip)
+                (map? gossip)
+                gossip)]
+    (if g
+      {:gossips
+       {(:id g)
+        (reduce
          deep-merge
          {}
          (map
-           #(dialogue g % world)
-           (remove
-             #( = g %)
-             (filter
-               #(= (:location %) (:location g))
-               (vals (:gossips world))))))}})))
+          #(dialogue g % world)
+          (remove
+           #(= g %)
+           (filter
+            #(= (:location %) (:location g))
+            (vals (:gossips world))))))}}
+      {})))
 
 (defn move-gossip
   "Return a world like this `world` but with this `gossip` moved to this
@@ -63,4 +63,11 @@
   "Return a world like this `world`, with news items exchanged between gossip
   agents."
   [world]
-  (gather-news world))
+  (reduce
+   deep-merge
+   world
+   (map
+    #(gather-news world %)
+    (keys (:gossips world)))))
+
+

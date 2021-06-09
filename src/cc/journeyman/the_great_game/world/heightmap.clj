@@ -3,7 +3,7 @@
     (:require [clojure.math.numeric-tower :refer [expt sqrt]]
               [mw-engine.core :refer []]
               [mw-engine.heightmap :refer [apply-heightmap]]
-              [mw-engine.utils :refer [get-cell in-bounds? map-world scale-world]]
+              [mw-engine.utils :refer [get-cell in-bounds? map-world]]
               [cc.journeyman.the-great-game.utils :refer [value-or-default]]))
 
 ;; It's not at all clear to me yet what the workflow for getting a MicroWorld
@@ -149,7 +149,7 @@
   ([cell-size x-offset y-offset width height]
    (get-surface *base-map* *noise-map* cell-size x-offset y-offset width height))
   ([base-map noise-map cell-size x-offset y-offset width height]
-   (let [b (if (seq? base-map) base-map (scale-world (apply-heightmap base-map) 1000))
+   (let [b (if (seq? base-map) base-map (scale-grid (apply-heightmap base-map) 1000))
          n (if (seq? noise-map) noise-map (apply-heightmap noise-map))]
      (if (and (in-bounds? b x-offset y-offset)
               (in-bounds? b (+ x-offset width) (+ y-offset height)))
