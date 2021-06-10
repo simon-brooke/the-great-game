@@ -43,3 +43,19 @@
 ;; (value-or-default {:x 0 :y 0 :altitude 7} :altitude 8)
 ;; (value-or-default {:x 0 :y 0 :altitude 7} :alt 8)
 ;; (value-or-default nil :altitude 8)
+
+(defn truthy? 
+  "Returns `true` unless `val` is `nil`, `false` or an empty sequence.
+   Otherwise always 'false'; never any other value."
+  [val]
+  (and (or val false) true))
+
+
+(defn inc-or-one
+  "If this `val` is a number, return that number incremented by one; otherwise,
+   return 1. TODO: should probably be in `utils`."
+  [val]
+  (if
+   (number? val)
+    (inc val)
+    1))

@@ -36,3 +36,9 @@ libopenal64.so
 .settings/
 .classpath
 .project
+
+.calva/
+.lsp/
+
+
+*.so

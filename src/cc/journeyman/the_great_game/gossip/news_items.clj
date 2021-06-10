@@ -1,6 +1,15 @@
 (ns cc.journeyman.the-great-game.gossip.news-items
   "Using news items (propositions) to transfer knowledge between gossip agents.
    
+   ## Status
+   
+   What is here is essentially working. It's not, however, working with the 
+   rich data objects which will be needed, and it's not yet nearly efficient 
+   enough, but it allows knowledge to propagate through the world procedurally,
+   at a rate limited by the speed of movement of the gossip agents.
+
+   ## Discussion
+   
    The ideas here are based on the essay [The spread of knowledge in a large
    game world](The-spread-of-knowledge-in-a-large-game-world.html), q.v.; 
    they've advanced a little beyond that and will doubtless
@@ -8,7 +17,7 @@
 
    A news item is a map with the keys:
  
-   * `date` - the date on which the reported event happened;
+   * `date` - the date on which the reported event is claimed to have happened;
    * `nth-hand` - the number of agents the news item has passed through;
    * `verb` - what it is that happened (key into `news-topics`);
 
@@ -23,8 +32,8 @@
    proposition is offered. This is woefully inefficient. "
   (:require [cc.journeyman.the-great-game.world.location :refer [distance-between]]
             [cc.journeyman.the-great-game.time :refer [game-time]]
+            [cc.journeyman.the-great-game.utils :refer [inc-or-one truthy?]]
             [taoensso.timbre :as l]))
-
 
 (def news-topics
   "Topics of interest to gossip agents. Topics are keyed in this map by
@@ -40,9 +49,7 @@
   action;
   * `price` is special to buy/sell, but of significant interest to merchants.
 
-  ## Notes
-
-  ### Characters
+  ## Characters
 
   *TODO* but note that at most all the receiver can learn about a character
   from a news item is what the giver knows about that character, degraded by
@@ -56,7 +63,7 @@
   as the receiver stores only that segment which the receiver finds
   interesting.
 
-  ### Locations
+  ## Locations
 
   A 'location' value is a list comprising at most the x/y coordinate location
   and the ids of the settlement and region (possibly hierarchically) that contain
@@ -66,12 +73,11 @@
 
   It is assumed that the `:home` of a character is a location in this sense.
 
-  ### Inferences
+  ## Inferences
 
   If an agent learns that Adam has married Betty, they can infer that Betty has
   married Adam; if they learn that Charles killed Dorothy, that Dorothy has died.
-  I'm not convinced that my representation of inferences here is ideal.
-  "
+  I'm not convinced that my representation of inferences here is ideal."
   {;; A significant attack is interesting whether or not it leads to deaths
    :attack {:verb :attack :keys [:actor :other :location]}
     ;; Deaths of characters may be interesting
@@ -95,7 +101,7 @@
                        {:verb :sex}
                        {:verb :sex :actor :other :other :actor}]}
     ;; Merchants, especially, are interested in prices in other markets
-   :sell {:verb :sell :keys [:actor :other :object :location :price]}
+   :sell {:verb :sell :keys [:actor :other :object :location :quantity :price]}
     ;; Sex can juicy gossip, although not normally if the participants are in an
     ;; established sexual relationship.
    :sex {:verb :sex :keys [:actor :other :location]
@@ -110,6 +116,11 @@
          :inferences [{:verb :war :actor :other :other :actor}]}})
 
 
+(def all-known-verbs 
+  "All verbs currently known to the gossip system."
+  (set (keys news-topics)))
+
+
 (defn interest-in-character
   "Integer representation of how interesting this `character` is to this
   `gossip`.
@@ -118,8 +129,11 @@
   [gossip character]
   (count
    (concat
-    (filter #(= (:actor % character)) (:knowledge gossip))
-    (filter #(= (:other % character)) (:knowledge gossip)))))
+    ;; TODO: we ought also check the relationships of the gossip.
+    ;; Are relationships just propositions in the knowledge base?
+    (filter #(= (:actor %) character) (:knowledge gossip))
+    (filter #(= (:other %) character) (:knowledge gossip)))))
+
 
 (defn interesting-character?
   "Boolean representation of whether this `character` is interesting to this
@@ -135,10 +149,13 @@
     (and (map? location) (number? (:x location)) (number? (:y location)))
     (if-let [home (:home gossip)]
       (let [d (distance-between location home)
-            i (/ 10000 d) ;; 10000 at metre scale is 10km; interest should
+            i (if
+               (zero? d) 1
+               (/ 10000 d))
+            ;; 10000 at metre scale is 10km; interest should
             ;;fall off with distance from home, but possibly on a log scale
             ]
-        (if (> i 1) i 0))
+        (if (>= i 1) i 0))
       0)
     (coll? location)
     (reduce
@@ -152,6 +169,7 @@
       #(some (fn [x] (= x location)) (:location %))
       (cons {:location (:home gossip)} (:knowledge gossip))))))
 
+;; (distance-between {:x 25 :y 37} {:x 25 :y 37})
 ;; (interest-in-location {:home [{0, 0} :test-home] :knowledge []} [:test-home])
 
 (defn interesting-location?
@@ -168,6 +186,17 @@
   [gossip topic]
   ;; TODO: Not yet (really) implemented
   true)
+
+(defn interesting-verb?
+  "Is this `verb` interesting to this `gossip`?"
+  [gossip verb]
+  (let [vs (:interesting-verbs gossip)]
+    (truthy?
+     (if (set? vs)
+       (vs verb)
+       false))))
+
+;; (interesting-verb? {:interesting-verbs #{:kill :sell}} :sell)
 
 (defn compatible-value?
   "True if `known-value` is the same as `new-value`, or, for each key present
@@ -191,16 +220,14 @@
    learning that 'someone killed Sweet Daisy', but there is point in learning
    'someone killed Sweet Daisy _with poison_'."
   [new-item known-item]
-  (if
+  (truthy?
    (reduce
     #(and %1 %2)
     (map #(if
            (known-item %) ;; if known-item has this key
             (compatible-value? (new-item %) (known-item %))
             true)
-         (remove #{:nth-hand :confidence :learned-from} (keys new-item))))
-    true
-    false))
+         (remove #{:nth-hand :confidence :learned-from} (keys new-item))))))
 
 (defn known-item?
   "True if this news `item` is already known to this `gossip`.
@@ -209,33 +236,23 @@
    the same _or more specific_ values for all the keys of this `item` except
    `:nth-hand`, `:confidence` and `:learned-from`."
   [gossip item]
-  (if
+  (truthy?
    (reduce
     #(or %1 %2)
     false
-    (filter true? (map #(compatible-item? item %) (:knowledge gossip))))
-    true
-    false))
+    (filter true? (map #(compatible-item? item %) (:knowledge gossip))))))
 
 (defn interesting-item?
   "True if anything about this news `item` is interesting to this `gossip`."
   [gossip item]
   (and (not (known-item? gossip item))
+       (interesting-verb? gossip item) ;; news is only interesting if the topic is.
        (or
         (interesting-character? gossip (:actor item))
         (interesting-character? gossip (:other item))
         (interesting-location? gossip (:location item))
         (interesting-object? gossip (:object item))
         (interesting-topic? gossip (:verb item)))))
-
-(defn inc-or-one
-  "If this `val` is a number, return that number incremented by one; otherwise,
-   return 1. TODO: should probably be in `utils`."
-  [val]
-  (if
-   (number? val)
-    (inc val)
-    1))
 
 (defn infer
   "Infer a new knowledge item from this `item`, following this `rule`."
@@ -281,6 +298,26 @@
              location))]
     (when-not (empty? l) l)))
 
+(defn degrade-news-item
+  [gossip item]
+  (assoc
+   item
+   :nth-hand (inc-or-one (:nth-hand item))
+   :time-stamp (if
+                (number? (:time-stamp item))
+                 (:time-stamp item)
+                 (game-time))
+   :location (degrade-location gossip (:location item))
+   :actor (degrade-character gossip (:actor item))
+   :other (degrade-character gossip (:other item))
+                  ;; TODO: do something to degrade confidence in the item,
+                  ;; probably as a function of the provider's confidence in
+                  ;; the item and the gossip's trust in the provider
+   ))
+
+;; (degrade-news-item {:home [{:x 25 :y 37} :auchencairn :scotland]}
+;;                   {:verb :marry :actor :adam :other :belinda :location [{:x 25 :y 37} :auchencairn :scotland]})
+
 (defn learn-news-item
   "Return a gossip like this `gossip`, which has learned this news `item` if
   it is of interest to them."
@@ -289,20 +326,7 @@
   ([gossip item follow-inferences?]
    (if
     (interesting-item? gossip item)
-     (let [item' (assoc
-                  item
-                  :nth-hand (inc-or-one (:nth-hand item))
-                  :time-stamp (if
-                               (number? (:time-stamp item))
-                                (:time-stamp item)
-                                (game-time))
-                  :location (degrade-location gossip (:location item))
-                  :actor (degrade-character gossip (:actor item))
-                  :other (degrade-character gossip (:other item))
-                  ;; TODO: do something to degrade confidence in the item,
-                  ;; probably as a function of the provider's confidence in
-                  ;; the item and the gossip's trust in the provider
-                  )
+     (let [item' (degrade-news-item gossip item)
            g (assoc
               gossip
               :knowledge
@@ -313,7 +337,7 @@
          (assoc
           g
           :knowledge
-          (concat (:knowledge g) (make-all-inferences item)))
+          (concat (:knowledge g) (make-all-inferences item')))
          g)))
    gossip))
 

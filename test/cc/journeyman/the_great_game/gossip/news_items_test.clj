@@ -1,8 +1,49 @@
 (ns cc.journeyman.the-great-game.gossip.news-items-test
   (:require [clojure.test :refer [deftest is testing]]
             [cc.journeyman.the-great-game.gossip.news-items :refer
-             [compatible-item? degrade-location infer interest-in-location interesting-location?
-              learn-news-item make-all-inferences]]))
+             [all-known-verbs compatible-item? degrade-location infer
+              interest-in-character interesting-character? interest-in-location
+              interesting-location? learn-news-item make-all-inferences]]))
+
+(deftest interesting-character-tests
+  (testing "To what degree characters are of interest to the gossip"
+    (let [expected 1
+          gossip  {:home [{0, 0} :test-home]
+                   :interesting-verbs all-known-verbs
+                   ;; already knows about adam
+                   :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}]}
+          actual (interest-in-character
+                  gossip
+                  :adam)]
+      (is (= actual expected)))
+    (let [expected 0
+          gossip  {:home [{0, 0} :test-home]
+                   :interesting-verbs all-known-verbs
+                   ;; already knows about adam
+                   :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}]}
+          actual (interest-in-character
+                  gossip
+                  :dorothy)]
+      (is (= actual expected))))
+  (testing "Whether characters are of interest to the gossip"
+     (let [expected true
+           gossip  {:home [{0, 0} :test-home]
+                    :interesting-verbs all-known-verbs
+                   ;; already knows about adam
+                    :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}]}
+           actual (interesting-character? 
+                   gossip
+                   :adam)]
+       (is (= actual expected)))
+    (let [expected false
+          gossip  {:home [{0, 0} :test-home]
+                   :interesting-verbs all-known-verbs
+                   ;; already knows about adam
+                   :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}]}
+          actual (interesting-character?
+                  gossip
+                  :dorothy)]
+      (is (= actual expected)))))
 
 (deftest compatible-item-test
   (testing "Compatible item: items are identical"
@@ -128,17 +169,17 @@
 
 (deftest inference-tests
   (testing "Ability to infer new knowledge from news items: single rule tests"
-    (let [expected {:verb :marry, :actor :belinda, :other :adam}
+    (let [expected {:verb :marry, :actor :belinda, :other :adam, :nth-hand 1}
           item {:verb :marry :actor :adam :other :belinda}
           rule {:verb :marry :actor :other :other :actor}
           actual (infer item rule)]
       (is (= actual expected)))
-    (let [expected {:verb :attack, :actor :adam, :other :belinda}
+    (let [expected {:verb :attack, :actor :adam, :other :belinda, :nth-hand 1}
           item {:verb :rape :actor :adam :other :belinda}
           rule {:verb :attack}
           actual (infer item rule)]
       (is (= actual expected)))
-    (let [expected {:verb :sex, :actor :belinda, :other :adam}
+    (let [expected {:verb :sex, :actor :belinda, :other :adam, :nth-hand 1}
           item {:verb :rape :actor :adam :other :belinda}
           rule {:verb :sex :actor :other :other :actor}
           actual (infer item rule)]
@@ -149,15 +190,22 @@
                      {:verb :attack, :actor :adam, :other :belinda, :location :test-home, :nth-hand 1}}
           ;; dates will not be and cannot be expected to be equal
           actual (set (make-all-inferences
-                  {:verb :rape :actor :adam :other :belinda :location :test-home :nth-hand 1}))]
+                       {:verb :rape :actor :adam :other :belinda :location :test-home}))]
       (is (= actual expected)))))
 
 (deftest learn-tests
   (testing "Learning from an interesting news item."
     (let [expected {:home [{0 0} :test-home]
-                    :knowledge [{:verb :sex, :actor :adam, :other :belinda, :location [:test-home], :nth-hand 1}
+                    :interesting-verbs all-known-verbs
+                    :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}
+                                {:verb :sex, :actor :adam, :other :belinda, :location [:test-home], :nth-hand 1}
                                 {:verb :sex, :actor :belinda, :other :adam, :location [:test-home], :nth-hand 1}]}
+          gossip  {:home [{0, 0} :test-home]
+                   :interesting-verbs all-known-verbs
+                   ;; already knows about adam
+                   :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}]}
           actual (learn-news-item
-                  {:home [{0, 0} :test-home] :knowledge []}
+                  gossip
                   {:verb :sex :actor :adam :other :belinda :location [:test-home]})]
       (is (= actual expected)))))
+

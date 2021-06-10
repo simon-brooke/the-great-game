@@ -37,7 +37,7 @@
                :init init
                :update simple-update)
 
-(start app)
+;; (start app)
 
 ;; Reinitialises the running app
 ;;(run app
@@ -45,28 +45,28 @@
  
  ;; By default, there is a Fly Camera attached to the app that you can control with W, A, S and D keys.
  ;; Let's increase its movement speed. Now, you fly faster :)
- (run app
-      (set* (fly-cam) :move-speed 15))
+ ;; (run app
+ ;;      (set* (fly-cam) :move-speed 15))
 
 
  ;; Updates the app 
-(run app
-     (let [{:keys [cube]} (get-state)]
-       (set* cube :local-translation (add (get* cube :local-translation) 1 1 1))))
+;; (run app
+;;      (let [{:keys [cube]} (get-state)]
+;;        (set* cube :local-translation (add (get* cube :local-translation) 1 1 1))))
 
   ;; Updates the app adding a second cube
-(run app
-      (let [cube (geo "jMonkey cube" (box 1 1 1))
-            mat  (unshaded-mat)]
-        (set* mat :texture "ColorMap" (load-texture "textures/Monkey.jpg"))
-        (setc cube
-              :material mat
-              :local-translation [-3 0 0])
-        (add-to-root cube)
-        (set-state :cube2 cube)))
+;; (run app
+;;       (let [cube (geo "jMonkey cube" (box 1 1 1))
+;;             mat  (unshaded-mat)]
+;;         (set* mat :texture "ColorMap" (load-texture "textures/Monkey.jpg"))
+;;         (setc cube
+;;               :material mat
+;;               :local-translation [-3 0 0])
+;;         (add-to-root cube)
+;;         (set-state :cube2 cube)))
  
  ;; We added the new cube, but it's not rotating. We need to update the simple-update fn.
- (defn simple-update [tpf]
-   (let [{:keys [cube cube2]} (get-state)]
-     (rotate cube 0 (* 2 tpf) 0)
-     (rotate cube2 0 (* 2 tpf) 0)))
+ ;; (defn simple-update [tpf]
+ ;;   (let [{:keys [cube cube2]} (get-state)]
+ ;;     (rotate cube 0 (* 2 tpf) 0)
+ ;;     (rotate cube2 0 (* 2 tpf) 0)))
