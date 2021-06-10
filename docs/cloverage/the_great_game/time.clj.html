@@ -136,7 +136,7 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 044&nbsp;&nbsp;&nbsp;&nbsp;&quot;This&nbsp;world&nbsp;has&nbsp;an&nbsp;eight&nbsp;day&nbsp;week.&quot;
                 </span><br/>
-<span class="covered" title="3 out of 3 forms covered">
+<span class="covered" title="2 out of 2 forms covered">
                 045&nbsp;&nbsp;&nbsp;&nbsp;(count&nbsp;days-of-week))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
@@ -190,7 +190,7 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 062&nbsp;&nbsp;&nbsp;&nbsp;different.&quot;
                 </span><br/>
-<span class="covered" title="3 out of 3 forms covered">
+<span class="covered" title="2 out of 2 forms covered">
                 063&nbsp;&nbsp;&nbsp;&nbsp;(count&nbsp;seasons-of-year))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
@@ -220,7 +220,7 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 072&nbsp;&nbsp;&nbsp;&nbsp;five&nbsp;weeks.&quot;
                 </span><br/>
-<span class="covered" title="3 out of 3 forms covered">
+<span class="covered" title="2 out of 2 forms covered">
                 073&nbsp;&nbsp;&nbsp;&nbsp;(count&nbsp;weeks-of-season))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
@@ -229,7 +229,7 @@
 <span class="covered" title="1 out of 1 forms covered">
                 075&nbsp;&nbsp;(def&nbsp;^:const&nbsp;days-in-season
                 </span><br/>
-<span class="covered" title="4 out of 4 forms covered">
+<span class="covered" title="3 out of 3 forms covered">
                 076&nbsp;&nbsp;&nbsp;&nbsp;(*&nbsp;weeks-in-season&nbsp;days-in-week))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
@@ -250,13 +250,13 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 082&nbsp;&nbsp;&nbsp;&nbsp;([timestamp]
                 </span><br/>
-<span class="covered" title="4 out of 4 forms covered">
+<span class="covered" title="3 out of 3 forms covered">
                 083&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(-&nbsp;timestamp&nbsp;game-start-time)))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 084&nbsp;&nbsp;
                 </span><br/>
-<span class="covered" title="63 out of 63 forms covered">
+<span class="covered" title="54 out of 54 forms covered">
                 085&nbsp;&nbsp;(defmacro&nbsp;day-of-year
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
@@ -289,7 +289,7 @@
 <span class="covered" title="1 out of 1 forms covered">
                 095&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(fn&nbsp;[game-time]
                 </span><br/>
-<span class="covered" title="2 out of 2 forms covered">
+<span class="covered" title="1 out of 1 forms covered">
                 096&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&gt;=
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
@@ -316,10 +316,10 @@
 <span class="covered" title="4 out of 4 forms covered">
                 104&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(waiting-day?&nbsp;game-time)
                 </span><br/>
-<span class="covered" title="4 out of 4 forms covered">
+<span class="covered" title="3 out of 3 forms covered">
                 105&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth&nbsp;weeks-of-season&nbsp;day-of-week)
                 </span><br/>
-<span class="covered" title="4 out of 4 forms covered">
+<span class="covered" title="3 out of 3 forms covered">
                 106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth&nbsp;days-of-week&nbsp;day-of-week))))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
@@ -337,7 +337,7 @@
 <span class="covered" title="9 out of 9 forms covered">
                 111&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[day-of-season&nbsp;(mod&nbsp;(day-of-year&nbsp;game-time)&nbsp;days-in-season)
                 </span><br/>
-<span class="covered" title="4 out of 4 forms covered">
+<span class="covered" title="3 out of 3 forms covered">
                 112&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;week&nbsp;(&#x2F;&nbsp;day-of-season&nbsp;days-in-week)]
                 </span><br/>
 <span class="partial" title="4 out of 5 forms covered">
@@ -346,7 +346,7 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 114&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:waiting
                 </span><br/>
-<span class="covered" title="4 out of 4 forms covered">
+<span class="covered" title="3 out of 3 forms covered">
                 115&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth&nbsp;weeks-of-season&nbsp;week))))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
@@ -358,7 +358,7 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 118&nbsp;&nbsp;&nbsp;&nbsp;[game-time]
                 </span><br/>
-<span class="covered" title="11 out of 11 forms covered">
+<span class="covered" title="9 out of 9 forms covered">
                 119&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[season&nbsp;(int&nbsp;(&#x2F;&nbsp;(day-of-year&nbsp;game-time)&nbsp;days-in-season))]
                 </span><br/>
 <span class="covered" title="5 out of 5 forms covered">
@@ -367,7 +367,7 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 121&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:waiting
                 </span><br/>
-<span class="covered" title="4 out of 4 forms covered">
+<span class="covered" title="3 out of 3 forms covered">
                 122&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth&nbsp;seasons-of-year&nbsp;season))))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
@@ -403,7 +403,7 @@
 <span class="covered" title="2 out of 2 forms covered">
                 133&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(name
                 </span><br/>
-<span class="covered" title="2 out of 2 forms covered">
+<span class="covered" title="1 out of 1 forms covered">
                 134&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth
                 </span><br/>
 <span class="covered" title="1 out of 1 forms covered">
