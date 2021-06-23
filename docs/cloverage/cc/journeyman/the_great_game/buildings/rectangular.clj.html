@@ -355,194 +355,104 @@
 <span class="blank" title="0 out of 0 forms covered">
                 117&nbsp;&nbsp;
                 </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                118&nbsp;&nbsp;;;&nbsp;TODO:&nbsp;So,&nbsp;modules&nbsp;need&nbsp;to&nbsp;contain
+<span class="blank" title="0 out of 0 forms covered">
+                118&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                119&nbsp;&nbsp;(defn&nbsp;building-family
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                119&nbsp;&nbsp;;;
+                120&nbsp;&nbsp;&nbsp;&nbsp;&quot;A&nbsp;building&nbsp;family&nbsp;is&nbsp;essentially&nbsp;a&nbsp;collection&nbsp;of&nbsp;models&nbsp;of&nbsp;building&nbsp;modules
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                120&nbsp;&nbsp;;;&nbsp;1.&nbsp;Ground&nbsp;floor&nbsp;modules,&nbsp;having&nbsp;external&nbsp;doors;
+                121&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;can&nbsp;be&nbsp;assembled&nbsp;to&nbsp;create&nbsp;buildings&nbsp;of&nbsp;a&nbsp;particular&nbsp;structural&nbsp;and
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                121&nbsp;&nbsp;;;&nbsp;2.&nbsp;Craft&nbsp;modules&nbsp;--&nbsp;workshops&nbsp;--&nbsp;which&nbsp;will&nbsp;normally&nbsp;be&nbsp;ground&nbsp;floor&nbsp;(except
+                122&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;architectural&nbsp;style.&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                122&nbsp;&nbsp;;;&nbsp;weavers)&nbsp;and&nbsp;may&nbsp;have&nbsp;the&nbsp;constraint&nbsp;that&nbsp;no&nbsp;upper&nbsp;floor&nbsp;module&nbsp;can&nbsp;cover&nbsp;them;
+                123&nbsp;&nbsp;&nbsp;&nbsp;[terrain&nbsp;culture&nbsp;craft&nbsp;gene]
+                </span><br/>
+<span class="partial" title="12 out of 13 forms covered">
+                124&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[candidates&nbsp;(filter&nbsp;#(and
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                125&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((:terrains&nbsp;%)&nbsp;terrain)
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                126&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((:crafts&nbsp;%)&nbsp;craft)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                127&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((:cultures&nbsp;%)&nbsp;culture))
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vals&nbsp;*building-families*))]
+                </span><br/>
+<span class="covered" title="8 out of 8 forms covered">
+                129&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth&nbsp;candidates&nbsp;(mod&nbsp;(Math&#x2F;abs&nbsp;(.nextInt&nbsp;gene))&nbsp;(count&nbsp;candidates)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                130&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                131&nbsp;&nbsp;(building-family&nbsp;:arable&nbsp;:coastal&nbsp;:baker&nbsp;(MersenneTwister.&nbsp;5))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                132&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                133&nbsp;&nbsp;(defn&nbsp;build!&nbsp;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                123&nbsp;&nbsp;;;&nbsp;3.&nbsp;Upper&nbsp;floor&nbsp;modules,&nbsp;having&nbsp;NO&nbsp;external&nbsp;doors&nbsp;(but&nbsp;linking&nbsp;internal&nbsp;doors);
+                134&nbsp;&nbsp;&nbsp;&nbsp;&quot;Builds&nbsp;a&nbsp;building,&nbsp;and&nbsp;returns&nbsp;a&nbsp;data&nbsp;structure&nbsp;which&nbsp;represents&nbsp;it.&nbsp;In&nbsp;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                124&nbsp;&nbsp;;;&nbsp;4.&nbsp;Roof&nbsp;modules
+                135&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;building&nbsp;the&nbsp;building,&nbsp;it&nbsp;adds&nbsp;a&nbsp;model&nbsp;of&nbsp;the&nbsp;building&nbsp;to&nbsp;the&nbsp;representation
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                125&nbsp;&nbsp;;;&nbsp;
+                136&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;the&nbsp;world,&nbsp;so&nbsp;it&nbsp;does&nbsp;have&nbsp;a&nbsp;side&nbsp;effect.&quot;
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                126&nbsp;&nbsp;;;&nbsp;There&nbsp;also&nbsp;needs&nbsp;to&nbsp;be&nbsp;an&nbsp;undercroft&nbsp;or&nbsp;platform&nbsp;module,&nbsp;such&nbsp;that&nbsp;the&nbsp;area&nbsp;of&nbsp;
+                137&nbsp;&nbsp;&nbsp;&nbsp;[holding&nbsp;terrain&nbsp;culture&nbsp;craft&nbsp;size]
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                138&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(satisfies?&nbsp;ProtoHolding&nbsp;holding)
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                139&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[location&nbsp;(.building-origin&nbsp;holding)
+                </span><br/>
+<span class="not-covered" title="0 out of 7 forms covered">
+                140&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gene&nbsp;(MersenneTwister.&nbsp;(int&nbsp;(+&nbsp;(*&nbsp;(.easting&nbsp;location)&nbsp;1000000)&nbsp;(.northing&nbsp;location))))
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                141&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;family&nbsp;(building-family&nbsp;terrain&nbsp;culture&nbsp;craft&nbsp;gene)]
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                142&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;
+                </span><br/>
+<span class="not-covered" title="0 out of 11 forms covered">
+                143&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(and&nbsp;(instance?&nbsp;ProtoLocation&nbsp;location)&nbsp;(:orientation&nbsp;location))
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                127&nbsp;&nbsp;;;&nbsp;the&nbsp;top&nbsp;of&nbsp;the&nbsp;platform&nbsp;is&nbsp;identical&nbsp;with&nbsp;the&nbsp;footprint&nbsp;of&nbsp;the&nbsp;building,&nbsp;and&nbsp;
+                144&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:stuff
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                128&nbsp;&nbsp;;;&nbsp;the&nbsp;altitude&nbsp;of&nbsp;the&nbsp;top&nbsp;of&nbsp;the&nbsp;platform&nbsp;is&nbsp;equal&nbsp;to&nbsp;the&nbsp;altitude&nbsp;of&nbsp;the&nbsp;
+                145&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:nonsense
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                129&nbsp;&nbsp;;;&nbsp;terrain&nbsp;at&nbsp;the&nbsp;heighest&nbsp;corner&nbsp;of&nbsp;the&nbsp;building;&nbsp;so&nbsp;that&nbsp;the&nbsp;actual&nbsp;
+                146&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                130&nbsp;&nbsp;;;&nbsp;building&nbsp;doesn&#x27;t&nbsp;float&nbsp;in&nbsp;the&nbsp;air,&nbsp;and&nbsp;also&nbsp;so&nbsp;that&nbsp;none&nbsp;of&nbsp;the&nbsp;doors&nbsp;or&nbsp;windows
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                131&nbsp;&nbsp;;;&nbsp;are&nbsp;partly&nbsp;underground.
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                132&nbsp;&nbsp;;;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                133&nbsp;&nbsp;;;&nbsp;Each&nbsp;module&nbsp;needs&nbsp;to&nbsp;wrap&nbsp;an&nbsp;actual&nbsp;3d&nbsp;model&nbsp;created&nbsp;in&nbsp;Blender&nbsp;or&nbsp;whatever,&nbsp;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                134&nbsp;&nbsp;;;&nbsp;and&nbsp;have&nbsp;a&nbsp;list&nbsp;of&nbsp;optional&nbsp;textures&nbsp;with&nbsp;which&nbsp;that&nbsp;model&nbsp;can&nbsp;be&nbsp;rendered.&nbsp;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                135&nbsp;&nbsp;;;&nbsp;So&nbsp;an&nbsp;upper&nbsp;floor&nbsp;bedroom&nbsp;module&nbsp;might&nbsp;have&nbsp;the&nbsp;following&nbsp;renders:
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                136&nbsp;&nbsp;;;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                137&nbsp;&nbsp;;;&nbsp;1.&nbsp;Bare&nbsp;masonry&nbsp;-&nbsp;constrained&nbsp;to&nbsp;upland&nbsp;or&nbsp;plateau&nbsp;terrain,&nbsp;and&nbsp;to&nbsp;coastal&nbsp;culture
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                138&nbsp;&nbsp;;;&nbsp;2.&nbsp;Painted&nbsp;masonry&nbsp;-&nbsp;constrained&nbsp;to&nbsp;upland&nbsp;or&nbsp;plateau&nbsp;terrain,&nbsp;and&nbsp;to&nbsp;coastal&nbsp;culture
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                139&nbsp;&nbsp;;;&nbsp;3.&nbsp;Half-timbered&nbsp;-&nbsp;not&nbsp;available&nbsp;on&nbsp;plateau&nbsp;terrain
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                140&nbsp;&nbsp;;;&nbsp;4.&nbsp;Weatherboarded&nbsp;-&nbsp;constrained&nbsp;to&nbsp;forest&nbsp;terrain
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                141&nbsp;&nbsp;;;&nbsp;5.&nbsp;Brick&nbsp;-&nbsp;constrained&nbsp;to&nbsp;arable&nbsp;or&nbsp;arid&nbsp;terrain
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                142&nbsp;&nbsp;;;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                143&nbsp;&nbsp;;;&nbsp;of&nbsp;course&nbsp;these&nbsp;are&nbsp;only&nbsp;examples,&nbsp;and&nbsp;also,&nbsp;it&#x27;s&nbsp;entirely&nbsp;possible&nbsp;to&nbsp;have
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                144&nbsp;&nbsp;;;&nbsp;for&nbsp;example&nbsp;multiple&nbsp;different&nbsp;weatherboard&nbsp;renders&nbsp;for&nbsp;the&nbsp;same&nbsp;module.&nbsp;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                145&nbsp;&nbsp;;;&nbsp;There&nbsp;needs&nbsp;to&nbsp;be&nbsp;a&nbsp;way&nbsp;of&nbsp;rendering&nbsp;what&nbsp;can&nbsp;be&nbsp;built&nbsp;above&nbsp;what:&nbsp;for
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                146&nbsp;&nbsp;;;&nbsp;example,&nbsp;you&nbsp;can&#x27;t&nbsp;have&nbsp;a&nbsp;masonry&nbsp;clad&nbsp;module&nbsp;over&nbsp;a&nbsp;half&nbsp;timbered&nbsp;one,&nbsp;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                147&nbsp;&nbsp;;;&nbsp;but&nbsp;you&nbsp;can&nbsp;have&nbsp;a&nbsp;half-timbered&nbsp;one&nbsp;over&nbsp;a&nbsp;masonry&nbsp;one
+                147&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:froboz))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 148&nbsp;&nbsp;
                 </span><br/>
-<span class="covered" title="1 out of 1 forms covered">
-                149&nbsp;&nbsp;(defn&nbsp;building-family
-                </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                150&nbsp;&nbsp;&nbsp;&nbsp;&quot;A&nbsp;building&nbsp;family&nbsp;is&nbsp;essentially&nbsp;a&nbsp;collection&nbsp;of&nbsp;models&nbsp;of&nbsp;building&nbsp;modules
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                151&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;can&nbsp;be&nbsp;assembled&nbsp;to&nbsp;create&nbsp;buildings&nbsp;of&nbsp;a&nbsp;particular&nbsp;structural&nbsp;and
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                152&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;architectural&nbsp;style.&quot;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                153&nbsp;&nbsp;&nbsp;&nbsp;[terrain&nbsp;culture&nbsp;craft&nbsp;gene]
-                </span><br/>
-<span class="partial" title="12 out of 13 forms covered">
-                154&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[candidates&nbsp;(filter&nbsp;#(and
-                </span><br/>
-<span class="covered" title="5 out of 5 forms covered">
-                155&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((:terrains&nbsp;%)&nbsp;terrain)
-                </span><br/>
-<span class="covered" title="5 out of 5 forms covered">
-                156&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((:crafts&nbsp;%)&nbsp;craft)
-                </span><br/>
-<span class="covered" title="4 out of 4 forms covered">
-                157&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((:cultures&nbsp;%)&nbsp;culture))
-                </span><br/>
-<span class="covered" title="3 out of 3 forms covered">
-                158&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vals&nbsp;*building-families*))]
-                </span><br/>
-<span class="covered" title="8 out of 8 forms covered">
-                159&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth&nbsp;candidates&nbsp;(mod&nbsp;(Math&#x2F;abs&nbsp;(.nextInt&nbsp;gene))&nbsp;(count&nbsp;candidates)))))
+                149&nbsp;&nbsp;;;&nbsp;(def&nbsp;ol&nbsp;(cc.journeyman.the-great-game.location.location&#x2F;OrientedLocation.&nbsp;123.45&nbsp;543.76&nbsp;12.34&nbsp;0.00&nbsp;{}))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
-                160&nbsp;&nbsp;
-                </span><br/>
-<span class="covered" title="7 out of 7 forms covered">
-                161&nbsp;&nbsp;(building-family&nbsp;:arable&nbsp;:coastal&nbsp;:baker&nbsp;(MersenneTwister.&nbsp;5))
-                </span><br/>
-<span class="blank" title="0 out of 0 forms covered">
-                162&nbsp;&nbsp;
-                </span><br/>
-<span class="covered" title="1 out of 1 forms covered">
-                163&nbsp;&nbsp;(defn&nbsp;build!&nbsp;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                164&nbsp;&nbsp;&nbsp;&nbsp;&quot;Builds&nbsp;a&nbsp;building,&nbsp;and&nbsp;returns&nbsp;a&nbsp;data&nbsp;structure&nbsp;which&nbsp;represents&nbsp;it.&nbsp;In&nbsp;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                165&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;building&nbsp;the&nbsp;building,&nbsp;it&nbsp;adds&nbsp;a&nbsp;model&nbsp;of&nbsp;the&nbsp;building&nbsp;to&nbsp;the&nbsp;representation
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                166&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;the&nbsp;world,&nbsp;so&nbsp;it&nbsp;does&nbsp;have&nbsp;a&nbsp;side&nbsp;effect.&quot;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                167&nbsp;&nbsp;&nbsp;&nbsp;[holding&nbsp;terrain&nbsp;culture&nbsp;craft&nbsp;size]
-                </span><br/>
-<span class="not-covered" title="0 out of 6 forms covered">
-                168&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(satisfies?&nbsp;ProtoHolding&nbsp;holding)
-                </span><br/>
-<span class="not-covered" title="0 out of 2 forms covered">
-                169&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[location&nbsp;(.building-origin&nbsp;holding)
-                </span><br/>
-<span class="not-covered" title="0 out of 7 forms covered">
-                170&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gene&nbsp;(MersenneTwister.&nbsp;(int&nbsp;(+&nbsp;(*&nbsp;(.easting&nbsp;location)&nbsp;1000000)&nbsp;(.northing&nbsp;location))))
-                </span><br/>
-<span class="not-covered" title="0 out of 6 forms covered">
-                171&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;family&nbsp;(building-family&nbsp;terrain&nbsp;culture&nbsp;craft&nbsp;gene)]
-                </span><br/>
-<span class="not-covered" title="0 out of 3 forms covered">
-                172&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;
-                </span><br/>
-<span class="not-covered" title="0 out of 11 forms covered">
-                173&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(and&nbsp;(instance?&nbsp;ProtoLocation&nbsp;location)&nbsp;(:orientation&nbsp;location))
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                174&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:stuff
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                175&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:nonsense
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                176&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                177&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:froboz))
-                </span><br/>
-<span class="blank" title="0 out of 0 forms covered">
-                178&nbsp;&nbsp;
-                </span><br/>
-<span class="not-tracked" title="0 out of 0 forms covered">
-                179&nbsp;&nbsp;;;&nbsp;(def&nbsp;ol&nbsp;(cc.journeyman.the-great-game.location.location&#x2F;OrientedLocation.&nbsp;123.45&nbsp;543.76&nbsp;12.34&nbsp;0.00&nbsp;{}))
-                </span><br/>
-<span class="blank" title="0 out of 0 forms covered">
-                180&nbsp;&nbsp;
+                150&nbsp;&nbsp;
                 </span><br/>
  </body>
 </html>

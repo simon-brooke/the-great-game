@@ -42,3 +42,9 @@ libopenal64.so
 
 
 *.so
+
+docs/cloverage/codecov.json
+
+docs/cloverage/coverage.xml
+
+src/cc/journeyman/the_great_game/cloverage.clj

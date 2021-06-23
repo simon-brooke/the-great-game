@@ -1,0 +1,251 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../../../../coverage.css"/>  <title> cc/journeyman/the_great_game/buildings/module.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;cc.journeyman.the-great-game.buildings.module
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;&nbsp;&nbsp;&quot;A&nbsp;module&nbsp;of&nbsp;a&nbsp;building;&nbsp;essentially&nbsp;something&nbsp;like&nbsp;a&nbsp;portacabin,&nbsp;which&nbsp;can&nbsp;be
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assembled&nbsp;together&nbsp;with&nbsp;other&nbsp;modules&nbsp;to&nbsp;make&nbsp;a&nbsp;complete&nbsp;building.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Modules&nbsp;need&nbsp;to&nbsp;include
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                008&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;Ground&nbsp;floor&nbsp;modules,&nbsp;having&nbsp;external&nbsp;doors;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;Craft&nbsp;modules&nbsp;--&nbsp;workshops&nbsp;--&nbsp;which&nbsp;will&nbsp;normally&nbsp;be&nbsp;ground&nbsp;floor&nbsp;(except
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;weavers)&nbsp;and&nbsp;may&nbsp;have&nbsp;the&nbsp;constraint&nbsp;that&nbsp;no&nbsp;upper&nbsp;floor&nbsp;module&nbsp;can&nbsp;cover&nbsp;them;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;Upper&nbsp;floor&nbsp;modules,&nbsp;having&nbsp;NO&nbsp;external&nbsp;doors&nbsp;(but&nbsp;linking&nbsp;internal&nbsp;doors);
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.&nbsp;Roof&nbsp;modules
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                014&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Role**&nbsp;must&nbsp;be&nbsp;one&nbsp;of:
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                015&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;`:primary`&nbsp;a&nbsp;ground&nbsp;floor&nbsp;main&nbsp;entrance&nbsp;module
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;`:secondary`&nbsp;a&nbsp;module&nbsp;which&nbsp;can&nbsp;be&nbsp;upper&nbsp;or&nbsp;ground&nbsp;floor
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                018&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;`:upper`&nbsp;a&nbsp;module&nbsp;which&nbsp;can&nbsp;only&nbsp;be&nbsp;on&nbsp;an&nbsp;upper&nbsp;floor,&nbsp;for&nbsp;example&nbsp;one
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                019&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;a&nbsp;projecting&nbsp;gallery,&nbsp;balcony&nbsp;or&nbsp;overhang.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other&nbsp;values&nbsp;for&nbsp;`role`&nbsp;will&nbsp;emerge.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Exits**&nbsp;must&nbsp;be&nbsp;a&nbsp;sequence&nbsp;of&nbsp;keywords&nbsp;taken&nbsp;from&nbsp;the&nbsp;following&nbsp;list:
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;`:left`&nbsp;an&nbsp;exit&nbsp;in&nbsp;the&nbsp;centre&nbsp;of&nbsp;the&nbsp;left&nbsp;wall
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;`:left-front`&nbsp;an&nbsp;exit&nbsp;in&nbsp;the&nbsp;centre&nbsp;of&nbsp;the&nbsp;left&nbsp;half&nbsp;of&nbsp;the&nbsp;front&nbsp;wall
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                027&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;`:front`&nbsp;an&nbsp;exit&nbsp;in&nbsp;the&nbsp;centre&nbsp;of&nbsp;the&nbsp;front&nbsp;wall
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                028&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.&nbsp;`:right-front`&nbsp;an&nbsp;exit&nbsp;in&nbsp;the&nbsp;centre&nbsp;of&nbsp;the&nbsp;right&nbsp;half&nbsp;of&nbsp;the&nbsp;front&nbsp;wall
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                029&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.&nbsp;`:right`&nbsp;an&nbsp;exit&nbsp;in&nbsp;the&nbsp;centre&nbsp;of&nbsp;the&nbsp;right&nbsp;wall
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                030&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.&nbsp;`:right-back`&nbsp;an&nbsp;exit&nbsp;in&nbsp;the&nbsp;centre&nbsp;of&nbsp;the&nbsp;right&nbsp;half&nbsp;of&nbsp;the&nbsp;back&nbsp;wall
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                031&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.&nbsp;`:left-back`&nbsp;an&nbsp;exit&nbsp;in&nbsp;the&nbsp;centre&nbsp;of&nbsp;the&nbsp;back&nbsp;wall
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                032&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                033&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;module&nbsp;placed&nbsp;on&nbsp;an&nbsp;upper&nbsp;floor&nbsp;must&nbsp;have&nbsp;no&nbsp;exit&nbsp;which&nbsp;opens&nbsp;beyond&nbsp;the&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;footprint&nbsp;of&nbsp;the&nbsp;floor&nbsp;below&nbsp;-&nbsp;no&nbsp;doors&nbsp;into&nbsp;mid&nbsp;air!&nbsp;However,&nbsp;it&nbsp;is&nbsp;allowable&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(and&nbsp;indeed&nbsp;is&nbsp;necessary)&nbsp;to&nbsp;allow&nbsp;doors&nbsp;into&nbsp;roof&nbsp;spaces&nbsp;if&nbsp;the&nbsp;adjacent
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;module&nbsp;on&nbsp;the&nbsp;same&nbsp;floor&nbsp;does&nbsp;not&nbsp;yet&nbsp;exist,&nbsp;since&nbsp;otherwise&nbsp;it&nbsp;would&nbsp;be&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;impossible&nbsp;to&nbsp;access&nbsp;a&nbsp;new&nbsp;room&nbsp;which&nbsp;might&nbsp;later&nbsp;be&nbsp;built&nbsp;there.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                038&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                039&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Load**&nbsp;must&nbsp;be&nbsp;a&nbsp;small&nbsp;integer&nbsp;indicating&nbsp;both&nbsp;the&nbsp;weight&nbsp;of&nbsp;the&nbsp;module&nbsp;and&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                040&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;total&nbsp;amount&nbsp;of&nbsp;weight&nbsp;it&nbsp;can&nbsp;support.&nbsp;So&nbsp;for&nbsp;example&nbsp;a&nbsp;stone-built&nbsp;module
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                041&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;might&nbsp;have&nbsp;a&nbsp;`load`&nbsp;value&nbsp;of&nbsp;4,&nbsp;a&nbsp;brick&nbsp;built&nbsp;one&nbsp;of&nbsp;3,&nbsp;and&nbsp;a&nbsp;half-timbered&nbsp;one&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                042&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;2,&nbsp;and&nbsp;a&nbsp;tent&nbsp;of&nbsp;0.&nbsp;This&nbsp;means&nbsp;a&nbsp;stone&nbsp;ground&nbsp;floor&nbsp;module&nbsp;could&nbsp;support&nbsp;one&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                043&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;further&nbsp;floor&nbsp;of&nbsp;stone&nbsp;or&nbsp;brick,&nbsp;or&nbsp;two&nbsp;further&nbsp;floors&nbsp;of&nbsp;half&nbsp;timbered&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                044&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;construction;&nbsp;while&nbsp;a&nbsp;brick&nbsp;built&nbsp;ground&nbsp;floor&nbsp;could&nbsp;support&nbsp;a&nbsp;single&nbsp;brick&nbsp;or&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                045&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;half-timbered&nbsp;upper&nbsp;floor&nbsp;but&nbsp;not&nbsp;a&nbsp;stone&nbsp;one,&nbsp;and&nbsp;a&nbsp;half-timbered&nbsp;ground&nbsp;floor
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                046&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;could&nbsp;only&nbsp;support&nbsp;a&nbsp;half&nbsp;timbered&nbsp;upper&nbsp;floor.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                047&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There&nbsp;also&nbsp;needs&nbsp;to&nbsp;be&nbsp;an&nbsp;undercroft&nbsp;or&nbsp;platform&nbsp;module,&nbsp;such&nbsp;that&nbsp;the&nbsp;area&nbsp;of&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                049&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;top&nbsp;of&nbsp;the&nbsp;platform&nbsp;is&nbsp;identical&nbsp;with&nbsp;the&nbsp;footprint&nbsp;of&nbsp;the&nbsp;building,&nbsp;and&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                050&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;altitude&nbsp;of&nbsp;the&nbsp;top&nbsp;of&nbsp;the&nbsp;platform&nbsp;is&nbsp;equal&nbsp;to&nbsp;the&nbsp;altitude&nbsp;of&nbsp;the&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terrain&nbsp;at&nbsp;the&nbsp;heighest&nbsp;corner&nbsp;of&nbsp;the&nbsp;building;&nbsp;so&nbsp;that&nbsp;the&nbsp;actual&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                052&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;building&nbsp;doesn&#x27;t&nbsp;float&nbsp;in&nbsp;the&nbsp;air,&nbsp;and&nbsp;also&nbsp;so&nbsp;that&nbsp;none&nbsp;of&nbsp;the&nbsp;doors&nbsp;or&nbsp;windows
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                053&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;partly&nbsp;underground.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                054&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                055&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;module&nbsp;needs&nbsp;to&nbsp;wrap&nbsp;an&nbsp;actual&nbsp;3d&nbsp;model&nbsp;created&nbsp;in&nbsp;Blender&nbsp;or&nbsp;whatever,&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                056&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;have&nbsp;a&nbsp;list&nbsp;of&nbsp;optional&nbsp;**textures**&nbsp;with&nbsp;which&nbsp;that&nbsp;model&nbsp;can&nbsp;be&nbsp;rendered.&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                057&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So&nbsp;an&nbsp;upper&nbsp;floor&nbsp;bedroom&nbsp;module&nbsp;might&nbsp;have&nbsp;the&nbsp;following&nbsp;renders:
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                058&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                059&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;Bare&nbsp;masonry&nbsp;-&nbsp;constrained&nbsp;to&nbsp;upland&nbsp;or&nbsp;plateau&nbsp;terrain,&nbsp;and&nbsp;to&nbsp;coastal&nbsp;culture
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                060&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;Painted&nbsp;masonry&nbsp;-&nbsp;constrained&nbsp;to&nbsp;upland&nbsp;or&nbsp;plateau&nbsp;terrain,&nbsp;and&nbsp;to&nbsp;coastal&nbsp;culture
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                061&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;Half-timbered&nbsp;-&nbsp;not&nbsp;available&nbsp;on&nbsp;plateau&nbsp;terrain
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                062&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.&nbsp;Weatherboarded&nbsp;-&nbsp;constrained&nbsp;to&nbsp;forest&nbsp;terrain
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                063&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.&nbsp;Brick&nbsp;-&nbsp;constrained&nbsp;to&nbsp;arable&nbsp;or&nbsp;arid&nbsp;terrain
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                064&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                065&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;course&nbsp;these&nbsp;are&nbsp;only&nbsp;examples,&nbsp;and&nbsp;also,&nbsp;it&#x27;s&nbsp;entirely&nbsp;possible&nbsp;to&nbsp;have
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                066&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;example&nbsp;multiple&nbsp;different&nbsp;weatherboard&nbsp;renders&nbsp;for&nbsp;the&nbsp;same&nbsp;module.&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                067&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;There&nbsp;needs&nbsp;to&nbsp;be&nbsp;a&nbsp;way&nbsp;of&nbsp;rendering&nbsp;what&nbsp;can&nbsp;be&nbsp;built&nbsp;above&nbsp;what:&nbsp;for
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                068&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;example,&nbsp;you&nbsp;can&#x27;t&nbsp;have&nbsp;a&nbsp;masonry&nbsp;clad&nbsp;module&nbsp;over&nbsp;a&nbsp;half&nbsp;timbered&nbsp;one,&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                069&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;but&nbsp;you&nbsp;can&nbsp;have&nbsp;a&nbsp;half-timbered&nbsp;one&nbsp;over&nbsp;a&nbsp;masonry&nbsp;one.&quot;)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                070&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                071&nbsp;&nbsp;(defrecord&nbsp;BuildingModule
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                072&nbsp;&nbsp;&nbsp;&nbsp;[model
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                073&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^Double&nbsp;length
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                074&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^Double&nbsp;width
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                075&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^Double&nbsp;height
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                076&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^Integer&nbsp;load&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                077&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^clojure.lang.Keyword&nbsp;role
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                078&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^clojure.lang.IPersistentCollection&nbsp;textures
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                079&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^clojure.lang.IPersistentCollection&nbsp;exits
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                080&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                081&nbsp;&nbsp;&nbsp;&nbsp;)
+                </span><br/>
+ </body>
+</html>
