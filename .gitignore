@@ -38,3 +38,15 @@ libopenal64.so
 .settings/
 .classpath
 .project
+
+.calva/
+.lsp/
+
+
+*.so
+
+docs/cloverage/codecov.json
+
+docs/cloverage/coverage.xml
+
+src/cc/journeyman/the_great_game/cloverage.clj

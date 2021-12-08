@@ -1,26 +1,31 @@
 {
 	"folders": [
 		{
-			"path": "."
-		},
-		{
-			"path": "../gossip"
+			"path": "../GreatGameTerrain"
 		},
 		{
 			"path": "../walkmap"
 		},
 		{
-			"path": "../genbuildings"
-		},
-		{
-			"path": "../GreatGameTerrain"
-		},
-		{
 			"path": "../jme-clj"
 		},
 		{
+			"path": "../codox"
+		},
+		{
+			"path": "../cloverage"
+		},
+		{
 			"path": "../MicroWorld/mw-engine"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../test-graphs"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic"
+	}
 }

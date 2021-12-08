@@ -37,22 +37,22 @@
 <span class="covered" title="1 out of 1 forms covered">
                 011&nbsp;&nbsp;(defn&nbsp;init&nbsp;[]
                 </span><br/>
-<span class="covered" title="9 out of 9 forms covered">
+<span class="not-covered" title="0 out of 9 forms covered">
                 012&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[cube&nbsp;(geo&nbsp;&quot;jMonkey&nbsp;cube&quot;&nbsp;(box&nbsp;1&nbsp;1&nbsp;1))
                 </span><br/>
-<span class="covered" title="2 out of 2 forms covered">
+<span class="not-covered" title="0 out of 2 forms covered">
                 013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mat&nbsp;&nbsp;(unshaded-mat)]
                 </span><br/>
-<span class="covered" title="11 out of 11 forms covered">
+<span class="not-covered" title="0 out of 11 forms covered">
                 014&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(set*&nbsp;mat&nbsp;:texture&nbsp;&quot;ColorMap&quot;&nbsp;(load-texture&nbsp;&quot;textures&#x2F;Monkey.jpg&quot;))
                 </span><br/>
-<span class="covered" title="8 out of 8 forms covered">
+<span class="not-covered" title="0 out of 8 forms covered">
                 015&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(set*&nbsp;cube&nbsp;:material&nbsp;mat)
                 </span><br/>
-<span class="covered" title="3 out of 3 forms covered">
+<span class="not-covered" title="0 out of 3 forms covered">
                 016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(add-to-root&nbsp;cube)
                 </span><br/>
-<span class="covered" title="3 out of 3 forms covered">
+<span class="not-covered" title="0 out of 3 forms covered">
                 017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{:cube&nbsp;cube}))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
@@ -88,7 +88,7 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 028&nbsp;&nbsp;;;&nbsp;We&nbsp;define&nbsp;the&nbsp;`app`&nbsp;var.
                 </span><br/>
-<span class="partial" title="170 out of 215 forms covered">
+<span class="partial" title="115 out of 215 forms covered">
                 029&nbsp;&nbsp;(defsimpleapp&nbsp;app
                 </span><br/>
 <span class="partial" title="36 out of 42 forms covered">
@@ -112,17 +112,17 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:height&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;600}}
                 </span><br/>
-<span class="partial" title="1 out of 2 forms covered">
+<span class="not-covered" title="0 out of 2 forms covered">
                 037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:init&nbsp;init
                 </span><br/>
-<span class="partial" title="1 out of 2 forms covered">
+<span class="not-covered" title="0 out of 2 forms covered">
                 038&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:update&nbsp;simple-update)
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 039&nbsp;&nbsp;
                 </span><br/>
-<span class="covered" title="3 out of 3 forms covered">
-                040&nbsp;&nbsp;(start&nbsp;app)
+<span class="not-tracked" title="0 out of 0 forms covered">
+                040&nbsp;&nbsp;;;&nbsp;(start&nbsp;app)
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 041&nbsp;&nbsp;
@@ -145,11 +145,11 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 047&nbsp;&nbsp;&nbsp;;;&nbsp;Let&#x27;s&nbsp;increase&nbsp;its&nbsp;movement&nbsp;speed.&nbsp;Now,&nbsp;you&nbsp;fly&nbsp;faster&nbsp;:)
                 </span><br/>
-<span class="covered" title="16 out of 16 forms covered">
-                048&nbsp;&nbsp;&nbsp;(run&nbsp;app
+<span class="not-tracked" title="0 out of 0 forms covered">
+                048&nbsp;&nbsp;&nbsp;;;&nbsp;(run&nbsp;app
                 </span><br/>
-<span class="covered" title="9 out of 9 forms covered">
-                049&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(set*&nbsp;(fly-cam)&nbsp;:move-speed&nbsp;15))
+<span class="not-tracked" title="0 out of 0 forms covered">
+                049&nbsp;&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(set*&nbsp;(fly-cam)&nbsp;:move-speed&nbsp;15))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 050&nbsp;&nbsp;
@@ -160,14 +160,14 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 052&nbsp;&nbsp;&nbsp;;;&nbsp;Updates&nbsp;the&nbsp;app&nbsp;
                 </span><br/>
-<span class="covered" title="16 out of 16 forms covered">
-                053&nbsp;&nbsp;(run&nbsp;app
+<span class="not-tracked" title="0 out of 0 forms covered">
+                053&nbsp;&nbsp;;;&nbsp;(run&nbsp;app
                 </span><br/>
-<span class="covered" title="3 out of 3 forms covered">
-                054&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[{:keys&nbsp;[cube]}&nbsp;(get-state)]
+<span class="not-tracked" title="0 out of 0 forms covered">
+                054&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[{:keys&nbsp;[cube]}&nbsp;(get-state)]
                 </span><br/>
-<span class="covered" title="13 out of 13 forms covered">
-                055&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(set*&nbsp;cube&nbsp;:local-translation&nbsp;(add&nbsp;(get*&nbsp;cube&nbsp;:local-translation)&nbsp;1&nbsp;1&nbsp;1))))
+<span class="not-tracked" title="0 out of 0 forms covered">
+                055&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(set*&nbsp;cube&nbsp;:local-translation&nbsp;(add&nbsp;(get*&nbsp;cube&nbsp;:local-translation)&nbsp;1&nbsp;1&nbsp;1))))
                 </span><br/>
 <span class="blank" title="0 out of 0 forms covered">
                 056&nbsp;&nbsp;
@@ -175,32 +175,32 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 057&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;Updates&nbsp;the&nbsp;app&nbsp;adding&nbsp;a&nbsp;second&nbsp;cube
                 </span><br/>
-<span class="covered" title="16 out of 16 forms covered">
-                058&nbsp;&nbsp;(run&nbsp;app
-                </span><br/>
-<span class="covered" title="9 out of 9 forms covered">
-                059&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[cube&nbsp;(geo&nbsp;&quot;jMonkey&nbsp;cube&quot;&nbsp;(box&nbsp;1&nbsp;1&nbsp;1))
-                </span><br/>
-<span class="covered" title="2 out of 2 forms covered">
-                060&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mat&nbsp;&nbsp;(unshaded-mat)]
-                </span><br/>
-<span class="covered" title="11 out of 11 forms covered">
-                061&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(set*&nbsp;mat&nbsp;:texture&nbsp;&quot;ColorMap&quot;&nbsp;(load-texture&nbsp;&quot;textures&#x2F;Monkey.jpg&quot;))
-                </span><br/>
-<span class="covered" title="22 out of 22 forms covered">
-                062&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(setc&nbsp;cube
-                </span><br/>
-<span class="covered" title="1 out of 1 forms covered">
-                063&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:material&nbsp;mat
+<span class="not-tracked" title="0 out of 0 forms covered">
+                058&nbsp;&nbsp;;;&nbsp;(run&nbsp;app
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
-                064&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:local-translation&nbsp;[-3&nbsp;0&nbsp;0])
+                059&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[cube&nbsp;(geo&nbsp;&quot;jMonkey&nbsp;cube&quot;&nbsp;(box&nbsp;1&nbsp;1&nbsp;1))
                 </span><br/>
-<span class="covered" title="3 out of 3 forms covered">
-                065&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(add-to-root&nbsp;cube)
+<span class="not-tracked" title="0 out of 0 forms covered">
+                060&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mat&nbsp;&nbsp;(unshaded-mat)]
                 </span><br/>
-<span class="covered" title="4 out of 4 forms covered">
-                066&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(set-state&nbsp;:cube2&nbsp;cube)))
+<span class="not-tracked" title="0 out of 0 forms covered">
+                061&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(set*&nbsp;mat&nbsp;:texture&nbsp;&quot;ColorMap&quot;&nbsp;(load-texture&nbsp;&quot;textures&#x2F;Monkey.jpg&quot;))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                062&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(setc&nbsp;cube
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                063&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:material&nbsp;mat
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                064&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:local-translation&nbsp;[-3&nbsp;0&nbsp;0])
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                065&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(add-to-root&nbsp;cube)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                066&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(set-state&nbsp;:cube2&nbsp;cube)))
                 </span><br/>
 <span class="not-tracked" title="0 out of 0 forms covered">
                 067&nbsp;&nbsp;&nbsp;
@@ -208,17 +208,17 @@
 <span class="not-tracked" title="0 out of 0 forms covered">
                 068&nbsp;&nbsp;&nbsp;;;&nbsp;We&nbsp;added&nbsp;the&nbsp;new&nbsp;cube,&nbsp;but&nbsp;it&#x27;s&nbsp;not&nbsp;rotating.&nbsp;We&nbsp;need&nbsp;to&nbsp;update&nbsp;the&nbsp;simple-update&nbsp;fn.
                 </span><br/>
-<span class="covered" title="1 out of 1 forms covered">
-                069&nbsp;&nbsp;&nbsp;(defn&nbsp;simple-update&nbsp;[tpf]
+<span class="not-tracked" title="0 out of 0 forms covered">
+                069&nbsp;&nbsp;&nbsp;;;&nbsp;(defn&nbsp;simple-update&nbsp;[tpf]
                 </span><br/>
-<span class="covered" title="3 out of 3 forms covered">
-                070&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[{:keys&nbsp;[cube&nbsp;cube2]}&nbsp;(get-state)]
+<span class="not-tracked" title="0 out of 0 forms covered">
+                070&nbsp;&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;(let&nbsp;[{:keys&nbsp;[cube&nbsp;cube2]}&nbsp;(get-state)]
                 </span><br/>
-<span class="covered" title="8 out of 8 forms covered">
-                071&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rotate&nbsp;cube&nbsp;0&nbsp;(*&nbsp;2&nbsp;tpf)&nbsp;0)
+<span class="not-tracked" title="0 out of 0 forms covered">
+                071&nbsp;&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rotate&nbsp;cube&nbsp;0&nbsp;(*&nbsp;2&nbsp;tpf)&nbsp;0)
                 </span><br/>
-<span class="covered" title="8 out of 8 forms covered">
-                072&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rotate&nbsp;cube2&nbsp;0&nbsp;(*&nbsp;2&nbsp;tpf)&nbsp;0)))
+<span class="not-tracked" title="0 out of 0 forms covered">
+                072&nbsp;&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rotate&nbsp;cube2&nbsp;0&nbsp;(*&nbsp;2&nbsp;tpf)&nbsp;0)))
                 </span><br/>
  </body>
 </html>
