@@ -22,9 +22,9 @@
                  [org.apache.commons/commons-math3 "3.6.1"] ;; for mersenne-twister implementation
                  [org.clojure/algo.generic "0.1.3"]
                  [org.clojure/clojure "1.10.3"]
-                 [org.clojure/math.numeric-tower "0.0.4"]
-                 [org.clojure/tools.namespace "1.0.0"]
-                 [org.clojure/tools.reader "1.3.5"]]
+                 [org.clojure/math.numeric-tower "0.0.5"]
+                 [org.clojure/tools.namespace "1.1.1"]
+                 [org.clojure/tools.reader "1.3.6"]]
   :description "Prototype code towards the great game I've been writing about for ten years, and know I will never finish."
   :license {:name "GNU General Public License,version 2.0 or (at your option) any later version"
             :url "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"}
