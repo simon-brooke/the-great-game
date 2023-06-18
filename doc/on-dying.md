@@ -11,3 +11,9 @@ Time has passed; events in the game world have moved on. You can talk to your sa
 So who are the non-enemies? It depends on context. If you have a party, and some of that party survived the fight, it's your party. Otherwise, if you're in a populated place, it's locals. If it's on a road or other route, it's passing merchants. If you're in the wilderness, a hunting party. It's a bunch of non-hostiles who might reasonably be expected to be around: that's what matters. It's about not breaking immersion.
 
 Obviously losing a fight must have weight, it must have meaning, it must have in-game consequences; otherwise it is meaningless.
+
+## Injury
+
+Similarly to death, injury must have meaning. Any injury takes time to recover from. It takes a certain amount of time if you're able to rest somewhere safe, and considerably longer if you're not. If you fight while injured, you'll have less strength, less stramina, and probably also less agility. Depending where you're injured, there will be certain things you cannot do. If you fight while injured, also, your recovery time will be extended, even if you take no further injury.
+
+Some serious injuries will lead to permanent scarring, and permanent loss of agility; you'll be just slightly slower in fights.
