@@ -29,7 +29,7 @@ I want the player to be able to interact with non-player characters (and, indeed
 
 and it must be pretty clear that the full range of potential responses is extremely large. Consequently, it's impossible that all non-player character speech acts can be voice acted; rather, this sort of generated speech must be synthesised. But a consequence of this is that the non-player character's facial animation during the conversation also cannot be motion captured from a human actor; rather, it, too, must be synthesized.
 
-This doesn't mean that speech acts by non-player characters which make plot points or advance the narrative can't be voice acted, but it does mean that the voice acting must be consistent with the simulated voice used for that non-player character - which is to say, probably, that the non-player character must use a synthetic voice derived from the voice of that particular voice actor.
+This doesn't mean that speech acts by non-player characters which make plot points or advance the narrative can't be voice acted, but it does mean that the voice acting must be consistent with the simulated voice used for that non-player character - which is to say, probably, that the non-player character must use a synthetic voice derived from the voice performance of that particular voice actor in that role.
 
 ## Dynamic game environment
 
@@ -39,7 +39,9 @@ My vision for The Great Game is different. It is that the economy - and with it,
 
 ## Plot follows player
 
-As Role Playing Games have moved towards open worlds - where the player's movement in the environment is relatively unconstrained - the clockwork has become strained. The player has to get to particular locations where particular events happen, and so the player has to be very heavily signposted. Another solution - which I'd like to explore - is 'plot follows character'. The player is free to wander at will in the world, and plot relevant events will happen on their path. And by that I don't mean that we associate a set of non-player characters which each quest - as current Role Playing Games do - and then uproot the whole set from wherever they normally live in the world and dumping down in the player's path; but rather, for each role in a quest or plot event, we define a set of characteristics required to fulfill that role, and then, when the player comes to a place where there are a set of characters who have those characteristics, the quest or plot event will happen.
+As Role Playing Games have moved towards open worlds - where the player's movement in the environment is relatively unconstrained - the clockwork has become strained. The player has to get to particular locations where particular events happen, and so the player has to be very heavily signposted. Sometimes the mark you have to hit to trigger the next advance of the plot can be extremely awkward; [an example from Cyberpunk 2077](https://youtu.be/GEYkuctBUYE?t=2990) is finding the right spot, in the quest 'They Won't Go When I Go', to trigger the button which raises the cross. 
+
+Another solution - which I'd like to explore - is 'plot follows character'. The player is free to wander at will in the world, and plot relevant events will happen on their path. And by that I don't mean that we associate a set of non-player characters which each quest - as current Role Playing Games do - and then uproot the whole set from wherever they normally live in the world and dumping down in the player's path; but rather, for each role in a quest or plot event, we define a set of characteristics required to fulfill that role, and then, when the player comes to a place where there are a set of characters who have those characteristics, the quest or plot event will happen.
 
 ## Cut scenes, cinematics and rewarding the player
 
