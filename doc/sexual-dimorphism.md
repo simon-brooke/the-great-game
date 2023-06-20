@@ -42,4 +42,3 @@ Sex, done right, is an extremely pleasant pastime. Sex can also be used to creat
 
 For women, sex with other women carries with it no risk of pregnancy, so can be enjoyed or used for any of these purposes in very much the same way as it can by men; in other words, particularly for women, homosexual sex can be more lighthearted and carefree than heterosexual sex. To what extend our notions of homosexuality and heterosexuality are cultural I simply don't know. But because no children will result, a woman can afford to be more promiscuous with other women than she can with men.
 
-## 

@@ -361,3 +361,16 @@ If the game starts before the beginning of the Merchant's war (as I intend it to
 However the Andale campaign goes, Karae probably returns from Andale without Andarogan, but her knowledge of the pump system means that she can capture Hans'hua with a very small force indeed.
 
 If Karae succeeds in taking Hans'hua her interests would be in achieving a stable administration, expanding caravan traffic and supporting the friends she's made along the way. She may be able to recruit a new city guard from among the Western Tribes, but if not she can afford to employ mercenaries. Alliances with An, Gor, Tchahua and Sinhua (Xinta) are all possible.
+
+## Playable characters
+
+### Teravan of Sinhua, Millwright
+
+I was thinking it would be good to have a journeyman millwright as a playable character, because if our character gets to Hans'hua, a millwright will have the skills to work on the pump maintenance crews; and being on the pump maintenance crew 
+
+a. is one of the few occupations from which an outsider can make a reasonable living in Hans'hua;
+b. gives access to the pumps, which are key to any plot to take over Hans'hua.
+
+When Slechae signs up to join the militia, she meets a man who introduces himself as 'Teravan, Millwright'. So there's our first playable character, in the game already.
+
+His game start could be finishing his apprenticeship working on a windmill on the Bridgend side of the river when the Red Company take 

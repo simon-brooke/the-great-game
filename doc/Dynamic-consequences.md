@@ -27,7 +27,7 @@ I want the player to be able to interact with non-player characters (and, indeed
 4. The particular non-player character's attitude towards the player;
 5. The particular non-player character's speech idiosyncracies, dialect, and voice
 
-and it must be pretty clear that the full range of potential responses is extremely large. Consequently, it's impossible that all non-player character speech acts can be voice acted; rather, this sort of generated speech must be synthesised. But a consequence of this is that the non-player character's facial animation during the conversation also cannot be motion captured from a human actor; rather, it, too, must be synthesized.
+and it must be pretty clear that the full range of potential responses is extremely large. Consequently, it's impossible that all non-player character speech acts can be voice acted; rather, this sort of generated speech must be synthesised. But a consequence of this is that the non-player character's facial animation during the conversation also cannot be motion captured from a human actor; rather, [it, too, must be synthesized](https://youtu.be/fa3_Mfqu8KA).
 
 This doesn't mean that speech acts by non-player characters which make plot points or advance the narrative can't be voice acted, but it does mean that the voice acting must be consistent with the simulated voice used for that non-player character - which is to say, probably, that the non-player character must use a synthetic voice derived from the voice performance of that particular voice actor in that role.
 
@@ -56,4 +56,4 @@ Each of these, obviously, make the task of authoring an animation harder. The ge
 
 Essentially the gamble here is that players will find the much richer conversations, and consequent emergent gameplay, possible with non-player charcaters who have dynamic knowledge about their world sufficiently engaging to compensate for a less compelling cinematic experience. I believe that they would; but really the only way to find out would be to try.
 
-Interestingly, an [early preview](https://youtu.be/VwwZx5t5MIc?t=327) of CD PRoject Red's not-yet-complete [Cyberpunk 2077]() suggests that there will be very, very few cutscenes, suggesting that these very experienced storytellers don't feel they need cutscenes either to tell their story or maintain player engagement. (Later) It has to be said other commentators who have also played the Cyberpunk 2077 preview say that there are **a lot** of cutscenes, one of them describing the prologue as 'about half cutscenes' - so this impression I formed may be wrong).
+Interestingly, an [early preview](https://youtu.be/VwwZx5t5MIc?t=327) of CD PRoject Red's not-yet-complete [Cyberpunk 2077](https://www.cyberpunk.net/us/en/cyberpunk-2077) suggests that there will be very, very few cutscenes, suggesting that these very experienced storytellers don't feel they need cutscenes either to tell their story or maintain player engagement.

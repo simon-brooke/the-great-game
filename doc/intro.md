@@ -177,7 +177,7 @@ easy:
 2. **Master**: what is the sum of (or average of) the esteem held for this agent by other agents of the same craft?
 3. **Explorer**: (e.g.) what is the sum of the distance between the most northerly and most southerly, and the most easterly and most westerly, locations this agent has visited?
 4. **Climber**: how many 'promotions' has this agent had in the game?
-6. **Conqueror**: how many total vassales, recursively, has this agent?
+5. **Conqueror**: how many total vassals, recursively, has this agent?
 6. **Citizen**: really, really tricky. Probably what is the average esteem for this agent among all agents within a specified radius? - although this will score more highly for agents who have taken part in notable events, and what I'm really thinking of for my ideal 'good citizen' is someone who really hasn't.
 
 So each agent is assigned - by the dreaded random number generator - one top

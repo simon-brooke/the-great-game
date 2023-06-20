@@ -2,11 +2,11 @@
 
 ## Background
 
-Many computer role playing games, particularly older ones such as Neverwinter Nights, allow you to 'design' your player character from a fairly broad canvas. Race, class, attributes, gender and appearance are all selectable. 
+Many computer role playing games, particularly older ones such as Neverwinter Nights, allow you to 'design' your player character from a fairly broad canvas. Race, class, attributes, gender and appearance are all selectable.
 
 Choice has eroded over time. For example the Dragon Age series, where you can chose between three races, two genders, and a small number of classes. In the Mass Effect trilogy, you play as Shepard, who is human and essentially a Fighter, but can be either male or female and whose appearance you can customise. You can play as either lawful good or chaotic neutral. In Cyberpunk 2077, you play as V, who is human, either male or female, essentially a Fighter, and chaotic neutral.
 
-In more recent games, there has been a trend towards more limited choice. In the games of The Witcher series, you get no choice at all, but play as Geralt of Rivia, who in the categorisation of Dungeons and Dragons, is a Fighter/Ranger, male, human, and somewhere between chaotic good and chaotic neutral depending on how you play him. In the Horizon series, you play as Aloy, again a Fighter/Ranger, female, human, and essentially chaotic good. 
+In more recent games, there has been a trend towards more limited choice. In the games of The Witcher series, you get no choice at all, but play as Geralt of Rivia, who in the categorisation of Dungeons and Dragons, is a Fighter/Ranger, male, human, and somewhere between chaotic good and chaotic neutral depending on how you play him. In the Horizon series, you play as Aloy, again a Fighter/Ranger, female, human, and essentially chaotic good.
 
 As I've argued elsewhere, part of the reason for limiting choice is voice acting.
 
