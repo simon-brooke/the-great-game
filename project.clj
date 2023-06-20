@@ -21,10 +21,10 @@
                  [mw-engine "0.1.6-SNAPSHOT"]
                  [org.apache.commons/commons-math3 "3.6.1"] ;; for mersenne-twister implementation
                  [org.clojure/algo.generic "0.1.3"]
-                 [org.clojure/clojure "1.11.1"]
-                 [org.clojure/math.numeric-tower "0.0.5"]
-                 [org.clojure/tools.namespace "1.4.4"]
-                 [org.clojure/tools.reader "1.3.6"]
+                 [org.clojure/clojure "1.10.3"]
+                 [org.clojure/math.numeric-tower "0.0.4"]
+                 [org.clojure/tools.namespace "1.0.0"]
+                 [org.clojure/tools.reader "1.3.5"]
                  [org.clojurenlp/core "3.7.0"]]
   :description "Prototype code towards the great game I've been writing about for ten years, and know I will never finish."
   :license {:name "GNU General Public License,version 2.0 or (at your option) any later version"
