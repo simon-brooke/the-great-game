@@ -14,7 +14,7 @@ Limiting choice of player character, especially in games with increasingly highl
 
 ## The Self-voiced Player
 
-If we have voice interaction sufficiently sophisticated that we can allow the player character to say more or less whatever they want to say - [and my argument here is that we can do this](Gossip_scripted_plot_and_Johnny_Silverhand.md) - then we don't need voice acting for the player character, and that gives us a lot of freedom. There's then really no reason why the player can't inhabit any character in the game world and play as that character.
+If we have voice interaction sufficiently sophisticated that we can allow the player character to say more or less whatever they want to say &mdash; [and my argument here is that we can do this](Gossip_scripted_plot_and_Johnny_Silverhand.md) &mdash; then we don't need voice acting for the player character, and that gives us a lot of freedom. There's then really no reason why the player can't inhabit any character in the game world and play as that character.
 
 ## Tinder as a Character Selector
 
@@ -41,7 +41,8 @@ So, sensibly refinable attributes might include things like
 
 1. Strength;
 2. Agility;
-3. Dexterity.
+3. Dexterity;
+4. Endurance.
 
 I did think that 'intelligence' or 'learning' might be on that list but the more I think of it, the harder I find it to understand how low intelligence might be represented in a game in which the player speaks freely.
 

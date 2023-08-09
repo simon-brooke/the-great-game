@@ -10,7 +10,7 @@ Suppose you're entering a village, and you meet a random character. That charact
 
 So the random character could say
 
-> Hello, I'm Tobias, and that my mill over there. Who might you be, stranger?
+> Hello, I'm Tobias, and that's my mill over there. Who might you be, stranger?
 
 At which point you can either tell him, or not. Suppose you tell him, he could say
 

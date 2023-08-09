@@ -42,3 +42,13 @@ Sex, done right, is an extremely pleasant pastime. Sex can also be used to creat
 
 For women, sex with other women carries with it no risk of pregnancy, so can be enjoyed or used for any of these purposes in very much the same way as it can by men; in other words, particularly for women, homosexual sex can be more lighthearted and carefree than heterosexual sex. To what extend our notions of homosexuality and heterosexuality are cultural I simply don't know. But because no children will result, a woman can afford to be more promiscuous with other women than she can with men.
 
+## Women and warrior/adventurer lifestyles
+
+Generally speaking, people do not want to take their children onto a battlefield. If you're going to have a game world in which women significantly take on warrior or adventurer roles, then you must either have
+
+* A culture which expects female warriors to be celibate; or
+* A culture with access to and acceptance of safe and reliable contraception or abortion; or
+* An acceptance of leaving infant children with grandparents, other relatives or foster carers for long periods;
+* A system of long term creches;
+* Any combination of the above.
+
