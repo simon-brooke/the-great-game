@@ -1,4 +1,4 @@
-# On Dying
+# On Dying, and Injury
 
 Death is the end of your story. One of the tropes in games which, for me, most breaks immersion is when you lose a fight and are presented with a screen that says 'you are dead. Do you want to reload your last save?' Life is not like that. We do not have save-states. We die.
 
