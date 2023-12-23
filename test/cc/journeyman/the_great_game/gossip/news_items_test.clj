@@ -3,12 +3,12 @@
             [cc.journeyman.the-great-game.gossip.news-items :refer
              [all-known-verbs compatible-item? degrade-location infer
               interest-in-character interesting-character? interest-in-location
-              interesting-location? learn-news-item make-all-inferences]]))
+              interesting-location? learn-news-item make-all-inferences known-item?]]))
 
 (deftest interesting-character-tests
   (testing "To what degree characters are of interest to the gossip"
     (let [expected 1
-          gossip  {:home [{0, 0} :test-home]
+          gossip  {:home [{:x 0 :y 0} :test-home]
                    :interesting-verbs all-known-verbs
                    ;; already knows about adam
                    :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}]}
@@ -17,7 +17,7 @@
                   :adam)]
       (is (= actual expected)))
     (let [expected 0
-          gossip  {:home [{0, 0} :test-home]
+          gossip  {:home [{:x 0 :y 0} :test-home]
                    :interesting-verbs all-known-verbs
                    ;; already knows about adam
                    :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}]}
@@ -27,7 +27,7 @@
       (is (= actual expected))))
   (testing "Whether characters are of interest to the gossip"
      (let [expected true
-           gossip  {:home [{0, 0} :test-home]
+           gossip  {:home [{:x 0 :y 0} :test-home]
                     :interesting-verbs all-known-verbs
                    ;; already knows about adam
                     :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}]}
@@ -36,7 +36,7 @@
                    :adam)]
        (is (= actual expected)))
     (let [expected false
-          gossip  {:home [{0, 0} :test-home]
+          gossip  {:home [{:x 0 :y 0} :test-home]
                    :interesting-verbs all-known-verbs
                    ;; already knows about adam
                    :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}]}
@@ -158,12 +158,12 @@
   (testing "Degrading locations"
     (let [expected [:galloway]
           actual (degrade-location
-                  {:home [{0 0} :test-home :galloway]}
+                  {:home [{:x 0 :y 0} :test-home :galloway]}
                   [{-4 55} :auchencairn :galloway])]
       (is (= actual expected)))
     (let [expected nil
           actual (degrade-location
-                  {:home [{0 0} :test-home :galloway]}
+                  {:home [{:x 0 :y 0} :test-home :galloway]}
                   [:froboz])]
       (is (= actual expected)))))
 
@@ -195,17 +195,16 @@
 
 (deftest learn-tests
   (testing "Learning from an interesting news item."
-    (let [expected {:home [{0 0} :test-home]
-                    :interesting-verbs all-known-verbs
-                    :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}
-                                {:verb :sex, :actor :adam, :other :belinda, :location [:test-home], :nth-hand 1}
-                                {:verb :sex, :actor :belinda, :other :adam, :location [:test-home], :nth-hand 1}]}
-          gossip  {:home [{0, 0} :test-home]
+    (let [gossip  {:home [{:x 0 :y 0} :test-home]
                    :interesting-verbs all-known-verbs
                    ;; already knows about adam
-                   :knowledge [{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}]}
-          actual (learn-news-item
+                   :knowledge #{{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}}}
+          g' (learn-news-item
                   gossip
                   {:verb :sex :actor :adam :other :belinda :location [:test-home]})]
-      (is (= actual expected)))))
+      (and
+       (is (known-item? g' {:verb :sex :actor :adam :other :belinda :location [:test-home]})
+           "has learned the item that was given")
+       (is (known-item? g' {:verb :sex, :actor :belinda, :other :adam, :location [:test-home]})
+           "has learned information that can be inferred from that item")))))
 

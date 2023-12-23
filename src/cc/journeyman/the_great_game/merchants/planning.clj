@@ -146,8 +146,7 @@
                   #(let [q (-> world :cities origin :stock %)]
                      (and (number? q) (pos? q)))
                   (keys available)))]
-    (if
-      (not (empty? plans))
+    (when-not (empty? plans)
       (first
         (sort-by
           #(- 0 (:dist-to-home %))

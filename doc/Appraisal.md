@@ -26,7 +26,7 @@ So: how does one gain experience? I'm going to assume that anyone who's bought a
 
 Of course, some people may be more observant than others, so it's possible that some people may gain appraisal skill on the basis of less exposure than others. But at this moment that's not a thing I'm planning to model.
 
-## What does appraisal skill by you?
+## What does appraisal skill buy you?
 
 In any category of goods, some individual items are better than others, and this difference may be significant. A person with good appraisal skill will recognise this difference. So a person with good skills, offered two items at the same price, will be able to select the better one; if bargaining for an item, will be prepared to offer a higher price for the better one; if selling items, will be prepared to sell the better one only for a higher price.
 

@@ -30,7 +30,8 @@
    This namespace at present considers the `:knowledge` of a gossip to be a flat
    list of propositions, each of which must be checked every time any new
    proposition is offered. This is woefully inefficient. "
-  (:require [cc.journeyman.the-great-game.world.location :refer [distance-between]]
+  (:require [clojure.set :refer [union]]
+            [cc.journeyman.the-great-game.world.location :refer [distance-between]]
             [cc.journeyman.the-great-game.time :refer [game-time]]
             [cc.journeyman.the-great-game.utils :refer [inc-or-one truthy?]]
             [taoensso.timbre :as l]))
@@ -115,11 +116,9 @@
    :war {:verb :war :keys [:actor :other :location]
          :inferences [{:verb :war :actor :other :other :actor}]}})
 
-
 (def all-known-verbs 
   "All verbs currently known to the gossip system."
   (set (keys news-topics)))
-
 
 (defn interest-in-character
   "Integer representation of how interesting this `character` is to this
@@ -133,7 +132,6 @@
     ;; Are relationships just propositions in the knowledge base?
     (filter #(= (:actor %) character) (:knowledge gossip))
     (filter #(= (:other %) character) (:knowledge gossip)))))
-
 
 (defn interesting-character?
   "Boolean representation of whether this `character` is interesting to this
@@ -246,7 +244,7 @@
   "True if anything about this news `item` is interesting to this `gossip`."
   [gossip item]
   (and (not (known-item? gossip item))
-       (interesting-verb? gossip item) ;; news is only interesting if the topic is.
+       (interesting-verb? gossip (:verb item)) ;; news is only interesting if the topic is.
        (or
         (interesting-character? gossip (:actor item))
         (interesting-character? gossip (:other item))
@@ -257,7 +255,7 @@
 (defn infer
   "Infer a new knowledge item from this `item`, following this `rule`."
   [item rule]
-;;  (l/info "Applying rule '" rule "' to item '" item "'")
+  (l/info "Applying rule '" rule "' to item '" item "'")
   (reduce merge
           item
           (cons
@@ -330,16 +328,17 @@
            g (assoc
               gossip
               :knowledge
-              (cons
+              (set
+               (cons
                item'
-               (:knowledge gossip)))]
+               (:knowledge gossip))))]
        (if follow-inferences?
          (assoc
           g
           :knowledge
-          (concat (:knowledge g) (make-all-inferences item')))
-         g)))
-   gossip))
+          (union (:knowledge g) (make-all-inferences item')))
+         g))
+     gossip)))
 
 
 
