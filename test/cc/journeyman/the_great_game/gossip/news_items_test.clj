@@ -195,16 +195,16 @@
 
 (deftest learn-tests
   (testing "Learning from an interesting news item."
-    (let [gossip  {:home [{:x 0 :y 0} :test-home]
+    (let [before  {:home [{:x 0 :y 0} :test-home]
                    :interesting-verbs all-known-verbs
                    ;; already knows about adam
                    :knowledge #{{:verb :sell :actor :adam :other :charles :object :wheat :quantity 10 :price 5 :location [:test-home]}}}
-          g' (learn-news-item
-                  gossip
+          after (learn-news-item
+                  before
                   {:verb :sex :actor :adam :other :belinda :location [:test-home]})]
       (and
-       (is (known-item? g' {:verb :sex :actor :adam :other :belinda :location [:test-home]})
+       (is (known-item? after {:verb :sex :actor :adam :other :belinda :location [:test-home]})
            "has learned the item that was given")
-       (is (known-item? g' {:verb :sex, :actor :belinda, :other :adam, :location [:test-home]})
+       (is (known-item? after {:verb :sex, :actor :belinda, :other :adam, :location [:test-home]})
            "has learned information that can be inferred from that item")))))
 
