@@ -36,6 +36,8 @@
             [cc.journeyman.the-great-game.utils :refer [inc-or-one truthy?]]
             [taoensso.timbre :as l]))
 
+(declare interesting-location?)
+
 (def news-topics
   "Topics of interest to gossip agents. Topics are keyed in this map by
   their `verbs`. The `keys` associated with each topic are the extra pieces
@@ -116,7 +118,7 @@
    :war {:verb :war :keys [:actor :other :location]
          :inferences [{:verb :war :actor :other :other :actor}]}})
 
-(def all-known-verbs 
+(def all-known-verbs
   "All verbs currently known to the gossip system."
   (set (keys news-topics)))
 
@@ -131,7 +133,9 @@
     ;; TODO: we ought also check the relationships of the gossip.
     ;; Are relationships just propositions in the knowledge base?
     (filter #(= (:actor %) character) (:knowledge gossip))
-    (filter #(= (:other %) character) (:knowledge gossip)))))
+    (filter #(= (:other %) character) (:knowledge gossip))
+    (when (interesting-location? gossip (:home character))
+      (list true)))))
 
 (defn interesting-character?
   "Boolean representation of whether this `character` is interesting to this
@@ -180,19 +184,13 @@
   ;; TODO: Not yet (really) implemented
   true)
 
-(defn interesting-topic?
-  [gossip topic]
-  ;; TODO: Not yet (really) implemented
-  true)
-
 (defn interesting-verb?
   "Is this `verb` interesting to this `gossip`?"
   [gossip verb]
   (let [vs (:interesting-verbs gossip)]
     (truthy?
-     (if (set? vs)
-       (vs verb)
-       false))))
+     (when (set? vs)
+       (vs verb)))))
 
 ;; (interesting-verb? {:interesting-verbs #{:kill :sell}} :sell)
 
@@ -249,8 +247,7 @@
         (interesting-character? gossip (:actor item))
         (interesting-character? gossip (:other item))
         (interesting-location? gossip (:location item))
-        (interesting-object? gossip (:object item))
-        (interesting-topic? gossip (:verb item)))))
+        (interesting-object? gossip (:object item)))))
 
 (defn infer
   "Infer a new knowledge item from this `item`, following this `rule`."
@@ -273,9 +270,9 @@
   `item`."
   [item]
   (set
-    (map
-     #(infer item %)
-     (:inferences (news-topics (:verb item))))))
+   (map
+    #(infer item %)
+    (:inferences (news-topics (:verb item))))))
 
 (defn degrade-character
   "Return a character specification like this `character`, but comprising
@@ -330,8 +327,8 @@
               :knowledge
               (set
                (cons
-               item'
-               (:knowledge gossip))))]
+                item'
+                (:knowledge gossip))))]
        (if follow-inferences?
          (assoc
           g

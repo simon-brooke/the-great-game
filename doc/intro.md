@@ -321,7 +321,13 @@ maybe around 10%.
 
 A caravan or ship costs so much per day to run, irrespective of whether full
 or empty. So the base cost of a journey is a function of the time taken, which
-is essentially a function of the distance.
+is essentially a function of the distance. 
+
+Obviously, on top of the base cost of movement there are tolls, which are imposed
+by the aristons through whose territory the journey passes (and therefore predictable, 
+and can be used in route planning), and also the risk of having to bribe or fight outlaws, 
+and the possible need to hire mercenaries to defend against outlaws, which is not predictable 
+but can be estimated and thus also used in route planning.
 
 ### Outlawry and merchants
 
@@ -329,7 +335,7 @@ Outside the domains of aristons, outlaws may intercept caravans; when this
 happens the following outcomes are possible:
 
 1. The merchant (together with any mercenaries the merchant has hired to protect the caravan) successfully fights off the outlaws;
-2. The outlaws steal the entire cargo (and may kill the merchant);
+2. The outlaws steal the entire cargo (and may kill the merchant and others);
 3. The merchant pays protection money to the outlaws, typically around 5%-10% of the value of cargo carried;
 4. The merchant employs the outlaws as caravan guards (see below);
 5. The outlaws allow the caravan to pass unmolested;
@@ -362,7 +368,7 @@ Generally, if a merchant buys goods in an ariston's market, or sells goods
 in the ariston's market, then the economy benefits and the ariston benefits
 from that; so the 'tax' element is part of the market markup. But if a
 caravan passes through an ariston's territory without stopping at a market,
-there's probably a tax of about 5% of value.
+there's probably a toll of about 5% of value.
 
 Generally, an ariston's army will control outlawry within the ariston's
 domain, so outlaw encounters within a domain are unlikely. Soldiers could
