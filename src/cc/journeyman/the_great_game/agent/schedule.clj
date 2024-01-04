@@ -41,15 +41,7 @@
 ;;                          1020 (fn [a w c](attend-festival a w c :lughnasadh))}}
 ;;             306 {:daily {1020 (fn [a w c] (attend-festival a w c :samhain))}}}
 ;;    :daily {420 find-food
-;;            480 (fn [actor world circle]
-;;                  (case circle
-;;                    (:other :background) nil
-;;                    ;; else
-;;                    (if (has-craft-supplies? actor world circle)
-;;                      (goto-market actor world circle)
-;;                      (perform-craft actor world circle))))
 ;;            720 find-food
-;;            780 perform-craft
 ;;            1020 find-food
 ;;            1320 sleep-until-dawn}})
 
