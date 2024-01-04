@@ -2,7 +2,7 @@
 
 ## Preamble
 
-The Great Game requires a number of different crafts to be performed, both because the economy depends on the products of those crafts and to provide verisimilitude and set dressing. Some of those crafts, the relations between them, and the progression within them are set out in [Populating a game world]().
+The Great Game requires a number of different crafts to be performed, both because the economy depends on the products of those crafts and to provide verisimilitude and set dressing. Some of those crafts, the relations between them, and the progression within them are set out in [Populating a game world](Populating-a-game-world.html).
 
 For the purposes of planning work, only Master craftspeople are considered.
 
@@ -64,9 +64,9 @@ If the decision is to work on commodities, the next decision is what commodity i
 
 For each craft recipe the master knows there will be
 
-    1. A list of quantities of different craft materials needed per item, for example a sword might need two kilograms of steel of a particular quality, ten kilograms of charcoal, one kilogram of timber, half a square metre of leather;
-    2. An amount of craftsperson time - for example, a standard infantry sword might take ten hours;
-    3. Memory of prices achieved by item to that recipe in the local market.
+1. A list of quantities of different craft materials needed per item, for example a sword might need two kilograms of steel of a particular quality, ten kilograms of charcoal, one kilogram of timber, half a square metre of leather;
+2. An amount of craftsperson time - for example, a standard infantry sword might take ten hours;
+3. Memory of prices achieved by item to that recipe in the local market.
 
 The master will choose a recipe for which there are sufficient materials on hand, and which is profitable to make -- the more profitable, the more likely to be selected (but I think there's probably some furtive dice rolling under the table here too; you don't want all the smiths in town producing infantry swords at the same time, because that would swamp the market and drive prices down).
 
