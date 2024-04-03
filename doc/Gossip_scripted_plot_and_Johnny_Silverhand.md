@@ -1,13 +1,13 @@
 # Gossip, scripted plot, and Johnny Silverhand
 
-I've been writing literally for years -- since [Voice acting considered harmful](Voice-acting-considered-harmful.html) in 2015 -- about game worlds in which the player speaks to non-player characters just by speaking the words they choose in their normal voice, and the non-player character replies using a pipeline that goes, essentially,
+I've been writing literally for years -- since [Voice acting considered harmful](Voice-acting-considered-harmful.md) in 2015 -- about game worlds in which the player speaks to non-player characters just by speaking the words they choose in their normal voice, and the non-player character replies using a pipeline that goes, essentially,
 
 1. Alexa/Siri style speech interpretation;
 2. A decision on whether to co-operate based on the particular NPC's general demeanor and particular attitude to the player;
 3. A search of the game state and lore for relevant information;
 4. A filtering of the results based on what the particular NPC can be expected to know;
 5. Generation of a textual response from those results based on a library of templates which defines the particular NPC's dialect and style of speech;
-6. Production of audio using a [Lyrebird]{https://www.descript.com/overdub?lyrebird=true) style generated voice.
+6. Production of audio using a [Lyrebird](https://www.descript.com/overdub?lyrebird=true) style generated voice.
 
 As I've argued before, the game engine necessarily knows everything about the lore, and the current state, of the game world. It would be possible for any non-player character to answer literally any question about the game world, from who was mayor of Night City in 2020 to who lives in the apartment one floor up from yours, to what the weather is like in North Oaks just now.
 

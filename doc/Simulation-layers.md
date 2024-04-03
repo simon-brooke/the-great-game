@@ -14,7 +14,7 @@ This is mainly a land game. Broadly, caravans take the place of ships in Elite o
 
 ## A political simulation
 
-Broadly, aristons claim territories in an essentiallu feudal arrangement, drive out outlaws, and levy taxes.
+Broadly, aristons claim territories in an essentially feudal arrangement, drive out outlaws, and levy taxes.
 
 An ariston will be popular if their regime is stable, if taxes are low, justice is considered fair, oppression is low and depredations by outlaws are minimal. The more unpopular an ariston is, the more resistant the populace will be to paying their taxes, meaning the more military force needs to be diverted to tax collection and the greater the oppression. Taxes are required to pay soldiers and to maintain high roads, bridges, markets and other infrastructure. Merchants will prefer to travel routes which are better policed and maintained, which means more merchants trading in your markets, which means more tax.
 

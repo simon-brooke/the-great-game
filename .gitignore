@@ -52,3 +52,5 @@ docs/cloverage/coverage.xml
 src/cc/journeyman/the_great_game/cloverage.clj
 
 .DS_Store
+
+.portal/

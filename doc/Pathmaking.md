@@ -20,7 +20,7 @@ Routing is fundamentally by [A\*](https://www.redblobgames.com/pathfinding/a-sta
 
 #### Algorithmic rules
 
-1. No route may pass through any part of a reserved holding, except the holding which is its origin, if any, and the holding which is its destination (and in any case we won't render paths or roads within holdings, although traversal information may be used to determine whether a holding, or part of it, is paved/cobbled;
+1. No route may pass through any part of a reserved holding, except the holding which is its origin, if any, and the holding which is its destination, if any (and in any case we won't render paths or roads within holdings, although traversal information may be used to determine whether a holding, or part of it, is paved/cobbled;
 2. No route may pass through any building, with the exception of a city gate;
 3. We don't have bicycles: going uphill costs work, and you don't get that cost back on the down hill. Indeed, downhills are at least as expensive to traverse as flat ground;
 4. Any existing route segment costs only a third as much to traverse as open ground having the same gradient;

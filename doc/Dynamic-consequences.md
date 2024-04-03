@@ -4,7 +4,7 @@ First, a framing disclaimer: in [Racundra's First Cruise](https://books.google.c
 
 I will never build a complete version of The Great Game; it will probably never even be a playable prototype. It is a minor side-project of someone who
 
-1. Is ill, and consequently has inconsistent levels of energy and concentration;
+1. Is old and ill, and consequently has inconsistent levels of energy and concentration;
 2. Has other things to do in the real world which necessarily take precedence.
 
 Nevertheless, in making design choices I want to specify something which could be built, which could, except for the technical innovations I'm trying myself to build, be built with the existing state of the art, and which if built, would be engaging and interesting to play.
@@ -27,7 +27,7 @@ I want the player to be able to interact with non-player characters (and, indeed
 4. The particular non-player character's attitude towards the player;
 5. The particular non-player character's speech idiosyncracies, dialect, and voice
 
-and it must be pretty clear that the full range of potential responses is extremely large. Consequently, it's impossible that all non-player character speech acts can be voice acted; rather, this sort of generated speech must be synthesised. But a consequence of this is that the non-player character's facial animation during the conversation also cannot be motion captured from a human actor; rather, it, too, must be synthesized.
+and it must be pretty clear that the full range of potential responses is extremely large. Consequently, it's impossible that all non-player character speech acts can be voice acted; rather, this sort of generated speech must be synthesised. But a consequence of this is that the non-player character's facial animation during the conversation also cannot be motion captured from a human actor; rather, [it, too, must be synthesized](https://youtu.be/fa3_Mfqu8KA).
 
 This doesn't mean that speech acts by non-player characters which make plot points or advance the narrative can't be voice acted, but it does mean that the voice acting must be consistent with the simulated voice used for that non-player character - which is to say, probably, that the non-player character must use a synthetic voice derived from the voice performance of that particular voice actor in that role.
 
@@ -35,25 +35,27 @@ This doesn't mean that speech acts by non-player characters which make plot poin
 
 Modern Role Playing Games are, in effect, extremely complex state machines: if you do the same things in the same sequence, the same outcomes will always occur. In a world full of monsters, bandits, warring armies and other dangers, the same quest givers will be in the same places at the same times. They are clockwork worlds, filled with clockwork automata. Of course, this has the advantage that is makes testing easier - and in a game with a complex branching narrative and many quests, testing is inevitably hard.
 
+Interestingly, [Kenshi](https://lofigames.com/) &mdash; a game I'm increasingly impressed and influenced by &mdash; is not quite clockwork in this sense. As the player upsets the equilibrium of the game's political economy, factions not impacted negatively will move against competing factions which are impacted negatively, in a way which *may* be scripted, but it's so well done it's hard to tell.
+
 My vision for The Great Game is different. It is that the economy - and with it, the day to day choices of non-player characters - should be modelled. This means, non-player characters may unexpectedly die. Of course, you could implement a tag for plot-relevant characters which prevents them being killed (except when required by the plot).
 
 ## Plot follows player
 
 As Role Playing Games have moved towards open worlds - where the player's movement in the environment is relatively unconstrained - the clockwork has become strained. The player has to get to particular locations where particular events happen, and so the player has to be very heavily signposted. Sometimes the mark you have to hit to trigger the next advance of the plot can be extremely awkward; [an example from Cyberpunk 2077](https://youtu.be/GEYkuctBUYE?t=2990) is finding the right spot, in the quest 'They Won't Go When I Go', to trigger the button which raises the cross. 
 
-Another solution - which I'd like to explore - is 'plot follows character'. The player is free to wander at will in the world, and plot relevant events will happen on their path. And by that I don't mean that we associate a set of non-player characters which each quest - as current Role Playing Games do - and then uproot the whole set from wherever they normally live in the world and dumping down in the player's path; but rather, for each role in a quest or plot event, we define a set of characteristics required to fulfill that role, and then, when the player comes to a place where there are a set of characters who have those characteristics, the quest or plot event will happen.
+Another solution - which I'd like to explore - is 'plot follows character'. The player is free to wander at will in the world, and plot relevant events will happen on their path. And by that I don't mean that we associate a set of non-player characters which each quest - as current Role Playing Games do - and then uproot the whole set from wherever they normally live in the world and dump them down in the player's path; but rather, for each role in a quest or plot event, we define a set of characteristics required to fulfil that role, and then, when the player comes to a place where there are a set of characters who have those characteristics, the quest or plot event will happen.
 
 ## Cut scenes, cinematics and rewarding the player
 
-There's no doubt at all that 'cut scenes' - in effect, short movies spliced into game play during which the player has no decisions to make but can simply watch the scene unroll - are elements of modern games which players enjoy, and see to some extent as 'rewards'. And in many games, these are beautifully constructed works. It is a very widely held view that the quality of cutscenes depends to a large degree on human authorship. The three choices I've made above:
+There's no doubt at all that 'cut scenes' - in effect, short movies spliced into game play during which the player has no decisions to make but can simply watch the scene unroll - are elements of modern games which players enjoy, and see to some extent as 'rewards'. And in many games, these are beautifully constructed works. It is a very widely held view that the quality of cutscenes depends to a large degree on human authorship. The choices I've made above:
 
 1. We can't always know exactly what non-player characters will say (although perhaps we can in the context of cut scenes where the player has no input);
 2. We can't always know exactly which non-player characters will speak the lines;
 3. We can't predict what a non-player character will say in response to a question, or how long that will take;
-4. We can't always know where any particular plot event will take place.
+4. We can't always know where any particular plot event will take place;
 
-Each of these, obviously, make the task of authoring an animation harder. The general summary of what I'm saying here is that, although in animating a conversation or cutscene what the animator is essentially animating is the skeletons of the characters, and, provided that all character models are rigged on essentially similar skeletons, substituting one character model for another in an animated scene isn't a huge issue, with so much unknowable it is impossible that hand-authoring will be practicable, and so a lot will depend on the quality of the conversation system not merely to to produce convincingly enunciated and emoted sound, but also appropriate character animation and attractive cinematography. As you will have learned from the Mass Effect analysis videos I linked to above, that's a big ask.
+each, make the task of authoring an animation harder. The general summary of what I'm saying here is that, although in animating a conversation or cutscene what the animator is essentially animating is the skeletons of the characters, and, provided that all character models are rigged on essentially similar skeletons, substituting one character model for another in an animated scene isn't a huge issue, with so much unknowable it is impossible that hand-authoring will be practicable, and so a lot will depend on the quality of the conversation system not merely to to produce convincingly enunciated and emoted sound, but also appropriate character animation and attractive cinematography. As you will have learned from the Mass Effect analysis videos I linked to above, that's a big ask.
 
 Essentially the gamble here is that players will find the much richer conversations, and consequent emergent gameplay, possible with non-player charcaters who have dynamic knowledge about their world sufficiently engaging to compensate for a less compelling cinematic experience. I believe that they would; but really the only way to find out would be to try.
 
-Interestingly, an [early preview](https://youtu.be/VwwZx5t5MIc?t=327) of CD PRoject Red's not-yet-complete [Cyberpunk 2077]() suggests that there will be very, very few cutscenes, suggesting that these very experienced storytellers don't feel they need cutscenes either to tell their story or maintain player engagement. (Later) It has to be said other commentators who have also played the Cyberpunk 2077 preview say that there are **a lot** of cutscenes, one of them describing the prologue as 'about half cutscenes' - so this impression I formed may be wrong).
+Interestingly, an [early preview](https://youtu.be/VwwZx5t5MIc?t=327) of CD Project Red's [Cyberpunk 2077](https://www.cyberpunk.net/us/en/cyberpunk-2077) has relatively few cutscenes, suggesting that these very experienced storytellers don't feel they need cutscenes either to tell their story or maintain player engagement.

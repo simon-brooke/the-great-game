@@ -10,12 +10,6 @@
 			"path": "../jme-clj"
 		},
 		{
-			"path": "../codox"
-		},
-		{
-			"path": "../cloverage"
-		},
-		{
 			"path": "../MicroWorld/mw-engine"
 		},
 		{
@@ -23,9 +17,13 @@
 		},
 		{
 			"path": "../test-graphs"
+		},
+		{
+			"path": "../speechio"
 		}
 	],
 	"settings": {
-		"java.configuration.updateBuildConfiguration": "automatic"
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.compile.nullAnalysis.mode": "automatic"
 	}
 }
