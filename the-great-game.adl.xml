@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- DOCTYPE application PUBLIC "-//JOURNEYMAN//DTD ADL 1.4.1//EN"
+"http://www.journeyman.cc/adl/stable/adl/schemas/adl-1.4.1.dtd" -->
+<application xmlns="http://bowyer.journeyman.cc/adl/1.4.1/"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns:adl="http://www.journeyman.cc/adl/1.4.1/" name="youyesyet" version="0.1.1">
+  <documentation>
+    At this stage, primarily a data-driven lore repository.
+
+    At some future stage, perhaps a specification for the game's internal state.
+  </documentation>
+  <group name="public">
+    <documentation>All users</documentation>
+  </group>
+  <entity table="objects" name="object">
+    <documentation>Physical opjects in the game world; it's probable that
+    properties like 'mesh' and 'skin' will end up here.</documentation>
+    <key>
+      <property required="true" type="integer" name="id" column="id" immutable="true" distinct="system">
+        <documentation>Note that this key is special, as for every instance of
+         a game object there will be an object record, and thus, for example, 
+         every character will have exactly one object record associated with 
+         it; thus, for example, the key value in the character table will be 
+         the key value of the associated object record.</documentation>
+        <generator action="native"/>
+      </property>
+    </key>
+    <property required="true" type="boolean" default="false" name="container"/>
+    <property type="text" name="notes">
+      <description>Working notes about this object</description>
+    </property>
+    <property required="true" type="real" name="x">
+      <documentation>Easting from the origin, in metres.</documentation>
+    </property>
+    <property required="true" type="real" name="y">
+      <documentation>Northing from the origin, in metres.</documentation>
+    </property>
+    <property required="true" type="real" name="z">
+      <documentation>Altitude above the mean sea level, in metres.</documentation>
+    </property>
+    <property type="list" name="contents" entity="object">
+      <documentation>Contents of this object, if it is a container.</documentation>
+    </property>
+    <property type="entity" name="containedin" entity="object"/>
+    <!-- model? -->
+    <!-- texture? -->
+  </entity>
+  <entity table="agent" name="agent">
+    <documentation>An object with agency: a hierarchy of needs, a planning
+  process, locomotion.</document>
+    <key>
+      <property type="entity" name="id" entity="object"/>
+    </key>
+    <property type="entity" entity="species" name="species"/>
+    <property type="entity" entity="planner" name="planner">
+    <documentation>
+    The function used to plan the next action for this agent.
+    </documentation>
+    </property>
+  </entity>
+  <entity table="character" name="character">
+    <documentation>A character with a repertoire: knowledge, dialect, voice, 
+    et cetera.</document>
+    <key>
+      <property type="entity" name="id" entity="object"/>
+    </key>
+    <property type="string" name="personal-name" size="80"/>
+    <property type="entity" entity="trade" name="trade"/>
+    <property type="entity" entity="rank" name="rank"/>
+    <property type="entity" entity="clan" name="clan"/>
+    <property type="entity" entity="character" name="father"/>
+     <property type="entity" entity="character" name="mother"/>
+   <property type="entity" entity="responder" name="responder"/>
+  </entity>
+  
+</application>
+ 

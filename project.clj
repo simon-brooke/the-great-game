@@ -11,24 +11,24 @@
           :output-path "docs/codox"
           :source-uri "https://github.com/simon-brooke/the-great-game/blob/master/{filepath}#L{line}"}
   :cucumber-feature-paths ["test/features/"]
-  :dependencies [;;[codox "0.10.7-cloverage"]
-                 [com.taoensso/timbre "5.1.2"]
+  :dependencies [[com.taoensso/timbre "6.5.0"]
                  [environ "1.2.0"]
                  [jme-clj "0.1.13"]
 ;;                 [jme3-core "3.4.0-stable"]
                  [journeyman-cc/walkmap "0.1.0-SNAPSHOT"]
                  [me.raynes/fs "1.4.6"]
-                 [mw-engine "0.1.6-SNAPSHOT"]
+                 [mw-engine "0.1.6"]
                  [org.apache.commons/commons-math3 "3.6.1"] ;; for mersenne-twister implementation
-                 [org.clojure/algo.generic "0.1.3"]
-                 [org.clojure/clojure "1.10.3"]
-                 [org.clojure/math.numeric-tower "0.0.5"]
-                 [org.clojure/tools.namespace "1.1.1"]
-                 [org.clojure/tools.reader "1.3.6"]]
+                 [org.clojure/algo.generic "1.0.0"]
+                 [org.clojure/clojure "1.11.2"]
+                 [org.clojure/math.numeric-tower "0.1.0"]
+                 [org.clojure/tools.namespace "1.5.0"]
+                 [org.clojure/tools.reader "1.4.1"]]
   :description "Prototype code towards the great game I've been writing about for ten years, and know I will never finish."
   :license {:name "GNU General Public License,version 2.0 or (at your option) any later version"
             :url "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"}
-  :plugins [[lein-cloverage "1.2.2"]
+  :plugins [[lein-adl "0.1.7"]
+            [lein-cloverage "1.2.2"]
             [lein-codox "0.10.7-cloverage"]
             [lein-cucumber "1.0.2"]
             [lein-gorilla "0.4.0"]]

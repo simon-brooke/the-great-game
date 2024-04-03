@@ -70,6 +70,23 @@
 
  It's assumed that a journeyman scholar, presented with the opportunity, would prefer to become an apprentice magus than a master scholar.
 
+ ### Related crafts
+
+ There are groups of crafts which should probably be seen as related crafts, where apprenticeship in one should serve as qualification to serve as journeyman in another. For example, there is a family of woodworking crafts, whose base is probably `Joiner`.
+
+ Crafts within this family include
+
+ * Boatwright
+ * Cabinetmaker
+ * Cartwright
+ * Cooper
+ * Lutanist
+ * Military Artificer
+ * Millwright
+ * Turner
+
+ So although I think these are separate crafts, all are Joiners; all can undertake construction joinery work; and a journeyman who has served as apprentice to any can serve as journeyman to any other. Since journeymen will typically serve under more than one master before settling down, it will be possible for one person to have served under masters in two different related trades and therefore be qualified to set up as a master of either.
+
  A journeyman settles and becomes a master when he finds a location with at least the solo/min number of appropriate customer type who are not serviced by another master craftsman of the same craft; he also (obviously) needs to find enough free land to set up his dwelling. The radius within which his serviced customers must live may be a fixed 10Km or it may be variable dependent on craft. If there are unserviced customers within his service radius, the master craftsman may take on apprentices and journeymen to service the additional customers up to a fixed limit – perhaps a maximum of four of each, perhaps variable by craft. If the number of customers falls, the master craftsman will first dismiss journeymen, and only in desperate circumstances dismiss apprentices. Every apprentice becomes a journeyman after three years service.
 
  The list of crafts given here is illustrative, not necessarily exhaustive.
