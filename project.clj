@@ -18,7 +18,7 @@
 ;;                 [jme3-core "3.4.0-stable"]
                  [journeyman-cc/walkmap "0.1.0-SNAPSHOT"]
                  [me.raynes/fs "1.4.6"]
-                 [mw-engine "0.1.6-SNAPSHOT"]
+                 [mw-engine "0.3.0-SNAPSHOT"]
                  [org.apache.commons/commons-math3 "3.6.1"] ;; for mersenne-twister implementation
                  [org.clojure/algo.generic "0.1.3"]
                  [org.clojure/clojure "1.10.3"]
@@ -32,7 +32,8 @@
   :plugins [[lein-cloverage "1.2.2"]
             [lein-codox "0.10.7-cloverage"]
             [lein-cucumber "1.0.2"]
-            [lein-gorilla "0.4.0"]]
+            [org.clojars.benfb/lein-gorilla "0.7.0"]
+            ]
 
   ;; NOTE WELL: `lein release` won't work until we have a release repository
   ;; set, which we don't!
