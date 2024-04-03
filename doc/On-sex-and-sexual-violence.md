@@ -6,7 +6,7 @@ It would be ludicrous to argue 'sexual violence is wrong, therefore we should no
 
 Firstly, sexual violence is extremely gendered. Yes, male people are sometimes subjected to sexual violence, but nevertheless the overwhelming majority of victims of sexual violence are female. Yes, female people are sometimes &mdash; extraordinarily rarely, but sometimes &mdash; perpetrators of sexual violence, but nevertheless perpetrators of sexual violence are almost exclusively male.
 
-Secondly, it is extremely tricky to represent sexual violence in visual media without eroticising it. There's a [very famous scene in Last Tango in Paris](https://www.independent.co.uk/arts-entertainment/films/news/last-tango-in-paris-butter-scene-b2270513.html) which the director might claim is consented in context, but which appears to me to be a clear case of anal rape, which is nevertheless highly erotic. There's a scene in [High Plains Drifter](https://en.wikipedia.org/wiki/High_Plains_Drifter#Plot) where no part of the rape is actually represented &mdash; it happens off screen &mdash; but it is nevertheless perceived by many people (including me) as eroticised. Many people &mdash; I suspect more men than women, but certainly including women &mdash; do find the idea of rape erotic. It seems to me highly undesirable that a game should be seen to be rewarding immoral action.
+Secondly, it is extremely tricky to represent sexual violence in visual media without eroticising it. There's a [very famous scene in Last Tango in Paris](https://www.independent.co.uk/arts-entertainment/films/news/last-tango-in-paris-butter-scene-b2270513.html) which the director might claim is consented in context, but which appears to me to be a clear case of anal rape, which is nevertheless highly erotic. There's a scene in [High Plains Drifter](https://en.wikipedia.org/wiki/High_Plains_Drifter#Plot) where no part of the rape is actually represented &mdash; it happens off screen &mdash; but it is nevertheless perceived by many people (including me) as eroticised. Many people &mdash; I suspect more men than women, but certainly including many women &mdash; do find the idea of rape erotic. It seems to me highly undesirable that a game should be seen to be rewarding immoral action.
 
 (Yes, I know many modern games do quite explicitly reward killing, including of characters whose culpability is at best trivial, but &mdash; surely &mdash; this is something we should be seeking to move away from.)
 
@@ -40,7 +40,7 @@ If we're going to represent a society in which public sex is normal, then we're 
 
 By 'eroticised', I'm meaning deliberately intended to trigger sexual feelings in the audience &mdash; which, if the player character is present, includes the player.
 
-## Sexual violence between non-player characters
+## Sexual violence between non-player characters
 
 In a world in which there are characters who are thuggish, who seek to dominate, terrorise and subdue other characters, whether those characters are outlaws or soldiers or aristocrats, to pretend that rape would not be used as a means to dominate, terrorise or subdue is… bowdlerisation. It's unrealistic, and it's a morally indefensible choice.
 
@@ -50,7 +50,24 @@ So there has to be a mechanism for non-player characters to decide to commit act
 
 Mutually consented sexual behaviour between the player character and (certain, scripted) non-player characters has been a feature of video games for some time, and has occasionally been portrayed with real sensitivity and eroticism. Two cases I would point to are 
 
-1. The sex scene between Geralt and Shani in [The Witcher]()
+1. The sex scene between Geralt and Shani in The Witcher;
+2. The sex scene between V and Judy in Cyberpunk  2077.
+
+Cyberpunk is a largely non-cutscene game, but the sex scenes is a cutscenes and I completely understand why, from a technical point of view: the player does not have, either with mouse and keyboard or with a game controller, nearly enough control over their character to convey the subtlety and nuance of a good sex scene. Sex scenes in most video games are also pretty rare, and that must be at least partly because of cultural prurience. 
+
+But if a game allows a player to have a long lasting, narratively sexual relationship with a non-player character, as many games do, then sex is a behaviour which may happen repeatedly, and just playing the same cutscene over and over again is not going to be an adequate way of representing that.
+
+The ideal would be to have a moderately large library of brief motion captures of people authentically having sex, and to be able to select performances at random from that library to apply to the body models of the characters who in the game are having sex, whether that be the player character with a non-player character, or two non-player characters. In the case where the player character is involved, this would happen in the location where the player chose to initiate it, so it wouldn't be a cutscene in the normal sense; but I think that the controller should be disabled for the duration of the performance.
+
+## Sexual violence by one non-player character towards another
+
+This is at least implicitly represented in existing video games, and while caution about eroticising it should be maintained, I think it's something which should be narratively possible.
 
 ## Sexual violence from the player character towards non-player characters
+
+This would be extremely tricky (and controversial!) to handle; I *think* it ought to be in the narrative toolkit, but I have no specification to offer just now.
+
+## Sexual violence from a non-player character towards the player character
+
+Even trickier!
 

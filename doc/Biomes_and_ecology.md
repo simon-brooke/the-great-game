@@ -1,4 +1,4 @@
-# Biomes and ecology
+# Biomes and ecology (unfinished)
 *The motivation for this document was to explain the mulberry trees in the Tcha valley, and think about why Tchahua is especially a centre for the silk trade*
 
 ## Broader geography
@@ -108,7 +108,7 @@ The Tcha is the westernmost &mdash; and largest &mdash; river of the coast. It e
 
 A road branches off from the main Caravan Road at the South Inn and runs down the eastern side of the valley, to a ferry across the Sind river, where it joins the Tcha as a tributary, at the village helpfully known as Sind Ferry, and thence to Tchahua.
 
-Mulberries, by products of the silk industry, are used in the production of brandy. Mulberry wine is produced in villages in the forest, and transported down river to a distillery at Sind Ferry, where it is distilled. Some mulberry wine may be sold in Tchahua for drinking as wine (and it is certainly drunk in the villages), but it is generally considered inferior to grape wine.
+Mulberries, by-products of the silk industry, are used in the production of brandy. Mulberry wine is produced in villages in the forest, and transported down river to a distillery at Sind Ferry, where it is distilled. Some mulberry wine may be sold in Tchahua for drinking as wine (and it is certainly drunk in the villages), but it is generally considered inferior to grape wine.
 
 There is some arable and mixed agriculture, mainly towards the southern end of the valley on the western (less steep) side, although this side is also largely forested. 
 

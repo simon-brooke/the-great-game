@@ -1,4 +1,4 @@
-# API Spec
+# API Spec (unfinished)
 
 If the Gossip system is ever to be deployed in practice at all, it will need to be deployed as a library add-on to someone else's game, since in practice The Great Game will never be even nearly finished. The game engine already knows many of the things the Gossip system needs to know; that we need to define is an interface which allows Gossip, considered as a subsystem, to query the game engine.
 
@@ -8,7 +8,7 @@ My preference is still that Gossip should be written in a Lisp-like language - a
 
 Existing game engines don't tend to track in convenient form things which have happened off-camera - indeed, mostly, things don't happen at all when the player isn't present. They don't even track much that happens when the player is present, and they usually track what they do track in fairly ad-hoc ways. So generally Gossip-as-library will have to maintain its own history of what has happened, and who knows what about what has happened; and will have to model the major life events of non-player characters happening off-camera (if this is done at all) itself.
 
-## Interrogating lore
+## Interrogating lore
 
 Many games have a great deal of lore and many lore texts. It's reasonable to expect each non-player character to know a certain amount of lore, certainly lore which is local to their home location, or relevant to their trade. In order to make that available to Gossip, you probably need to construct a searchable corpus of all the lore, which can be simply queried.
 

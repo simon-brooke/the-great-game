@@ -1,4 +1,4 @@
-# Game-engine integration
+# Game-engine integration (unfinished)
 
 To build a game using these ideas we need a lot of things that are well understood and already implemented: rendering a world, moving models of characters in a world, and so on. This collection of technologies which allow us to realise an interactive realisation of a world is typically called a game engine.
 

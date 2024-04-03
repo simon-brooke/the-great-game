@@ -66,46 +66,46 @@
                                      `world`.")
   (tired? [actor world circle] "True if this `actor` needs rest."))
 
-(defrecord Agent
-  ;; "A default agent."
-           [name craft home culture]
-  ProtoObject
-  ProtoContainer
-  ProtoAgent
+;; (defrecord Agent
+;;   ;; "A default agent."
+;;            [name craft home culture]
+;;   ProtoObject
+;;   ProtoContainer
+;;   ProtoAgent
 
-  (act
-    “Return a world like this `world `except that this `actor `has acted in it.
-    ‘Circle’ indicates which activation circle the actor is in.
+;;   (act
+;;     “Return a world like this `world `except that this `actor `has acted in it.
+;;     ‘Circle’ indicates which activation circle the actor is in.
 
-    Note that this implies that a `plan `is a function of three arguments, an
-    actor, a world. and a circle.”
-    [actor world circle]
-    (let [urgent (case circle
-                   :other (cond
-                            (pending-scheduled-action? actor world circle) 
-                            (plan-scheduled-action actor world circle)
-                            (empty? (:plans actor)) 
-                            (plan-goal actor world circle))
-                   :background (cond
-                                 (threatened? actor world circle) 
-                                 (plan-fight-or-flight actor world circle)
-                                 (pending-scheduled-action? actor world circle) 
-                                 (plan-scheduled-action actor world circle)
-                                 (empty? (:plans actor)) 
-                                 (plan-goal actor world circle))
-                   ;; else
-                   (cond
-                     (threatened? actor world circle) 
-                     (plan-fight-or-flight actor world circle)
-                     (hungry? actor world circle) 
-                     (plan-find-food actor world circle)
-                     (tired? actor world circle) 
-                     (plan-find-rest actor world circle)
-                     (pending-scheduled-action? actor world circle) 
-                     (plan-scheduled-action actor world circle)
-                     (empty? (:plans actor)) 
-                     (plan-goal actor world circle)))
-          a’ (if urgent
-               (assoc actor :plans (cons urgent (:plans actor)))
-               actor)]
-      (eval ((first (:plans a’)) a’ world)))))
+;;     Note that this implies that a `plan `is a function of three arguments, an
+;;     actor, a world. and a circle.”
+;;     [actor world circle]
+;;     (let [urgent (case circle
+;;                    :other (cond
+;;                             (pending-scheduled-action? actor world circle) 
+;;                             (plan-scheduled-action actor world circle)
+;;                             (empty? (:plans actor)) 
+;;                             (plan-goal actor world circle))
+;;                    :background (cond
+;;                                  (threatened? actor world circle) 
+;;                                  (plan-fight-or-flight actor world circle)
+;;                                  (pending-scheduled-action? actor world circle) 
+;;                                  (plan-scheduled-action actor world circle)
+;;                                  (empty? (:plans actor)) 
+;;                                  (plan-goal actor world circle))
+;;                    ;; else
+;;                    (cond
+;;                      (threatened? actor world circle) 
+;;                      (plan-fight-or-flight actor world circle)
+;;                      (hungry? actor world circle) 
+;;                      (plan-find-food actor world circle)
+;;                      (tired? actor world circle) 
+;;                      (plan-find-rest actor world circle)
+;;                      (pending-scheduled-action? actor world circle) 
+;;                      (plan-scheduled-action actor world circle)
+;;                      (empty? (:plans actor)) 
+;;                      (plan-goal actor world circle)))
+;;           a’ (if urgent
+;;                (assoc actor :plans (cons urgent (:plans actor)))
+;;                actor)]
+;;       (eval ((first (:plans a’)) a’ world)))))

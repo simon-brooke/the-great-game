@@ -1,4 +1,4 @@
-# The Red Company: modelling democracy and morale
+# The Red Company: modelling democracy and morale (unfinished)
 
 ## Background
 
@@ -25,3 +25,5 @@ One of the themes of the stories I want to tell is that this more democratic str
 ## Modelling democracy
 
 If each individual character has a hierarchy of needs, and plans actions based on that hierarchy of needs, then they have the mechanism in place to choose which of two options better conforms to their hierarchy of needs.
+
+This implies that soldiers are likely to vote for the people (or ideas presented by the people) they consider most competent and/or most trustworthy. Which comes back to modelling reputation; which comes back to the [gossip](the-great-game.gossip.gossip.html).

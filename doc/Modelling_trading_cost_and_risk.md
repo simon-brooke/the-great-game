@@ -1,4 +1,4 @@
-# Modelling trading cost and risk
+# Modelling trading cost and risk (unfinished)
 
 In a dynamic pre-firearms world with many small states and contested regions, trade is not going to be straightforward. Not only will different routes have different physical characteristics - more or less mountainous, more or fewer unbridged river crossings - they will also have different political characteristics: more of less taxed, more or less effectively policed.
 

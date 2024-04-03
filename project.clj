@@ -29,7 +29,7 @@
             :url "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"}
   :plugins [[lein-adl "0.1.7"]
             [lein-cloverage "1.2.2"]
-            [lein-codox "0.10.7-cloverage"]
+            [lein-codox "0.10.8"] ;;[lein-codox "0.10.7-cloverage"]
             [lein-cucumber "1.0.2"]
             [org.clojars.benfb/lein-gorilla "0.7.0"]
             ]

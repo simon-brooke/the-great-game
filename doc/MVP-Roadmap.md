@@ -46,7 +46,11 @@ Different characters should have different voices.
 
 ## Prototype four: performative speech
 
-This one is hard because I'm not absolutely sure how I can do it, but I need characters' voices to convey emotion; the player needs to know from their voice whether they are angry, or frightened, or impatient, or bored.
+This one is hard because I'm not absolutely sure how I can do it, but I need characters' voices to convey emotion; the player needs to know from their voice whether they are angry, or frightened, or impatient, or bored. 
+
+There is a [W3C specification](https://www.w3.org/TR/speech-synthesis11/) for an XML markup for speech performance, and I can certainly generate that, but I'd need to find a text-to-speech library which could consume it. There's also a separate [specification](https://www.w3.org/TR/pronunciation-lexicon/) to associate pronunciations with lexical tokens, which is also potentially useful, especially for names.
+
+Google has a '[Cloud Text-to-Speech](https://cloud.google.com/text-to-speech/docs/ssml)' service which understands SSML and might be good enough for a demo but is more likely just embarrassingly bad.
 
 ## Prototype five traversible world
 

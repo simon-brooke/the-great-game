@@ -15,7 +15,7 @@ What individual characters know should, of course, be more limited. People who l
 
 Again, the generation of distinct voices for hundreds of non-player characters isn't any longer a big deal. Distinct social groups -- the corpos, and the different gangs such as Maelstrom or the Mox, will have their own argot, their own slang, their own habitual figures of speech which can be encoded into template libraries, while technologies like Lyrebird can produce an infinite range of realistic-sounding voices.
 
-In particular, they can mimic real voices. They can mimic the voices of real actors. They can mimic [Keanu Reeves](https://cyberpunk.fandom.com/wiki/Keanu_Reeves).
+In particular, they can mimic real voices. They can mimic the voices of real actors. They can mimic [Keanu Reeves](https://cyberpunk.fandom.com/wiki/Keanu_Reeves). (Interestingly, since I first wrote this note, CD Projekt Red have used Lyrebird-like technology to [resurrect a voice actor](https://www.theverge.com/2023/10/13/23915535/cyberpunk-2077-phantom-liberty-polish-voice-actor-ai-ripperdock-viktor-vektor) in Phantom Liberty, proving that the technology is good enough).
 
 So: how do you integrate this free form 'you can say anything to any character' style of play with scripted plot?
 

@@ -2,19 +2,19 @@
 
 The principles of game play which I'm looking for are a reaction against all I see as wrong in modern video games. So let's set out what these are:
 
-1. Superpower: the player character has some special powers or skills that other characters in the game fo not have.
+1. **Superpower**: the player character has some special powers or skills that other characters in the game fo not have.
 
-2. Special status: the player character is 'the chosen one', 'the hero', or even just 'the Witcher' from the very beginning, without having done anything to earn those titles.
+2. **Special status**: the player character is 'the chosen one', 'the hero', or even just 'the Witcher' from the very beginning, without having done anything to earn those titles.
 
-3. Boss fights: some non-player characters have special, and specially strong, combat repertoire, and block progress in the game until you overcome them.
+3. **Boss fights**: some non-player characters have special, and specially strong, combat repertoire, and block progress in the game until you overcome them.
 
-4. Psychokiller: completing the game necessarily involves beating many, many other characters in combat.
+4. **Psychokiller**: completing the game necessarily involves beating many, many other characters in combat.
 
-5. Slaughterhouse: the main way to interact with other characters is to kill them.
+5. **Slaughterhouse**: the main way to interact with other characters is to kill them.
 
-7. The Script is King: everything is scripted. The player either can't diverge from the script, or if they do, will find no interesting content.
+7. **The Script is King**: everything is scripted. The player either can't diverge from the script, or if they do, will find no interesting content.
 
-6. Dumb and dumber: non-player characters, even important ones, have extremely limited vocal repertoire.
+6. **Dumb and dumber**: non-player characters, even important ones, have extremely limited vocal repertoire.
 
 Of these, the last two, I think, are key: they are the root cause of the other problems. In fact, to take it further, the real key is the last. We talk a lot about 'Game AI', but really there's nothing remotely approaching artificial intelligence in modern games. Non-player characters do not think; they do not learn; they do not reason; they do not know. They speak only from the script. And they speak only from the script because of the fetish for voice acting.
 
@@ -28,7 +28,7 @@ Suddenly, they can have attitudes about things that happen in the world, opinion
 
 And with the emergence of intelligent behaviour comes the emergence of possibilities for negotiation, for diplomacy, for dynamic, unscripted, friendships and romances. Which means, there are things you can do to interact with every non-player character, even ones who are not 'plot' characters, other than just kill them.
 
-And as now gameplay possibilities emerge, as new stories emerge organically out of the dynamically changing relationships between non-player characters in the world, the need for scripting decreases.
+And as new gameplay possibilities emerge, as new stories emerge organically out of the dynamically changing relationships between non-player characters in the world, the need for scripting decreases.
 
 The problem with scripting is that it greatly limits player agency. The story can only have one of a few predetermined -- literally, scripted -- endings. This is clearly expressed in [a review of Red Dead Redemption 2](https://youtu.be/_JRikiQyzLA) which I recomment to you; but is equally true of almost all other games.
 
