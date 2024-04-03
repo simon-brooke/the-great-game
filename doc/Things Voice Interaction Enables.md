@@ -10,13 +10,13 @@ Suppose you're entering a village, and you meet a random character. That charact
 
 So the random character could say
 
-> Hello, I'm Tobias, and that's my mill over there. Who might you be, stranger?
+> Hello, I'm Tobias, and that my mill over there. Who might you be, stranger?
 
 At which point you can either tell him, or not. Suppose you tell him, he could say
 
 > Oh! I've heard of you. It's said you're very handy with a sword.
 
-And you can reply however you like, acknowledging, or being modest, or perhaps even denying (although from this line of dialogue if you deny he'll think you're being modest, for reasons see later). He can then say, taking our example from the 'abducted child' quest in [the Introduction](intro.html),
+And you can reply however you like, acknowledging, or being modest, or perhaps even denying (although from this line of dialogue if you deny he'll think you're being modest, for reasons see later). He can then say, taking our example from the 'abducted child' quest in [the Introduction](intro,html),
 
 > Thing is, old granny Grizzel's granddaughter Esmerelda has been abducted by bandits, and we've done a whip-around for a reward for someone who can rescue the girl.
 
@@ -38,7 +38,7 @@ So, to repeat for clarity: the idea is, if there is a quest in the vicinity, whe
 
 ## Command in Battles
 
-Player characters in role playing games are often narratively great heroic leaders &mdash; see any of the Dragon Age games but particularly Inquisition for examples of this &mdash; but when it comes to a pitched battle all they can do is follow a scripted battle plan and fight individual actions, because in current generation role-playing games there is no effective user interface to allow strategic and tactical control of a battle.
+Player characters in role playing games are often narratively great heroic leaders -- see any of the Dragon Age games but particularly Inquisition for examples of this -- but when it comes to a pitched battle all they can do is follow a scripted battle plan and fight individual actions, because in current generation role-playing games there is no effective user interface to allow strategic and tactical control of a battle.
 
 So how would a real-world, before modern communications technology, war leader command a battle? Why, by observing the battle and talking to people, and those are both things that in our game the player can do.
 
