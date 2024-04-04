@@ -18,9 +18,9 @@ The principles of game play which I'm looking for are a reaction against all I s
 
 Of these, the last two, I think, are key: they are the root cause of the other problems. In fact, to take it further, the real key is the last. We talk a lot about 'Game AI', but really there's nothing remotely approaching artificial intelligence in modern games. Non-player characters do not think; they do not learn; they do not reason; they do not know. They speak only from the script. And they speak only from the script because of the fetish for voice acting.
 
-## Death to Dumb-Dumb
+## Death to Dum-Dum
 
-As I've argued [elsewhere](Voice-acting-considered-harmful), [repeatedly](Selecting Character), we can now generate a wide variety of naturalistic speaking voices, and have them narrate text. Now of course there's great deal of information conveyed in human vocal communication in addition to the words – of which emotion is only an example, although an important one. Generating voices with the right tone, the right emphasis, for different situations may be harder than I anticipate; there may be an '[uncanny valley](Uncanny_dialogue)' in which generated speech just sounds uncomfortably off.
+As I've argued [elsewhere](Voice-acting-considered-harmful.html), [repeatedly](Selecting_Character.html), we can now generate a wide variety of naturalistic speaking voices, and have them narrate text. Now of course there's great deal of information conveyed in human vocal communication in addition to the words – of which emotion is only an example, although an important one. Generating voices with the right tone, the right emphasis, for different situations may be harder than I anticipate; there may be an '[uncanny valley](Uncanny_dialogue.html)' in which generated speech just sounds uncomfortably off.
 
 But it's a trade off. For possibly less than perfect vocal performance, you get the possibility of much richer repertoire. You get not only the possibility that non-player characters can talk about the weather, or gossip about their neighbours, or give you directions to local places of interest. You get the possibility that a non-player character's attitude to you may be conditioned by the fact that they've heard that you stole from their second cousin, or that you killed an outlaw who'd raped one of their friends.
 

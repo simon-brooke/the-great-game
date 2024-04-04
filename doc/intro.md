@@ -33,21 +33,21 @@ repertoire of speech.
 ## Previous essays that are relevant
 
 * [The spread of knowledge in a large game world](The-spread-of-knowledge-in-a-large-game-world.html) (2008) discusses what individual non-player characters know, and how to model dynamic updates to their knowledge;
-* [Settling a game world](https://blog.journeyman.cc/2009/12/settling-game-world.html) (2009) gives rough outline of ideas about creating the environment, including modelling things like soil fertility, local building materials, and consequently local architecture;
-* [Tessellated multi-layer height map](https://blog.journeyman.cc/2013/07/tessellated-multi-layer-height-map.html) (2013) gives ideas for how a designed geography for a very large world could be stored relatively economically;
-* [Genetic Buildings](https://blog.journeyman.cc/2013/07/genetic-buildings.html) (2013) sketches algorithms which would allow procedurally-generated buildings to be site-appropriate, broadly variable and reproducable;
+* [Settling a game world](Settling-a-game-world.html) (2009) gives rough outline of ideas about creating the environment, including modelling things like soil fertility, local building materials, and consequently local architecture;
+* [Tessellated multi-layer height map](https://www.journeyman.cc/blog/posts-output/2013-07-04-tessellated-multilayer-height-map/) (2013) gives ideas for how a designed geography for a very large world could be stored relatively economically;
+* [Genetic Buildings](Genetic-buildings.html) (2013) sketches algorithms which would allow procedurally-generated buildings to be site-appropriate, broadly variable and reproducable;
 * [Populating a game world](Populating-a-game-world.html) (2013) provides outline algorithms for how a world can be populated, and how organic mixes of trades and crafts can be modelled;
-* [Modelling the change from rural to urban](https://blog.journeyman.cc/2013/07/modelling-change-from-rural-to-urban.html) (2013) describes the idea of procedurally modelling settlements, but it is grid-based and not particularly satisfactory and has largely been superceded in my thinking;
-* [Of pigeons, and long distance messaging in a game world](https://blog.journeyman.cc/2013/10/of-pigeons-and-long-distance-messaging.html) (2013) builds on ideas about flows of information;
-* [Modelling rural to urban, take two](https://blog.journeyman.cc/2013/10/modelling-rural-to-urban-take-two.html) (2013) revisited the idea of modelling organic settlement structures, trying to find algorithms which would naturally produce more persuasive settlement models, including further ideas on the procedural generation of buildings;
-* [More on modelling rivers](https://blog.journeyman.cc/2014/09/more-on-modelling-rivers.html) (2014) talks about modelling hydrology, with implications for soil fertility;
-* [Modelling settlement with cellular automata](https://blog.journeyman.cc/2014/08/modelling-settlement-with-cellular.html) (2014) talks about successful implementation of algorithms to model vegetative environment, human settlement and the impact of human settlement on the environment;
-* [Voice acting considered harmful](https://blog.journeyman.cc/2015/02/voice-acting-considered-harmful.html) (2015) outlines the ideas behind full speech interaction with non-player characters, and modelling what those non-player characters should be able to speak about;
+* [Modelling the change from rural to urban](https://www.journeyman.cc/blog/posts-output/2013-07-17-modelling-the-change-from-rural-to-urban/) (2013) describes the idea of procedurally modelling settlements, but it is grid-based and not particularly satisfactory and has largely been superceded in my thinking;
+* [Of pigeons, and long distance messaging in a game world](https://www.journeyman.cc/blog/posts-output/2013-10-01-of-pigeons-and-long-distance-messaging-in-a-game-world/) (2013) builds on ideas about flows of information;
+* [Modelling rural to urban, take two](https://www.journeyman.cc/blog/posts-output/2013-10-14-modelling-rural-to-urban-take-two/) (2013) revisited the idea of modelling organic settlement structures, trying to find algorithms which would naturally produce more persuasive settlement models, including further ideas on the procedural generation of buildings;
+* [More on modelling rivers](https://www.journeyman.cc/blog/posts-output/2014-09-28-more-on-modelling-rivers/) (2014) talks about modelling hydrology, with implications for soil fertility;
+* [Modelling settlement with cellular automata](https://www.journeyman.cc/blog/posts-output/2014-08-26-modelling-settlement-with-a-cellular-automaton/) (2014) talks about successful implementation of algorithms to model vegetative environment, human settlement and the impact of human settlement on the environment;
+* [Voice acting considered harmful](Voice-acting-considered-harmful.html) (2015) outlines the ideas behind full speech interaction with non-player characters, and modelling what those non-player characters should be able to speak about;
 * [Baking the world](Baking-the-world.html) (2019) an outline of the overall process of creating a world.
 
 ## Organic and emergent game-play
 
-If a world is [dynamically populated](https://blog.journeyman.cc/2014/08/modelling-settlement-with-cellular.html), with [dynamic allocation of livelihoods](https://blog.journeyman.cc/2013/07/populating-game-world.html) then several
+If a world is [dynamically populated](https://www.journeyman.cc/blog/posts-output/2014-08-26-modelling-settlement-with-a-cellular-automaton/), with [dynamic allocation of livelihoods](Populating-a-game-world.html) then several
 aspects of gameplay will emerge organically. First, of course, is just
 exploring; in a dynamically changing world there will always be more to
 explore, and it will be different in each restart of the game.
@@ -119,7 +119,7 @@ To make dynamic quests work, of course, you need a dynamic world; a world in
 which conflicts can arise. A world in which traders trade, robbers rob, lovers
 love, haters hate, scandal-mongers make scandal, organically and dynamically
 whether the player is there or not, and where news of these events will filter
-through to the player through the [gossip network](https://blog.journeyman.cc/2008/04/the-spread-of-knowledge-in-large-game.html) also organically and dynamically.
+through to the player through the [gossip network](The-spread-of-knowledge-in-a-large-game-world.html) also organically and dynamically.
 
 ## Extending the story
 
@@ -324,10 +324,7 @@ or empty. So the base cost of a journey is a function of the time taken, which
 is essentially a function of the distance. 
 
 Obviously, on top of the base cost of movement there are tolls, which are imposed
-by the aristons through whose territory the journey passes (and therefore predictable, 
-and can be used in route planning), and also the risk of having to bribe or fight outlaws, 
-and the possible need to hire mercenaries to defend against outlaws, which is not predictable 
-but can be estimated and thus also used in route planning.
+by the aristons through whose territory the journey passes (and therefore predictable, and can be used in route planning), and also the risk of having to bribe or fight outlaws, and the possible need to hire mercenaries to defend against outlaws, which is not predictable but can be estimated and thus also used in route planning.
 
 ### Outlawry and merchants
 

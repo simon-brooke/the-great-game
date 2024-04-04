@@ -18,7 +18,7 @@ If we have voice interaction sufficiently sophisticated that we can allow the pl
 
 ## Tinder as a Character Selector
 
-Tinder is a dating app. It shows you pictures of potential partners, and you choose from them by swiping left to reject them, or right to express interest in them. That's a kernel of an idea for how to select from among a large selection of people.
+Tinder is a dating app. It shows you pictures (with brief profiles) of potential partners, and you choose from them by swiping left to reject them, or right to express interest in them. That's a kernel of an idea for how to select from among a large selection of people.
 
 So how about:
 

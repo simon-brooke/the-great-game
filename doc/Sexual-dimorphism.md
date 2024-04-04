@@ -8,7 +8,7 @@ OK? Let's start.
 
 When a man and a woman have sex, there's a non-zero chance that the woman will get pregnant. There's a zero chance that the male will get pregnant.
 
-A woman can typically give birth to of the order of twelve children in the course of her life, and each childbirth involves a non-zero risk of death. If modelling the sort of bronze-age-to-late-medieval cultures I'm generally considering, there are no available reliable methods of contraception, although their may be, for example, known spermicidal or abortifacient spells or potions. If it's abortifacient, that's pretty unpleasant for the woman, too.
+A woman can typically give birth to of the order of twelve children in the course of her life, and each childbirth involves a non-zero risk of death. If modelling the sort of bronze-age-to-late-medieval cultures I'm generally considering, there are no available reliable methods of contraception, although there may be, for example, known spermicidal or abortifacient spells or potions. If it's abortifacient, that's pretty unpleasant for the woman, too.
 
 Children, especially when young, are very vulnerable and need protection. Children with good protection are much more likely to survive to adulthood. Raising children involves a fair amount of work.
 
@@ -26,7 +26,7 @@ Another significant point is that women's ability to bear children ceases at a m
 
 ## Why have sex at all?
 
-If a character has 'having children' - the [**Ancestor**](intro.html#aspirations-and-goals) aspiration, in my typology - as their key aim, then they will want to have sex. But to have children in this sense is to have acknowledged children, so while a male character may be motivated to have multiple female partners, he will never the less have some degree of long term committment to them, and will want both to feel confident that the children are his and to be recognised by their father.
+If a character has 'having children' &mdash; the [**Ancestor**](intro.html#aspirations-and-goals) aspiration, in my typology &mdash; as their key aim, then they will want to have sex. But to have children in this sense is to have acknowledged children, so while a male character may be motivated to have multiple female partners, he will never the less have some degree of long term committment to them, and will want both to feel confident that the children are his and to be recognised by their father.
 
 From the point of view of seeking to become an Ancestor, there is little benefit to the woman in having multiple partners, except in very harsh environments. It will be easier to give one partner confidence that all your children are his, and while a man can increase his number of potential progeny by having multiple wives, mistresses or other classes of long-term female sexual partners, a woman cannot.
 

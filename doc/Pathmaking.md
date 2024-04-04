@@ -2,6 +2,8 @@
 
 **NOTE**: this file is called 'pathmaking', not 'pathfinding', because 'pathfinding' has a very specific meaning/usage in game design which is only part of what I want to talk about here.
 
+**NOTE**: Work on this is being carried on in a separate library, [Walkmap](https://github.com/simon-brooke/walkmap), q.v.
+
 ## Stages in creating routes between locations
 
 *see also [Baking the world](Baking-the-world.html)*

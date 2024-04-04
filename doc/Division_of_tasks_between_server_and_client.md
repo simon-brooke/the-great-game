@@ -8,7 +8,7 @@ There is something which manages game state and things like the gossip network, 
 
 The initial idea of The Great Game is that it is a single player game, but it actually doesn't need to be and it would be quite possible for one server to support multiple clients, each being used by a different player. 
 
-The server/planner decides what each actor does, models what each character knows, plans and records all actions and transactions. It plans speech acts, and handles conversations which happen off screen, but hands speech texts over to the client/performer layer for actual performance. It also plans journeys as described in [[Pathmaking]], but it doesn't deal with movement within a polygon or with collision avoidance. It deals with fights which happen off screen, but not those that happen on screen.
+The server/planner decides what each actor does, models what each character knows, plans and records all actions and transactions. It plans speech acts, and handles conversations which happen off screen, but hands speech texts over to the client/performer layer for actual performance. It also plans journeys as described in [Pathmaking](Pathmaking.html), but it doesn't deal with movement within a polygon or with collision avoidance. It deals with fights which happen off screen, but not those that happen on screen.
 
 ## What do I mean by the client?
 

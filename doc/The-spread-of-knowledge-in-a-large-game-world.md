@@ -2,18 +2,17 @@
 
 #### Saturday, 26 April 2008
 
-![part of the role of Dandelion, in The Witcher games, is to provide the player with news](https://4.bp.blogspot.com/-F2gxx0dRM8o/UlfSsRe8ybI/AAAAAAAAYIA/I1I9D5Yk7to/s1600/Tw2_full_Dandelion.png)
-
-
 ### Note
 
-_This version of this essay has been adapted to use the code in `the-great-game.gossip.news-items`, [q.v.](the-great-game.gossip.news-items.html). The original version of the essay is [still available on my blog](https://blog.journeyman.cc/2008/04/the-spread-of-knowledge-in-large-game.html)._
+*This version of this essay has been adapted to use the code in `the-great-game.gossip.news-items`, [q.v.](the-great-game.gossip.news-items.html). The original version of the essay is [still available on my blog](https://www.journeyman.cc/blog/posts-output/2008-04-26-the-spread-of-knowledge-in-a-large-game-world/).*
+
+-----
 
  These days we have television, and news. But in a late bronze age world there are no broadcast media. News spreads by word of mouth. If non-player characters are to respond effectively to events in the world, knowledge has to spread.
 
  How to model this?
 
- Some non-player characters - doesn't need to be many - are news-spreaders. News-spreaders need to travel. They have to travel even when there are no player characters in the vicinity. But, they don't have to travel very often - once or twice every game day. When a news-spreader is in the immediate vicinity of another character, the pair may (with some degree of randomness) exchange news. There needs to be a hierarchy in the exchange of news, so that 'I-saw' events need to be more likely to be passed on than 'I-heard' events; there needs to be a counter which counts the number of times a knowledge item has been passed on, and also an age counter so that knowledge items are less likely to be passed on as they get older.
+ Some non-player characters &mdash; doesn't need to be many &mdash; are news-spreaders. News-spreaders need to travel. They have to travel even when there are no player characters in the vicinity. But, they don't have to travel very often &mdash; once or twice every game day. When a news-spreader is in the immediate vicinity of another character, the pair may (with some degree of randomness) exchange news. There needs to be a hierarchy in the exchange of news, so that 'I-saw' events need to be more likely to be passed on than 'I-heard' events; there needs to be a counter which counts the number of times a knowledge item has been passed on, and also an age counter so that knowledge items are less likely to be passed on as they get older.
 
  One obvious class of news-spreader is a merchant. Merchant agents can either shuttle mechanically between a fixed group of markets or else possibly respond intelligently to supply and demand. Provided that there is a mesh of merchant routes covering the markets of the game world, and that a useful subset of non-merchant characters are required to visit a market every few game days, this should give a reasonably realistic framework for news spreading.
 
@@ -65,11 +64,11 @@ But also, the added knowledge is *degraded*. If the recipient isn't from Hans'hu
      :nth-hand 4,
      :time-stamp 17946463}
 
-The timestamp could also be degraded, or lost altother - although how exactly this is represnted I'm not certain. Someone interested in the incident may remember 'it was exactly 17 days ago', whereas someone else may remember that it was 'this month, I think'.
+The timestamp could also be degraded, or lost altother &mdash; although how exactly this is represnted I'm not certain. Someone interested in the incident may remember 'it was exactly 17 days ago', whereas someone else may remember that it was 'this month, I think'.
 
  Obviously the rate of decay, and the degree of randomness, of the news-passing algorithm would need to be tuned, but this schema seems to me to describe a system with the following features:
 
-* Non-player characters can respond to questions about significant things which happen in the world - without it all having to be scripted
+* Non-player characters can respond to questions about significant things which happen in the world &mdash; without it all having to be scripted
 * If you travel fast enough, you can keep ahead of your notoriety
 * Characters on major trade routes will know more about what is happening in the world than characters in backwaters
 
@@ -79,8 +78,8 @@ The timestamp could also be degraded, or lost altother - although how exactly th
 
  Let's work around the idea that a 'game day' equates to about two hours of wall clock time. Let's work around the idea that there are of the order of fifty markets in the game world, and that for each market there are two or three merchants whose 'home base' it is.
 
- Obviously non-player characters who are within the vicinity of a player character have to be 'awake', in order that the player can see them interacting with their world and can interact with them. Those characters have to be in working memory and have to be in the action polling loop in any case. So there's no extra cost to their gossiping away between each other - around the player there's a moving bubble of gossip, allowing each character the player interacts with to have a high probability of having some recent news.
+ Obviously non-player characters who are within the vicinity of a player character have to be 'awake', in order that the player can see them interacting with their world and can interact with them. Those characters have to be in working memory and have to be in the action polling loop in any case. So there's no extra cost to their gossiping away between each other &mdash; around the player there's a moving bubble of gossip, allowing each character the player interacts with to have a high probability of having some recent news.
 
- But the merchants who aren't in the vicinity of a player don't have to be in working memory all the time. Each merchant simply requires to be 'woken up' - loaded into memory - once per game day, move a day's journey in one hop, and then, if arriving at an inn or at a market, wake and exchange news with one resident character - an innkeeper or a gossip. So the cost of this algorithm in a fifty-market game is at worst the cost of loading and unloading two non-player characters from memory every minute, and copying two or three statements from the knowledge set of one to the knowledge set of the other. If you're dynamically modifying significance scores, of course, you'd need to also load the characters about whom news was being passed on; but this still doesn't seem unduly onerous.
+ But the merchants who aren't in the vicinity of a player don't have to be in working memory all the time. Each merchant simply requires to be 'woken up' &mdash; loaded into memory &mdash; once per game day, move a day's journey in one hop, and then, if arriving at an inn or at a market, wake and exchange news with one resident character &mdash; an innkeeper or a gossip. So the cost of this algorithm in a fifty-market game is at worst the cost of loading and unloading two non-player characters from memory every minute, and copying two or three statements from the knowledge set of one to the knowledge set of the other. If you're dynamically modifying significance scores, of course, you'd need to also load the characters about whom news was being passed on; but this still doesn't seem unduly onerous.
 
  Obviously, if memory is not too constrained it may be possible to maintain all the merchants, all the innkeepers and all the characters currently being talked about in memory all the time, further reducing the cost.

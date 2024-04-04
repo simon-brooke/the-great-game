@@ -24,4 +24,4 @@ It should be said that [Kenshi](https://lofigames.com/) &mdash; a game I've only
 
 If the player is going to depend on good samaritans for rescue after losing a fight, then there must be at least a social convention that people should assist people found injured on the wayside. Consequently, if the player fails to do this, that should in itself become a 'gossip' event which will lower the player's reputation with non-player characters.
 
-On the other hand, helping NPCs found injured at the wayside can be another category of [organic quest](Organic_Quests.md), as a special subcategory of an escort quest.
+On the other hand, helping NPCs found injured at the wayside can be another category of [organic quest](Organic_Quests.html), as a special subcategory of an escort quest.

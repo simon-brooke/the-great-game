@@ -32,22 +32,22 @@ Farmers are settled. Farmers occupy standard runrig plots, but because they don'
 * fibres: linen, hemp and silk (from silk-moths in mulberry orchards)
 * possibly other stuff I've forgotten.
 
-Farmers are all basically subsistence farmers, farming first to feed their own household and selling only surplus in the market.
+Farmers are all primarily subsistence farmers, farming first to feed their own household and selling only surplus in the market.
 
 ## Crafts
 
-Crafts generally process primary goods into secondary goods - whether intermediate stages or final consumer items. Some elite 'crafts' deal with abstract primary goods like law and knowledge, and they may be seen as somewhat separate.
+Crafts generally process primary goods into secondary goods &mdash; whether intermediate stages or final consumer items. Some elite 'crafts' deal with abstract primary goods like law and knowledge, and they may be seen as somewhat separate.
 
-A master craftsperson may occupy a standard runrig plot, much like a farmer's plot. Like a farmer, a poor master crafter household will cultivate part of the plot to produce food for the house - at least grow vegetables and keep hens. However, as the crafter takes on apprentices and journeymen - and gets richer - more buildings will be required as accommodation, workshop space and materials stores.
+A master craftsperson may occupy a standard runrig plot, much like a farmer's plot. Like a farmer, a poor master crafter household will cultivate part of the plot to produce food for the house &mdash; at least grow vegetables and keep hens. However, as the crafter takes on apprentices and journeymen &mdash; and gets richer &mdash; more buildings will be required as accommodation, workshop space and materials stores.
 
 Also, Tchahua is much more a gold-rush town than an organic, grew over hundreds of years sort of town, so it is not ex-runrig; and additionally the original settlement was probably along the river bank, land which has now been redeveloped as warehouses and as rich merchant residences. Generally, town house plots are small from the get go.
 
 Hans'hua is again an exception from normal organic development, as it has no agricultural land close to the city at all.
 
-Generally, primary goods aren't transported over land - because overland transport is expensive, by the time they've been transported they're no longer low cost goods. So often the craftspeople who process primary produce into at least commodity intermediate forms will live close to the source of the primary goods.
+Generally, primary goods aren't transported over land &mdash; because overland transport is expensive, by the time they've been transported they're no longer low cost goods. So often the craftspeople who process primary produce into at least commodity intermediate forms will live close to the source of the primary goods.
 
 So, for example, the town(s) where the shepherds hold their shearing fairs will tend to have a lot of weavers. While around mines there will be smelters producing ingots and bar stock to be marketed to smiths all over the place, there will also be smiths close to the mines producing commodity tools and weapons.
 
-See the table in Populating a game world.
+See the tables in [Populating a game world](Populating-a-game-world.html).
 
 

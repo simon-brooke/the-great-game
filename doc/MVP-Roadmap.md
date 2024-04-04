@@ -36,7 +36,7 @@ There should be one or two multiple decision point quests in this world which ca
 
 ## Prototype two: adding organic quests
 
-Extends prototype one only by adding [organic quests](Organic_Quests).
+Extends prototype one only by adding [organic quests](Organic_Quests.html).
 
 ## Prototype three: voice interaction
 

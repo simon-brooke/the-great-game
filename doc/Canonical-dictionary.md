@@ -1,4 +1,4 @@
-# A Canonical dictionary for this documentation
+# Canonical dictionary for this documentation
 
 Where a word is used in the documentation for The Great Game and its related projects, this file describes the canonical meaning of that word. This is because a lot of the concepts in play are messy and ambiguous, so that at times even I am confused by what I mean. The presence of this file is an acknowledment of this difficulty, and an implicit admission that not all the documentation is, at this stage anyway, consistent.
 
@@ -35,8 +35,8 @@ It is assumed that the `:home` of a character is a location in this sense.
 
 **Examples**
 
-1. [{:x 5445678 :y 9684351}]
-2. [{:x 5445678 :y 9684351} :karalin-palace :hanshua]
+1. \[{:x 5445678 :y 9684351}\]
+2. \[{:x 5445678 :y 9684351} :karalin-palace :hanshua\]
 
 #### Merchant
 

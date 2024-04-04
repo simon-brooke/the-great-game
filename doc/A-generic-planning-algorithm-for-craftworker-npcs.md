@@ -19,7 +19,7 @@ There are limits to the number of apprentices and journeymen a master may take o
 
 Apprentices are definitely not paid. Journeymen should be paid, but this is a detail to ignore until we have other things working.
 
-Journeymen will move on from master to master from time to time -- infrequently, but it will happen; and may be dismissed by masters when markets are tight. Journeymen probably learn their craft recipes -- which is to say, the items and qualities of item they are able to craft -- from the masters they work with. Consequently, journeymen will seek out masters with higher reputation; masters will prefer journeymen with more experience.
+Journeymen will move on from master to master from time to time &mdash; infrequently, but it will happen; and may be dismissed by masters when markets are tight. Journeymen probably learn their craft recipes &mdash; which is to say, the items and qualities of item they are able to craft &mdash; from the masters they work with. Consequently, journeymen will seek out masters with higher reputation; masters will prefer journeymen with more experience.
 
 Apprentices do not move on until the end of their period of apprenticeship (16th birthday?) when they become journeymen.
 
@@ -68,11 +68,14 @@ For each craft recipe the master knows there will be
 2. An amount of craftsperson time - for example, a standard infantry sword might take ten hours;
 3. Memory of prices achieved by item to that recipe in the local market.
 
-The master will choose a recipe for which there are sufficient materials on hand, and which is profitable to make -- the more profitable, the more likely to be selected (but I think there's probably some furtive dice rolling under the table here too; you don't want all the smiths in town producing infantry swords at the same time, because that would swamp the market and drive prices down).
+The master will choose a recipe for which there are sufficient materials on hand, and which is profitable to make &mdash; the more profitable, the more likely to be selected (but I think there's probably some furtive dice rolling under the table here too; you don't want all the smiths in town producing infantry swords at the same time, because that would swamp the market and drive prices down).
 
 When an item is started, the materials for it are removed from stock and assigned to the item, which is added to the work in progress list. The number of items that can be produced in a work session is
 
-    (the number of hours in the session * the number of people in the team) / the hours to produce one item
+```clojure
+    (/ (* hours-in-session people-in-team) 
+        hours-to-produce-one-item)
+```
 
 At the end of the session, the integer number of items produced is removed from the work in progress queue and added to stock, and the modulus is added as `:work-done` to the remaining item, which is left in the work in progress queue.
 

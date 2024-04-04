@@ -16,7 +16,7 @@ At which point you can either tell him, or not. Suppose you tell him, he could s
 
 > Oh! I've heard of you. It's said you're very handy with a sword.
 
-And you can reply however you like, acknowledging, or being modest, or perhaps even denying (although from this line of dialogue if you deny he'll think you're being modest, for reasons see later). He can then say, taking our example from the 'abducted child' quest in [the Introduction](intro,html),
+And you can reply however you like, acknowledging, or being modest, or perhaps even denying (although from this line of dialogue if you deny he'll think you're being modest, for reasons see later). He can then say, taking our example from the 'abducted child' quest in [the Introduction](intro.html#dynamic-quests),
 
 > Thing is, old granny Grizzel's granddaughter Esmerelda has been abducted by bandits, and we've done a whip-around for a reward for someone who can rescue the girl.
 
@@ -34,11 +34,13 @@ OK, but what if, in the game world, the player character is not good with a swor
 
 It's the same quest, and, whatever Tobias has said, the player can still use either violence or persuasion or trickery to complete the quest (and gain appropriate reputation thereby), but it's flexible enough to adapt to the player's in-game persona, and it means we can direct the player to quest-givers without having to stick a bloody great icon on the quest giver's head.
 
-So, to repeat for clarity: the idea is, if there is a quest in the vicinity, whether organic or scripted, all the quest giver's neighbours know about it, and will bring it up in conversation, introducing it and directing the player to the quest giver. And I believe that this can be done reasonably naturally.
+So, to repeat for clarity: the idea is, if there is a quest in the vicinity, whether organic or scripted, many of the quest giver's neighbours may know about it, and will bring it up in conversation, introducing it and directing the player to the quest giver. And I believe that this can be done reasonably naturally.
+
+Obviously there are some sorts of quests where for narrative reasons he quest giver will **not** want their neighbours to know of it, and those quests need to be signposted differently; but I think that effective ways need to be found of signposting those quests to the player without resorting to noticeboards or quest icons.
 
 ## Command in Battles
 
-Player characters in role playing games are often narratively great heroic leaders -- see any of the Dragon Age games but particularly Inquisition for examples of this -- but when it comes to a pitched battle all they can do is follow a scripted battle plan and fight individual actions, because in current generation role-playing games there is no effective user interface to allow strategic and tactical control of a battle.
+Player characters in role playing games are often narratively great heroic leaders &mdash; see any of the Dragon Age games but particularly Inquisition for examples of this &mdash; but when it comes to a pitched battle all they can do is follow a scripted battle plan and fight individual actions, because in current generation role-playing games there is no effective user interface to allow strategic and tactical control of a battle.
 
 So how would a real-world, before modern communications technology, war leader command a battle? Why, by observing the battle and talking to people, and those are both things that in our game the player can do.
 

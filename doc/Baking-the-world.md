@@ -74,7 +74,7 @@
 
 ## Phase four: eating!
 
- At the end, though, you have a game, and a player plays it. How much of the dynamic, organic life that brought the game through proving continues on into the playing phase? If the [gossip](The-spread-of-knowledge-in-a-large-game.html) ideas are to work, if unscripted, non-plot-related events (as well as scripted, plot related events) are to happen while the player plays, if news of these events is to percolate through the world and reach the player in organic, unscripted ways, if a lot of the emergent gameplay I'm imagining is to work, then quite a lot of the dynamic things must be happening.
+ At the end, though, you have a game, and a player plays it. How much of the dynamic, organic life that brought the game through proving continues on into the playing phase? If the [gossip](The-spread-of-knowledge-in-a-large-game-world.html) ideas are to work, if unscripted, non-plot-related events (as well as scripted, plot related events) are to happen while the player plays, if news of these events is to percolate through the world and reach the player in organic, unscripted ways, if a lot of the emergent gameplay I'm imagining is to work, then quite a lot of the dynamic things must be happening.
 
  Of course, part of this depends on the length of 'game world time' is expected to elapse in the course of one play through of the game. If it's less than a year, then you don't need children dynamically being born, and characters dynamically growing older; but if more, then you do. Similarly, you don't need a real simulation of trading to dynamically drive prices in markets, but for a fun trading sub-game to emerge, you probably do, and if you are using merchants as news spreading agents the additional compute cost is not high.
 

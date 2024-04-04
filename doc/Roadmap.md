@@ -1,6 +1,8 @@
-# Roadmap
+# Roadmap (obsolete)
 
 This document outlines a plan to move forward from where I am in June 2021.
+
+**NOTE**: this document has been [superceded](MVP-Roadmap.html).
 
 # JMonkeyEngine
 
