@@ -1,4 +1,4 @@
-(defproject journeyman-cc/the-great-game "0.1.2-SNAPSHOT"
+(defproject journeyman-cc/the-great-game "0.1.2"
   :cloverage {:output "docs/cloverage"
               :codecov? true
               :emma-xml? true}
