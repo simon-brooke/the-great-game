@@ -3,11 +3,9 @@ Prototype code towards the great game I've been writing about for ten years, and
 
 ## Awful warning
 
-This doesn't work and isn't ever likely to fully work: it's way too ambitious for any
-single person to actually build. Feel free to mine it for algorithms and ideas, but
-don't expect a game you can actually play any time soon.
+This doesn't work and isn't ever likely to fully work: it's way too ambitious for any single person to actually build. Feel free to mine it for algorithms and ideas, but don't expect a game you can actually play any time soon.
 
-## There is documentation
+## There is (masses of) documentation
 
 [here](https://simon-brooke.github.io/the-great-game/)
 

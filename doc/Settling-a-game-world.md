@@ -2,7 +2,7 @@
 
 #### Wednesday, 30 December 2009
 
- *This essay is part of a series with '[Worlds and Flats](Worlds-and-flats.html)' and '[The spread of knowledge in a large game world](The-spread-of-knowledge-in-a-large-game-world.html)'; if you haven't read those you may want to read them before reading this. This essay describes how a large world can come into being and can evolve. I've written again on this subject since - see '[Populating a game world](Populating-a-game-world.html)')*
+ *This essay is part of a series with '[Worlds and Flats](https://www.journeyman.cc/blog/posts-output/2008-04-04-worlds-and-flats/)' and '[The spread of knowledge in a large game world](The-spread-of-knowledge-in-a-large-game-world.html)'; if you haven't read those you may want to read them before reading this. This essay describes how a large world can come into being and can evolve. I've written again on this subject since - see '[Populating a game world](Populating-a-game-world.html)')*
 
 ### Microworld
 
@@ -34,7 +34,7 @@
 
 ### Microworld Two
 
- The objective of this essay is to outline an angorithm for creating inhabited landscapes in which games can be set, which are satisfyingly believable when rendered in three dimensions. The objective of creating landscapes 'procedurally' – that is, with algorithms – is that they can be very much larger than designed landscapes for the same richness of local detail. This does not mean that every aspect of the final landscape must be 'procedural'. It would be possible to use the techniques outlined here to create landscapes which were different every time the game was played, but it would be equally possible to create a landscape which was frozen at a particular point and then hand edited to add features useful to the game's plot. And while I'm principally thinking in this about role playing games, this sort of landscape would be applicable to many other sorts of games – strategy games, god games, first person shooters...
+ The objective of this essay is to outline an algorithm for creating inhabited landscapes in which games can be set, which are satisfyingly believable when rendered in three dimensions. The objective of creating landscapes 'procedurally' – that is, with algorithms – is that they can be very much larger than designed landscapes for the same richness of local detail. This does not mean that every aspect of the final landscape must be 'procedural'. It would be possible to use the techniques outlined here to create landscapes which were different every time the game was played, but it would be equally possible to create a landscape which was frozen at a particular point and then hand edited to add features useful to the game's plot. And while I'm principally thinking in this about role playing games, this sort of landscape would be applicable to many other sorts of games – strategy games, god games, first person shooters...
 
 ### The physical geography
 

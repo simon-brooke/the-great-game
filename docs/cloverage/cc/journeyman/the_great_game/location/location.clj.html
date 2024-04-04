@@ -1,0 +1,143 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../../../../coverage.css"/>  <title> cc/journeyman/the_great_game/location/location.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;cc.journeyman.the-great-game.location.location)
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;;;;&nbsp;There&#x27;s&nbsp;probably&nbsp;conflict&nbsp;between&nbsp;this&nbsp;sense&nbsp;of&nbsp;a&nbsp;reified&nbsp;location&nbsp;and
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;;;;&nbsp;the&nbsp;simpler&nbsp;sense&nbsp;of&nbsp;a&nbsp;location&nbsp;described&nbsp;in&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;;;;&nbsp;`cc.journeyman.the-great-game.world.location`,&nbsp;q.v.&nbsp;This&nbsp;needs&nbsp;to
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;;;;&nbsp;be&nbsp;resolved!
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                008&nbsp;&nbsp;(defprotocol&nbsp;ProtoLocation
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;&nbsp;&nbsp;(easting&nbsp;[location]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;the&nbsp;easting&nbsp;of&nbsp;this&nbsp;location&quot;)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;&nbsp;&nbsp;(northing&nbsp;[location]&nbsp;&quot;Return&nbsp;the&nbsp;northing&nbsp;of&nbsp;this&nbsp;location&quot;)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                012&nbsp;&nbsp;&nbsp;&nbsp;(altitude&nbsp;[location]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;the&nbsp;absolute&nbsp;altitude&nbsp;of&nbsp;this&nbsp;location,&nbsp;which&nbsp;may&nbsp;be
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                014&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different&nbsp;from&nbsp;the&nbsp;terrain&nbsp;height&nbsp;at&nbsp;this&nbsp;location,&nbsp;if,&nbsp;for
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                015&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;example,&nbsp;the&nbsp;location&nbsp;is&nbsp;underground&nbsp;or&nbsp;on&nbsp;an&nbsp;upper&nbsp;floor.&quot;)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;(terrain-altitude&nbsp;[location]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;the&nbsp;&#x27;ground&nbsp;level&#x27;&nbsp;(altitude&nbsp;of&nbsp;the&nbsp;terrain)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                018&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at&nbsp;this&nbsp;location&nbsp;given&nbsp;this&nbsp;world.&nbsp;TODO:&nbsp;possibly
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                019&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terrain-altitude&nbsp;should&nbsp;be&nbsp;a&nbsp;method&nbsp;of&nbsp;the&nbsp;world.&quot;)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;(settlement&nbsp;[location]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;the&nbsp;settlement&nbsp;record&nbsp;of&nbsp;the&nbsp;settlement&nbsp;in&nbsp;this&nbsp;world
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;within&nbsp;whose&nbsp;parish&nbsp;polygon&nbsp;this&nbsp;location&nbsp;exists,&nbsp;or&nbsp;if&nbsp;none
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;whose&nbsp;centre&nbsp;(inn&nbsp;location)&nbsp;is&nbsp;closest&nbsp;to&nbsp;this&nbsp;location&quot;))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                024&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                025&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                026&nbsp;&nbsp;(defrecord&nbsp;Location&nbsp;[^Double&nbsp;easting&nbsp;^Double&nbsp;northing&nbsp;^Double&nbsp;altitude&nbsp;world]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                027&nbsp;&nbsp;&nbsp;&nbsp;ProtoLocation
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                028&nbsp;&nbsp;&nbsp;&nbsp;(easting&nbsp;[l]&nbsp;(:easting&nbsp;l))
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                029&nbsp;&nbsp;&nbsp;&nbsp;(northing&nbsp;[l]&nbsp;(:northing&nbsp;l))
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                030&nbsp;&nbsp;&nbsp;&nbsp;(altitude&nbsp;[l]&nbsp;(:altitude&nbsp;l))
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                031&nbsp;&nbsp;&nbsp;&nbsp;(terrain-altitude&nbsp;[l]&nbsp;0.0)&nbsp;;;&nbsp;TODO
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                032&nbsp;&nbsp;&nbsp;&nbsp;(settlement&nbsp;[l]&nbsp;:tchahua))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                033&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                034&nbsp;&nbsp;(defrecord&nbsp;OrientedLocation
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                035&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;&quot;Identical&nbsp;to&nbsp;a&nbsp;Location&nbsp;except&nbsp;having,&nbsp;additionally,&nbsp;an&nbsp;orientation&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[^Double&nbsp;easting&nbsp;^Double&nbsp;northing&nbsp;^Double&nbsp;altitude&nbsp;^Double&nbsp;orientation&nbsp;world]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                037&nbsp;&nbsp;&nbsp;&nbsp;ProtoLocation
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                038&nbsp;&nbsp;&nbsp;&nbsp;(easting&nbsp;[l]&nbsp;(:easting&nbsp;l))
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                039&nbsp;&nbsp;&nbsp;&nbsp;(northing&nbsp;[l]&nbsp;(:northing&nbsp;l))
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                040&nbsp;&nbsp;&nbsp;&nbsp;(altitude&nbsp;[l]&nbsp;(:altitude&nbsp;l))
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                041&nbsp;&nbsp;&nbsp;&nbsp;(terrain-altitude&nbsp;[l]&nbsp;0.0)&nbsp;;;&nbsp;TODO
+                </span><br/>
+<span class="not-covered" title="0 out of 1 forms covered">
+                042&nbsp;&nbsp;&nbsp;&nbsp;(settlement&nbsp;[l]&nbsp;:tchahua))&nbsp;;;&nbsp;TODO
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                043&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                044&nbsp;&nbsp;&nbsp;;;&nbsp;(.settlement&nbsp;(OrientedLocation.&nbsp;123.45&nbsp;543.76&nbsp;12.34&nbsp;0.00&nbsp;{}))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                045&nbsp;&nbsp;
+                </span><br/>
+ </body>
+</html>

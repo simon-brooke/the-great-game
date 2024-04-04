@@ -1,0 +1,143 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../../../../coverage.css"/>  <title> cc/journeyman/the_great_game/agent/agent.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;cc.journeyman.the-great-game.agent.agent
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;&quot;Anything&nbsp;in&nbsp;the&nbsp;game&nbsp;world&nbsp;with&nbsp;agency;&nbsp;primarily&nbsp;but&nbsp;not&nbsp;exclusively
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;characters.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[cc.journeyman.the-great-game.objects.game-object&nbsp;:refer&nbsp;[ProtoObject]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[cc.journeyman.the-great-game.objects.container&nbsp;:refer&nbsp;[ProtoContainer]]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;;;;&nbsp;&nbsp;hierarchy&nbsp;of&nbsp;needs&nbsp;probably&nbsp;gets&nbsp;implemented&nbsp;here
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                008&nbsp;&nbsp;;;;&nbsp;&nbsp;I&#x27;m&nbsp;probably&nbsp;going&nbsp;to&nbsp;want&nbsp;to&nbsp;defprotocol&nbsp;stuff,&nbsp;to&nbsp;define&nbsp;the&nbsp;hierarchy
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;;;;&nbsp;&nbsp;of&nbsp;things&nbsp;in&nbsp;the&nbsp;gameworld;&nbsp;either&nbsp;that&nbsp;or&nbsp;drop&nbsp;to&nbsp;Java,&nbsp;wich&nbsp;I&#x27;d&nbsp;rather&nbsp;not&nbsp;do.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                011&nbsp;&nbsp;(defprotocol&nbsp;ProtoAgent
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                012&nbsp;&nbsp;&nbsp;&nbsp;&quot;An&nbsp;object&nbsp;which&nbsp;can&nbsp;act&nbsp;in&nbsp;the&nbsp;world&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;(act
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                014&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[actor&nbsp;world&nbsp;circle]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                015&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Allow&nbsp;`actor`&nbsp;to&nbsp;do&nbsp;something&nbsp;in&nbsp;this&nbsp;`world`,&nbsp;in&nbsp;the&nbsp;context&nbsp;of&nbsp;this
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`circle`;&nbsp;return&nbsp;the&nbsp;new&nbsp;state&nbsp;of&nbsp;the&nbsp;actor&nbsp;if&nbsp;something&nbsp;was&nbsp;done,&nbsp;`nil`
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;nothing&nbsp;was&nbsp;done.&nbsp;Circle&nbsp;is&nbsp;expected&nbsp;to&nbsp;be&nbsp;one&nbsp;of
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                018&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                019&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;`:active`&nbsp;-&nbsp;actors&nbsp;within&nbsp;visual&#x2F;audible&nbsp;range&nbsp;of&nbsp;the&nbsp;player
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;character;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;`:pending`&nbsp;-&nbsp;actors&nbsp;not&nbsp;in&nbsp;the&nbsp;active&nbsp;circle,&nbsp;but&nbsp;sufficiently&nbsp;close
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to&nbsp;it&nbsp;that&nbsp;they&nbsp;may&nbsp;enter&nbsp;the&nbsp;active&nbsp;circle&nbsp;within&nbsp;a&nbsp;short&nbsp;period;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;`:background`&nbsp;-&nbsp;actors&nbsp;who&nbsp;are&nbsp;active&nbsp;in&nbsp;the&nbsp;background&nbsp;in&nbsp;order&nbsp;to
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handle&nbsp;trade,&nbsp;news,&nbsp;et&nbsp;cetera;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;`other`&nbsp;-&nbsp;actors&nbsp;who&nbsp;are&nbsp;not&nbsp;members&nbsp;of&nbsp;any&nbsp;other&nbsp;circle,&nbsp;although
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&#x27;m&nbsp;not&nbsp;clear&nbsp;whether&nbsp;it&nbsp;would&nbsp;ever&nbsp;be&nbsp;appropriate&nbsp;to&nbsp;invoke&nbsp;an
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                027&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`act`&nbsp;method&nbsp;on&nbsp;them.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                028&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                029&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;`act`&nbsp;method&nbsp;*must&nbsp;not*&nbsp;have&nbsp;side&nbsp;effects;&nbsp;it&nbsp;must&nbsp;*only*&nbsp;return&nbsp;a
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                030&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;state.&nbsp;If&nbsp;the&nbsp;actor&#x27;s&nbsp;intention&nbsp;is&nbsp;to&nbsp;seek&nbsp;to&nbsp;change&nbsp;the&nbsp;state&nbsp;of
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                031&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;something&nbsp;else&nbsp;in&nbsp;the&nbsp;game&nbsp;world,&nbsp;it&nbsp;must&nbsp;add&nbsp;a&nbsp;representation&nbsp;of&nbsp;that
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                032&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;intention&nbsp;to&nbsp;the&nbsp;sequence&nbsp;which&nbsp;will&nbsp;be&nbsp;returned&nbsp;by&nbsp;its
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                033&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`pending-intentions`&nbsp;method.&quot;)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                034&nbsp;&nbsp;&nbsp;&nbsp;(pending-intentions
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[actor]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;Returns&nbsp;a&nbsp;sequence&nbsp;of&nbsp;effects&nbsp;an&nbsp;actor&nbsp;intends,&nbsp;as&nbsp;a&nbsp;consequence&nbsp;of
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acting.&nbsp;The&nbsp;encoding&nbsp;of&nbsp;these&nbsp;is&nbsp;not&nbsp;yet&nbsp;defined.&quot;))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                038&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                039&nbsp;&nbsp;(defrecord&nbsp;Agent
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                040&nbsp;&nbsp;&nbsp;&nbsp;;;&nbsp;&quot;A&nbsp;default&nbsp;agent.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                041&nbsp;&nbsp;&nbsp;&nbsp;[name&nbsp;craft&nbsp;home&nbsp;culture]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                042&nbsp;&nbsp;&nbsp;&nbsp;ProtoObject
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                043&nbsp;&nbsp;&nbsp;&nbsp;ProtoContainer
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                044&nbsp;&nbsp;&nbsp;&nbsp;ProtoAgent
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                045&nbsp;&nbsp;)
+                </span><br/>
+ </body>
+</html>

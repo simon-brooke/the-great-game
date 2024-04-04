@@ -1,0 +1,119 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../../../../coverage.css"/>  <title> cc/journeyman/the_great_game/world/location.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;cc.journeyman.the-great-game.world.location
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;&quot;Functions&nbsp;dealing&nbsp;with&nbsp;location&nbsp;in&nbsp;the&nbsp;world.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[clojure.math.numeric-tower&nbsp;:refer&nbsp;[expt&nbsp;sqrt]]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;A&nbsp;&#x27;location&#x27;&nbsp;value&nbsp;is&nbsp;a&nbsp;list&nbsp;comprising&nbsp;at&nbsp;most&nbsp;the&nbsp;x&#x2F;y&nbsp;coordinate&nbsp;location
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;and&nbsp;the&nbsp;ids&nbsp;of&nbsp;the&nbsp;settlement&nbsp;and&nbsp;region&nbsp;(possibly&nbsp;hierarchically)&nbsp;that&nbsp;contain
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;the&nbsp;location.&nbsp;If&nbsp;the&nbsp;x&#x2F;y&nbsp;is&nbsp;not&nbsp;local&nbsp;to&nbsp;the&nbsp;home&nbsp;of&nbsp;the&nbsp;receiving&nbsp;agent,&nbsp;they
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                008&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;won&#x27;t&nbsp;remember&nbsp;it&nbsp;and&nbsp;won&#x27;t&nbsp;pass&nbsp;it&nbsp;on;&nbsp;if&nbsp;any&nbsp;of&nbsp;the&nbsp;ids&nbsp;are&nbsp;not&nbsp;interesting
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;So&nbsp;location&nbsp;information&nbsp;will&nbsp;degrade&nbsp;progressively&nbsp;as&nbsp;the&nbsp;item&nbsp;is&nbsp;passed&nbsp;along.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;;;&nbsp;&nbsp;&nbsp;It&nbsp;is&nbsp;assumed&nbsp;that&nbsp;the&nbsp;`:home`&nbsp;of&nbsp;a&nbsp;character&nbsp;is&nbsp;a&nbsp;location&nbsp;in&nbsp;this&nbsp;sense.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                012&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                013&nbsp;&nbsp;(defn&nbsp;get-coords
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                014&nbsp;&nbsp;&nbsp;&nbsp;&quot;Return&nbsp;the&nbsp;coordinates&nbsp;in&nbsp;the&nbsp;game&nbsp;world&nbsp;of&nbsp;`location`,&nbsp;which&nbsp;may&nbsp;be
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                015&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;A&nbsp;coordinate&nbsp;pair&nbsp;in&nbsp;the&nbsp;format&nbsp;{:x&nbsp;5&nbsp;:y&nbsp;32};
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;A&nbsp;location,&nbsp;as&nbsp;discussed&nbsp;above;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;Any&nbsp;other&nbsp;gameworld&nbsp;object,&nbsp;having&nbsp;a&nbsp;`:location`&nbsp;property&nbsp;whose&nbsp;value
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                018&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;one&nbsp;of&nbsp;the&nbsp;above.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                019&nbsp;&nbsp;&nbsp;&nbsp;[location]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;(cond
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                021&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(empty?&nbsp;location)&nbsp;nil
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(map?&nbsp;location)
+                </span><br/>
+<span class="partial" title="1 out of 3 forms covered">
+                023&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cond
+                </span><br/>
+<span class="partial" title="13 out of 14 forms covered">
+                024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(and&nbsp;(number?&nbsp;(:x&nbsp;location))&nbsp;(number?&nbsp;(:y&nbsp;location)))
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(:location&nbsp;location)
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                027&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(:location&nbsp;location))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                028&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:else
+                </span><br/>
+<span class="covered" title="8 out of 8 forms covered">
+                029&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(get-coords&nbsp;(first&nbsp;(remove&nbsp;keyword?&nbsp;location)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                030&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                031&nbsp;&nbsp;(defn&nbsp;distance-between
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                032&nbsp;&nbsp;&nbsp;&nbsp;[location-1&nbsp;location-2]
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                033&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[c1&nbsp;(get-coords&nbsp;location-1)
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c2&nbsp;(get-coords&nbsp;location-2)]
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(when
+                </span><br/>
+<span class="partial" title="5 out of 6 forms covered">
+                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(and&nbsp;c1&nbsp;c2)
+                </span><br/>
+<span class="covered" title="23 out of 23 forms covered">
+                037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(sqrt&nbsp;(+&nbsp;(expt&nbsp;(-&nbsp;(:x&nbsp;c1)&nbsp;(:x&nbsp;c2))&nbsp;2)&nbsp;(expt&nbsp;(-&nbsp;(:y&nbsp;c1)&nbsp;(:y&nbsp;c2))&nbsp;2))))))
+                </span><br/>
+ </body>
+</html>

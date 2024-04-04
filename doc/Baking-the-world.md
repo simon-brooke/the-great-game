@@ -2,7 +2,9 @@
 
 #### Wednesday, 8 May 2019
 
-![Devogilla's Bridge in Dumfries, early foourteenth century](https://2.bp.blogspot.com/-qxkySlJNmtY/XNKvJksmSjI/AAAAAAAAnXU/z1Zv2LmjydMmi_1q2mWdwVALmdfi9OItwCLcBGAs/s1600/Devorgillas-Bridge.jpg)
+![Devorgilla's Bridge in Dumfries, early fourteenth century](https://2.bp.blogspot.com/-qxkySlJNmtY/XNKvJksmSjI/AAAAAAAAnXU/z1Zv2LmjydMmi_1q2mWdwVALmdfi9OItwCLcBGAs/s1600/Devorgillas-Bridge.jpg)
+
+*Devorgilla's Bridge in Dumfries, early fourteenth century. This clearly shows how a genetic buildings approach to bridges can be made to work: a single element is repeated to span the necessary distance. That element can be stretched vertically and laterally to match the location, and can be rendered in different stone finishes to match local geology.*
 
  In previous posts, I've described algorithms for dynamically [populating](Populating-a-game-world.html) and dynamically [settling](Settling-a-game-world.html) a game world. But at kilometre scale (and I think we need a higher resolution than that - something closer to hectare scale), settling the British Isles using my existing algorithms takes about 24 hours of continuous compute on an eight core, 3GHz machine. You cannot do that every time you launch a new game.
 
@@ -72,7 +74,7 @@
 
 ## Phase four: eating!
 
- At the end, though, you have a game, and a player plays it. How much of the dynamic, organic life that brought the game through proving continues on into the playing phase? If the [gossip](The-spread-of-knowledge-in-a-large-game.html) ideas are to work, if unscripted, non-plot-related events (as well as scripted, plot related events) are to happen while the player plays, if news of these events is to percolate through the world and reach the player in organic, unscripted ways, if a lot of the emergent gameplay I'm imagining is to work, then quite a lot of the dynamic things must be happening.
+ At the end, though, you have a game, and a player plays it. How much of the dynamic, organic life that brought the game through proving continues on into the playing phase? If the [gossip](The-spread-of-knowledge-in-a-large-game-world.html) ideas are to work, if unscripted, non-plot-related events (as well as scripted, plot related events) are to happen while the player plays, if news of these events is to percolate through the world and reach the player in organic, unscripted ways, if a lot of the emergent gameplay I'm imagining is to work, then quite a lot of the dynamic things must be happening.
 
  Of course, part of this depends on the length of 'game world time' is expected to elapse in the course of one play through of the game. If it's less than a year, then you don't need children dynamically being born, and characters dynamically growing older; but if more, then you do. Similarly, you don't need a real simulation of trading to dynamically drive prices in markets, but for a fun trading sub-game to emerge, you probably do, and if you are using merchants as news spreading agents the additional compute cost is not high.
 

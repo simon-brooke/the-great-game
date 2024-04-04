@@ -1,0 +1,458 @@
+<html>
+ <head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="../../../../coverage.css"/>  <title> cc/journeyman/the_great_game/buildings/rectangular.clj </title>
+ </head>
+ <body>
+<span class="covered" title="1 out of 1 forms covered">
+                001&nbsp;&nbsp;(ns&nbsp;cc.journeyman.the-great-game.buildings.rectangular
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                002&nbsp;&nbsp;&nbsp;&nbsp;&quot;Build&nbsp;buildings&nbsp;with&nbsp;a&nbsp;generally&nbsp;rectangular&nbsp;floow&nbsp;plan.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                003&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                004&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;Motivations
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                006&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Right,&nbsp;the&nbsp;idea&nbsp;behind&nbsp;this&nbsp;namespace&nbsp;is&nbsp;many&nbsp;fold.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                007&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                008&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;To&nbsp;establish&nbsp;the&nbsp;broad&nbsp;principle&nbsp;of&nbsp;genetic&nbsp;buildings,&nbsp;by&nbsp;creating&nbsp;a
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                009&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;which&nbsp;reproducibly&nbsp;creates&nbsp;reproducible&nbsp;buildings&nbsp;at&nbsp;specified
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                010&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;locations,&nbsp;such&nbsp;that&nbsp;different&nbsp;buildings&nbsp;are&nbsp;credibly&nbsp;varied&nbsp;but&nbsp;a
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                011&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;building&nbsp;at&nbsp;a&nbsp;specified&nbsp;location&nbsp;is&nbsp;always&nbsp;(modulo&nbsp;economic&nbsp;change)&nbsp;the
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;same.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                013&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;Create&nbsp;good&nbsp;rectangular&nbsp;buildings,&nbsp;and&nbsp;investigate&nbsp;whether&nbsp;a&nbsp;single&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                014&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;can&nbsp;be&nbsp;used&nbsp;to&nbsp;create&nbsp;buildings&nbsp;of&nbsp;more&nbsp;than&nbsp;one&nbsp;family&nbsp;(e.g.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                015&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;it&nbsp;produce&nbsp;flat&nbsp;roofed,&nbsp;north&nbsp;African&nbsp;style,&nbsp;mud&nbsp;brick&nbsp;houses&nbsp;as
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;well&nbsp;as&nbsp;pitch&nbsp;roofed,&nbsp;half&nbsp;timbered&nbsp;northern&nbsp;European&nbsp;houses?)
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                017&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.&nbsp;Establish&nbsp;whether,&nbsp;in&nbsp;my&nbsp;current&nbsp;state&nbsp;of&nbsp;fairly&nbsp;severe&nbsp;mental&nbsp;illness,
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                018&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;can&nbsp;actually&nbsp;produce&nbsp;any&nbsp;usable&nbsp;code&nbsp;at&nbsp;all.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                019&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                020&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;##&nbsp;Key&nbsp;factors&nbsp;in&nbsp;the&nbsp;creation&nbsp;of&nbsp;a&nbsp;building
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                021&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                022&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;###&nbsp;Holding
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                023&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                024&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Every&nbsp;building&nbsp;is&nbsp;on&nbsp;a&nbsp;holding,&nbsp;and,&nbsp;indeed,&nbsp;what&nbsp;I&nbsp;mean&nbsp;by&nbsp;&#x27;building&#x27;&nbsp;here
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                025&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;may&nbsp;well&nbsp;turn&nbsp;out&nbsp;to&nbsp;be&nbsp;&#x27;the&nbsp;collection&nbsp;of&nbsp;all&nbsp;the&nbsp;permanent&nbsp;structures&nbsp;on
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                026&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;holding.&nbsp;A&nbsp;holding&nbsp;is&nbsp;a&nbsp;polygonal&nbsp;area&nbsp;of&nbsp;the&nbsp;map&nbsp;which&nbsp;does&nbsp;not&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                027&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;intersect&nbsp;with&nbsp;any&nbsp;other&nbsp;holding,&nbsp;but&nbsp;for&nbsp;the&nbsp;time&nbsp;being&nbsp;we&#x27;ll&nbsp;make&nbsp;the&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                028&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;simplifying&nbsp;assumption&nbsp;that&nbsp;every&nbsp;holding&nbsp;is&nbsp;a&nbsp;rectangular&nbsp;strip,&nbsp;and&nbsp;that
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                029&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#x27;urban&#x27;&nbsp;holdings&nbsp;are&nbsp;of&nbsp;a&nbsp;reasonably&nbsp;standard&nbsp;width&nbsp;(see&nbsp;Viking-period&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                030&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;York)&nbsp;and&nbsp;length.&nbsp;Rural&nbsp;holdings&nbsp;(farms,&nbsp;?wood&nbsp;lots)&nbsp;may&nbsp;be&nbsp;much&nbsp;larger.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                031&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                032&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;###&nbsp;Terrain
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                033&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                034&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;building&nbsp;is&nbsp;made&nbsp;of&nbsp;the&nbsp;stuff&nbsp;of&nbsp;the&nbsp;place.&nbsp;In&nbsp;a&nbsp;forest,&nbsp;buildings&nbsp;will&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                035&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tend&nbsp;to&nbsp;be&nbsp;wooden;&nbsp;in&nbsp;a&nbsp;terrain&nbsp;with&nbsp;rocky&nbsp;outcrops&nbsp;--&nbsp;normally&nbsp;found&nbsp;on&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                036&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;steep&nbsp;slopes&nbsp;--&nbsp;stone.&nbsp;On&nbsp;the&nbsp;flat&nbsp;lands&nbsp;where&nbsp;there&#x27;s&nbsp;river&nbsp;mud,&nbsp;of&nbsp;brick,
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                037&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cob,&nbsp;or&nbsp;wattle&nbsp;and&nbsp;daub.&nbsp;So&nbsp;to&nbsp;build&nbsp;a&nbsp;building&nbsp;we&nbsp;need&nbsp;to&nbsp;know&nbsp;the&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                038&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;terrain.&nbsp;Terrain&nbsp;can&nbsp;be&nbsp;inferred&nbsp;from&nbsp;location&nbsp;but&nbsp;in&nbsp;practice&nbsp;this&nbsp;will&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                039&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;computationally&nbsp;expensive,&nbsp;so&nbsp;we&#x27;ll&nbsp;pass&nbsp;terrain&nbsp;in&nbsp;as&nbsp;an&nbsp;argument&nbsp;to
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                040&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;build&nbsp;function.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                041&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                042&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For&nbsp;the&nbsp;time&nbsp;being&nbsp;we&#x27;ll&nbsp;pass&nbsp;it&nbsp;in&nbsp;simply&nbsp;as&nbsp;a&nbsp;keyword&nbsp;from&nbsp;a&nbsp;defined&nbsp;set
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                043&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;keywords;&nbsp;later&nbsp;it&nbsp;may&nbsp;be&nbsp;a&nbsp;more&nbsp;sophisticated&nbsp;data&nbsp;structure.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                044&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                045&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;###&nbsp;Culture
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                046&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                047&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;People&nbsp;of&nbsp;different&nbsp;cultures&nbsp;build&nbsp;distinctively&nbsp;different&nbsp;buildings,&nbsp;even
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when&nbsp;using&nbsp;the&nbsp;same&nbsp;materials.&nbsp;So,&nbsp;in&nbsp;our&nbsp;world,&nbsp;a&nbsp;Japanese&nbsp;wooden&nbsp;house&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                049&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;looks&nbsp;quite&nbsp;different&nbsp;from&nbsp;an&nbsp;Anglo&nbsp;Saxon&nbsp;stave&nbsp;house&nbsp;which&nbsp;looks&nbsp;quite&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                050&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different&nbsp;from&nbsp;a&nbsp;Canadian&nbsp;log&nbsp;cabin,&nbsp;even&nbsp;though&nbsp;the&nbsp;materials&nbsp;are&nbsp;much&nbsp;the
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                051&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;same&nbsp;and&nbsp;the&nbsp;tools&nbsp;available&nbsp;to&nbsp;build&nbsp;with&nbsp;are&nbsp;not&nbsp;much&nbsp;different.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                052&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                053&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Culture&nbsp;can&nbsp;affect&nbsp;not&nbsp;just&nbsp;the&nbsp;overall&nbsp;shape&nbsp;of&nbsp;a&nbsp;building&nbsp;but&nbsp;also&nbsp;its&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                054&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;finish&nbsp;and&nbsp;surface&nbsp;detail.&nbsp;For&nbsp;example,&nbsp;in&nbsp;many&nbsp;places&nbsp;in&nbsp;England,&nbsp;stone
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                055&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buildings&nbsp;are&nbsp;typically&nbsp;left&nbsp;bare;&nbsp;in&nbsp;rural&nbsp;Scotland,&nbsp;typically&nbsp;painted&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                056&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;white&nbsp;or&nbsp;in&nbsp;pastel&nbsp;shades;&nbsp;in&nbsp;Ireland,&nbsp;often&nbsp;quite&nbsp;vivid&nbsp;colours.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                057&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                058&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;People&nbsp;may&nbsp;also&nbsp;show&nbsp;religious&nbsp;or&nbsp;cultural&nbsp;symbols&nbsp;on&nbsp;their&nbsp;buildings.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                059&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                060&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For&nbsp;all&nbsp;these&nbsp;reasons,&nbsp;we&nbsp;need&nbsp;to&nbsp;know&nbsp;the&nbsp;culture&nbsp;of&nbsp;the&nbsp;occupant&nbsp;when
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                061&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;creating&nbsp;a&nbsp;building.&nbsp;Again,&nbsp;this&nbsp;will&nbsp;initially&nbsp;be&nbsp;passed&nbsp;in&nbsp;as&nbsp;a&nbsp;keyword.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                062&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                063&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;###&nbsp;Craft
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                064&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                065&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;People&nbsp;in&nbsp;the&nbsp;game&nbsp;world&nbsp;have&nbsp;a&nbsp;craft,&nbsp;and&nbsp;some&nbsp;crafts&nbsp;will&nbsp;require&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                066&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;different&nbsp;features&nbsp;in&nbsp;the&nbsp;building.&nbsp;In&nbsp;the&nbsp;broadly&nbsp;late-bronze-age-to
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                067&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;medieval&nbsp;period&nbsp;within&nbsp;which&nbsp;the&nbsp;game&nbsp;is&nbsp;set,&nbsp;residence&nbsp;and&nbsp;&nbsp;workplace
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                068&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;are&nbsp;for&nbsp;most&nbsp;people&nbsp;pretty&nbsp;much&nbsp;the&nbsp;same.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                069&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                070&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So&nbsp;a&nbsp;baker&nbsp;needs&nbsp;an&nbsp;oven,&nbsp;a&nbsp;smith&nbsp;a&nbsp;forge,&nbsp;and&nbsp;so&nbsp;on.&nbsp;All&nbsp;crafts&nbsp;who&nbsp;do
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                071&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;some&nbsp;degree&nbsp;retail&nbsp;trade&nbsp;will&nbsp;want&nbsp;a&nbsp;shop&nbsp;front&nbsp;as&nbsp;part&nbsp;of&nbsp;the&nbsp;ground&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                072&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;floor&nbsp;of&nbsp;their&nbsp;dwelling.&nbsp;Merchants&nbsp;and&nbsp;bankers&nbsp;will&nbsp;probably&nbsp;have&nbsp;houses
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                073&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;that&nbsp;are&nbsp;a&nbsp;bit&nbsp;more&nbsp;showy&nbsp;than&nbsp;others.
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                074&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                075&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Whether&nbsp;the&nbsp;&#x27;genetic&nbsp;buildings&#x27;&nbsp;idea&nbsp;will&nbsp;ever&nbsp;really&nbsp;produce&nbsp;suitable
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                076&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buildings&nbsp;for&nbsp;aristons&nbsp;I&nbsp;don&#x27;t&nbsp;know;&nbsp;it&nbsp;seems&nbsp;more&nbsp;likely&nbsp;that&nbsp;significant
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                077&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strongholds&nbsp;(of&nbsp;which&nbsp;there&nbsp;will&nbsp;be&nbsp;relatively&nbsp;few)&nbsp;should&nbsp;all&nbsp;be&nbsp;hand
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                078&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modelled&nbsp;rather&nbsp;than&nbsp;procedurally&nbsp;generated.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                079&nbsp;&nbsp;&nbsp;&nbsp;(:require&nbsp;[cc.journeyman.the-great-game.holdings.holding&nbsp;:refer&nbsp;[ProtoHolding]]
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                080&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[cc.journeyman.the-great-game.location.location&nbsp;:refer&nbsp;[ProtoLocation]])
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                081&nbsp;&nbsp;&nbsp;&nbsp;(:import&nbsp;[org.apache.commons.math3.random&nbsp;MersenneTwister]))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                082&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                083&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                084&nbsp;&nbsp;(def&nbsp;^:dynamic&nbsp;*terrain-types*&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                085&nbsp;&nbsp;&nbsp;&nbsp;&quot;Types&nbsp;of&nbsp;terrain&nbsp;which&nbsp;affect&nbsp;building&nbsp;families.&nbsp;TODO:&nbsp;This&nbsp;is&nbsp;a&nbsp;placeholder;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                086&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;more&nbsp;sophisticated&nbsp;model&nbsp;will&nbsp;be&nbsp;needed.&quot;
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                087&nbsp;&nbsp;&nbsp;&nbsp;#{:arable&nbsp;:arid&nbsp;:forest&nbsp;:plateau&nbsp;:upland})
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                088&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                089&nbsp;&nbsp;(def&nbsp;^:dynamic&nbsp;*cultures*
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                090&nbsp;&nbsp;&nbsp;&nbsp;&quot;Cultures&nbsp;which&nbsp;affect&nbsp;building&nbsp;families.&nbsp;TODO:&nbsp;placeholder&quot;
+                </span><br/>
+<span class="covered" title="6 out of 6 forms covered">
+                091&nbsp;&nbsp;&nbsp;&nbsp;#{:ariston&nbsp;:coastal&nbsp;:steppe-clans&nbsp;:western-clans&nbsp;:wild-herd})
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                092&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                093&nbsp;&nbsp;(def&nbsp;^:dynamic&nbsp;*crafts*
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                094&nbsp;&nbsp;&nbsp;&nbsp;&quot;Crafts&nbsp;which&nbsp;affect&nbsp;building&nbsp;types&nbsp;in&nbsp;the&nbsp;game.&nbsp;See&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                095&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Populating&nbsp;a&nbsp;game&nbsp;world`.&nbsp;TODO:&nbsp;placeholder&quot;
+                </span><br/>
+<span class="covered" title="14 out of 14 forms covered">
+                096&nbsp;&nbsp;&nbsp;&nbsp;#{:baker&nbsp;:banker&nbsp;:butcher&nbsp;:chancellor&nbsp;:innkeeper&nbsp;:lawyer&nbsp;:magus&nbsp;:merchant&nbsp;:miller&nbsp;:priest&nbsp;:scholar&nbsp;:smith&nbsp;:weaver})
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                097&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                098&nbsp;&nbsp;(def&nbsp;^:dynamic&nbsp;*building-families*&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                099&nbsp;&nbsp;&nbsp;&nbsp;&quot;Families&nbsp;of&nbsp;buildings.
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                100&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                101&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;family&nbsp;has
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                102&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                103&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;terrain&nbsp;types&nbsp;to&nbsp;which&nbsp;it&nbsp;is&nbsp;appropriate;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                104&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;crafts&nbsp;to&nbsp;which&nbsp;it&nbsp;is&nbsp;appropriate;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                105&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;cultures&nbsp;to&nbsp;which&nbsp;it&nbsp;is&nbsp;appropriate.&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                106&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                107&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;generated&nbsp;building&nbsp;will&nbsp;be&nbsp;of&nbsp;one&nbsp;family,&nbsp;and&nbsp;will&nbsp;comprise&nbsp;modules&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                108&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;taken&nbsp;only&nbsp;from&nbsp;that&nbsp;family.&quot;
+                </span><br/>
+<span class="covered" title="12 out of 12 forms covered">
+                109&nbsp;&nbsp;&nbsp;&nbsp;{:pitched-rectangular&nbsp;{:terrains&nbsp;#{:arable&nbsp;:forest&nbsp;:upland}
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                110&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:crafts&nbsp;*crafts*
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                111&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:cultures&nbsp;#{:coastal&nbsp;:western-clans}
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                112&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:modules&nbsp;[]}
+                </span><br/>
+<span class="covered" title="8 out of 8 forms covered">
+                113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:flatroof-rectangular&nbsp;{:terrains&nbsp;#{:arid&nbsp;:plateau}
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                114&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:crafts&nbsp;*crafts*
+                </span><br/>
+<span class="covered" title="2 out of 2 forms covered">
+                115&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:cultures&nbsp;#{:coastal}
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                116&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:modules&nbsp;[]}})
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                117&nbsp;&nbsp;
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                118&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                119&nbsp;&nbsp;(defn&nbsp;building-family
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                120&nbsp;&nbsp;&nbsp;&nbsp;&quot;A&nbsp;building&nbsp;family&nbsp;is&nbsp;essentially&nbsp;a&nbsp;collection&nbsp;of&nbsp;models&nbsp;of&nbsp;building&nbsp;modules
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                121&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;which&nbsp;can&nbsp;be&nbsp;assembled&nbsp;to&nbsp;create&nbsp;buildings&nbsp;of&nbsp;a&nbsp;particular&nbsp;structural&nbsp;and
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                122&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;architectural&nbsp;style.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                123&nbsp;&nbsp;&nbsp;&nbsp;[terrain&nbsp;culture&nbsp;craft&nbsp;gene]
+                </span><br/>
+<span class="partial" title="12 out of 13 forms covered">
+                124&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[candidates&nbsp;(filter&nbsp;#(and
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                125&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((:terrains&nbsp;%)&nbsp;terrain)
+                </span><br/>
+<span class="covered" title="5 out of 5 forms covered">
+                126&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((:crafts&nbsp;%)&nbsp;craft)
+                </span><br/>
+<span class="covered" title="4 out of 4 forms covered">
+                127&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((:cultures&nbsp;%)&nbsp;culture))
+                </span><br/>
+<span class="covered" title="3 out of 3 forms covered">
+                128&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(vals&nbsp;*building-families*))]
+                </span><br/>
+<span class="covered" title="8 out of 8 forms covered">
+                129&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(nth&nbsp;candidates&nbsp;(mod&nbsp;(Math&#x2F;abs&nbsp;(.nextInt&nbsp;gene))&nbsp;(count&nbsp;candidates)))))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                130&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="7 out of 7 forms covered">
+                131&nbsp;&nbsp;(building-family&nbsp;:arable&nbsp;:coastal&nbsp;:baker&nbsp;(MersenneTwister.&nbsp;5))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                132&nbsp;&nbsp;
+                </span><br/>
+<span class="covered" title="1 out of 1 forms covered">
+                133&nbsp;&nbsp;(defn&nbsp;build!&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                134&nbsp;&nbsp;&nbsp;&nbsp;&quot;Builds&nbsp;a&nbsp;building,&nbsp;and&nbsp;returns&nbsp;a&nbsp;data&nbsp;structure&nbsp;which&nbsp;represents&nbsp;it.&nbsp;In&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                135&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;building&nbsp;the&nbsp;building,&nbsp;it&nbsp;adds&nbsp;a&nbsp;model&nbsp;of&nbsp;the&nbsp;building&nbsp;to&nbsp;the&nbsp;representation
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                136&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of&nbsp;the&nbsp;world,&nbsp;so&nbsp;it&nbsp;does&nbsp;have&nbsp;a&nbsp;side&nbsp;effect.&quot;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                137&nbsp;&nbsp;&nbsp;&nbsp;[holding&nbsp;terrain&nbsp;culture&nbsp;craft&nbsp;size]
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                138&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;(satisfies?&nbsp;ProtoHolding&nbsp;holding)
+                </span><br/>
+<span class="not-covered" title="0 out of 2 forms covered">
+                139&nbsp;&nbsp;&nbsp;&nbsp;(let&nbsp;[location&nbsp;(.building-origin&nbsp;holding)
+                </span><br/>
+<span class="not-covered" title="0 out of 7 forms covered">
+                140&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gene&nbsp;(MersenneTwister.&nbsp;(int&nbsp;(+&nbsp;(*&nbsp;(.easting&nbsp;location)&nbsp;1000000)&nbsp;(.northing&nbsp;location))))
+                </span><br/>
+<span class="not-covered" title="0 out of 6 forms covered">
+                141&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;family&nbsp;(building-family&nbsp;terrain&nbsp;culture&nbsp;craft&nbsp;gene)]
+                </span><br/>
+<span class="not-covered" title="0 out of 3 forms covered">
+                142&nbsp;&nbsp;&nbsp;&nbsp;(if&nbsp;
+                </span><br/>
+<span class="not-covered" title="0 out of 11 forms covered">
+                143&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(and&nbsp;(instance?&nbsp;ProtoLocation&nbsp;location)&nbsp;(:orientation&nbsp;location))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                144&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:stuff
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                145&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:nonsense
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                146&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                147&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:froboz))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                148&nbsp;&nbsp;
+                </span><br/>
+<span class="not-tracked" title="0 out of 0 forms covered">
+                149&nbsp;&nbsp;;;&nbsp;(def&nbsp;ol&nbsp;(cc.journeyman.the-great-game.location.location&#x2F;OrientedLocation.&nbsp;123.45&nbsp;543.76&nbsp;12.34&nbsp;0.00&nbsp;{}))
+                </span><br/>
+<span class="blank" title="0 out of 0 forms covered">
+                150&nbsp;&nbsp;
+                </span><br/>
+ </body>
+</html>

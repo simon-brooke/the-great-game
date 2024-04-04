@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "../GreatGameTerrain"
+		},
+		{
+			"path": "../walkmap"
+		},
+		{
+			"path": "../jme-clj"
+		},
+		{
+			"path": "../MicroWorld/mw-engine"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../test-graphs"
+		},
+		{
+			"path": "../speechio"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.compile.nullAnalysis.mode": "automatic"
+	}
+}
