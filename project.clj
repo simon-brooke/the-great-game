@@ -23,7 +23,8 @@
                  [org.clojure/clojure "1.11.2"]
                  [org.clojure/math.numeric-tower "0.1.0"]
                  [org.clojure/tools.namespace "1.5.0"]
-                 [org.clojure/tools.reader "1.4.1"]]
+                 [org.clojure/tools.reader "1.4.1"]
+                 [wherefore-art-thou "0.1.0-SNAPSHOT"]]
   :description "Prototype code towards the great game I've been writing about for ten years, and know I will never finish."
   :license {:name "GNU General Public License,version 2.0 or (at your option) any later version"
             :url "https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html"}
