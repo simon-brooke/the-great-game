@@ -13,11 +13,13 @@
   :cucumber-feature-paths ["test/features/"]
   :dependencies [[com.taoensso/timbre "6.5.0"]
                  [environ "1.2.0"]
+                 [hiccup "2.0.0-RC3"] 
                  [jme-clj "0.1.13"]
 ;;                 [jme3-core "3.4.0-stable"]
                  [journeyman-cc/walkmap "0.1.0-SNAPSHOT"]
                  [me.raynes/fs "1.4.6"]
                  [mw-engine "0.3.0-SNAPSHOT"]
+                 [mw-parser "0.3.0-SNAPSHOT"]
                  [org.apache.commons/commons-math3 "3.6.1"] ;; for mersenne-twister implementation
                  [org.clojure/algo.generic "1.0.0"]
                  [org.clojure/clojure "1.11.2"]
