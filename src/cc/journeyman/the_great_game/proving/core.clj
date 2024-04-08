@@ -4,7 +4,8 @@
             [mw-engine.drainage :refer [run-drainage]]
             ;;[mw-engine.flow :refer []]
             [mw-engine.heightmap :refer [apply-heightmap]]
-            [mw-parser.declarative :refer [compile]]))
+            [mw-parser.declarative :refer [compile]]
+            [wherefore-art-thou.core :refer [*genders* generate]]))
 
 (defn get-drainage-map
   "Given this `height-map` (a monochrome raster) and optionally this 
@@ -27,6 +28,39 @@
   ([height-map _rainfall-map]
    (get-biome-map height-map)))
 
+(def ^:dynamic *life-goals*
+  "TODO: This definitely doesn't belong here, and will be moved."
+  [:ancestor :citizen :climber :conqueror :explorer :hoarder :master])
+
+(defn- create-npc 
+  ;; TODO: this function needs not only to create a fully formed NPC, but 
+  ;; persist them in the database being built. This is just a sketch. 
+  [prototype]
+  (let [g (or (:gender prototype) (rand-nth (keys *genders*)))
+        p (generate g)]
+    (merge {:age (+ 18 (rand-int 18))
+            :disposition (- (rand-int 9) 4) ;; -4: surly to +4 sunny
+            :gender g
+            :goal (rand-nth *life-goals*)
+            :family-name (generate)
+            :occupation :vagrant
+            :personal-name p} prototype)))
+
+(defn- populate-npcs
+  [prototype]
+  (let [family (generate)]
+    (into [] (map #(create-npc (assoc prototype :family-name family :occupation %))
+                  (concat [:settler] (repeat 3 (:occupation prototype)))))))
+
+(defn populate-cell
+  [world cell]
+  (let [npcs (case (:state cell)
+           :camp (populate-npcs {:world world :cell cell :occupation :nomad})
+           :house (populate-npcs {:world world :cell cell :occupation :farmer})
+           :inn (populate-npcs {:world world :cell cell :occupation :innkeeper}))]
+    (if npcs (assoc cell :npcs npcs)
+        cell)))
+
 (defn populate-world
   "Given this `biome-map` (as returned by `get-biome-map`), populate a world
    (probably some form of database) and return a structure which allows that
@@ -47,7 +81,9 @@
     ;; what I return at the end of this is a structure which contains keys 
     ;; to a database I've stored all the NPCs in, and a (vector) roadmap of 
     ;; all the roads that have been created, and a (vector) drainage map.
-    {:world world}))
+
+    {:world (map #(populate-cell world %) world)
+     :roadmap []}))
 
 (defn get-road-map
   [populated-world])

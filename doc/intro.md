@@ -167,6 +167,7 @@ different top level goals. The following are some plausible top level goals:
 4. **Climber**: To climb as high as possible in the social hierarchy, to become Tyrranos or Imperator;
 5. **Conqueror**: To build the largest possible realm under your control;
 6. **Citizen**: To build a secure and comfortable home, able to feed and protect those within it;
+7. **Hoarder**: To accumulate the greatest possible amount of wealth.
 
 In this typology, a hero is a master soldier, and a sage a master scholar.
 Each of these types should be capable of being 'scored' by a real function

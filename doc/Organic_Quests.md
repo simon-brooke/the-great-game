@@ -27,7 +27,7 @@ Hybrids are in effect chains of quests: do this task in order to get this precon
 
 My understanding is that what Wikipedia means by a 'syntax quest' is what one would normally call a puzzle.
 
-An escort quest is typically a request to take a specified non-player character safely through a dangerous area.
+An escort quest is typically a request to take a specified non-player character safely through a dangerous area. It is thus very similar to a delivery quest, except that you are escorting a character rather than delivering an item.
 
 Combo quests are not, in my opinion, particularly relevant to the sorts of game we're discussing here.
 

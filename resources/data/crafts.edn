@@ -1,0 +1,5 @@
+{:blacksmith {:workplace :forge 
+              :supplies #{:axe :chisel :plough :knife} 
+              :customers #{:farmer :cook}
+              :min-customers
+              :trade :smith}}
