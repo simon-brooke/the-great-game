@@ -40,6 +40,75 @@ If we're going to represent a society in which public sex is normal, then we're 
 
 By 'eroticised', I'm meaning deliberately intended to trigger sexual feelings in the audience &mdash; which, if the player character is present, includes the player.
 
+### Breeding strategies for non-player characters
+
+In order to model population growth, I need to model when two NPCs will have sex; I need to model (roughly) when two NPCs will choose to have sex.
+
+This is different for female NPCs to male NPCs (and female NPCs will be much more cautious, because of the risk/cost of pregnancy), so let's consider each in turn.
+
+**Note that** sex happens if and only if the conditions for both the female partner and the male partner are met.
+
+**Note that** we're considering heterosexual sex only here because what I'm currently modelling is population growth, and only heterosexual sex leads to pregnancy.
+
+#### Generalised breeding strategy for a female NPC
+
+A female NPC will have sex with a male NPC:
+
+1. Long term relationship
+    1. Her life goal is `:ancestor`;
+    2. His life goal is either `:ancestor` or `:citizen`;
+    3. Her attitude towards him is +2 or above;
+    4. They reside in the same dwelling, *or* one or other of them is of no fixed abode (in which case they will reside in the same dwelling);
+    5. All other levels in her hierarchy of needs are currently satisfied.
+2. Passion
+    1. His attitude towards her is +4, and 
+    2. Her attitude towards him is also +4;
+    3. All other levels in her hierarchy of needs are currently satisfied.
+3. Social climbing
+    1. Her life goal is `:climber` and 
+    2. His social rank is two or more higher than hers (counting `:bonnet-laird` as above `:master`);
+    3. All other levels in her hierarchy of needs are currently satisfied.
+4. Transactional
+    1. Need
+        1. She is hungry and broke; and
+        2. He has surplus food and/or money.
+    2. Coercion
+        1. He has something she urgently wants (the example I'm thinking of is he has abducted a child);
+    3. Sex work
+        1. Her life goal is `:hoarder`, and he has surplus money; or
+        2. It's possible I make sex work an actual career choice -- a craft of its own.
+5. Rape
+    1. If she is a slave and he is her owner;
+    2. If he has defeated her in a fight;
+    3. If she assesses that he will defeat her in an impending fight;
+    4. Possibly, to distrct him from doing worse things to people she is protecting (e.g. children)
+
+#### Generalised breeding strategy for a male NPC
+
+1. Ancestor
+    1. His life goal is `:ancestor`; and
+    2. His attitude towards her is +2 or above;
+    3. All other levels in his hierarchy of needs are currently satisfied.
+2. Long term relationship
+    1. His life goal is `:ancestor` or `:citizen`;
+    2. Her life goal is `:ancestor` or `:citizen`;
+    3. His attitude towards her is +2 or above;
+    4. They reside in the same dwelling, *or* one or other of them is of no fixed abode (in which case they will reside in the same dwelling);
+    5. All other levels in his hierarchy of needs are currently satisfied.
+3. Dynastic
+    1. His life goal is `:conqueror`; and
+    2. Her social rank is `:ariston` or above;
+    3. She has no other existing long term sexual relationship;
+    4. All other levels in his hierarchy of needs are currently satisfied.
+4. Social climbing
+    1. His life goal is `:climber`; and
+    2. Her social rank is at least one higher than his;
+    3. All other levels in his hierarchy of needs are currently satisfied.
+5. Casual
+    1. His attitude towards her is +1 or above;
+    2. All other levels in his hierarchy of needs are currently satisfied.
+
+
 ## Sexual violence between non-player characters
 
 In a world in which there are characters who are thuggish, who seek to dominate, terrorise and subdue other characters, whether those characters are outlaws or soldiers or aristocrats, to pretend that rape would not be used as a means to dominate, terrorise or subdue is… bowdlerisation. It's unrealistic, and it's a morally indefensible choice.
