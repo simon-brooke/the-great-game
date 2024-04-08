@@ -1,6 +1,4 @@
-(ns cc.journeyman.the-great-game.objects.container
-  (:require
-    [cc.journeyman.the-great-game.objects.game-object :refer :all]))
+(ns cc.journeyman.the-great-game.objects.container)
 
 (defprotocol ProtoContainer
   (contents
