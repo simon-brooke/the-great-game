@@ -26,9 +26,6 @@
 		},
 		{
 			"path": "../MicroWorld/mw-parser"
-		},
-		{
-			"path": "../MicroWorld/mw-ui"
 		}
 	],
 	"settings": {

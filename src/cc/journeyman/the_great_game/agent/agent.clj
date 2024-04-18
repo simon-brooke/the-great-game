@@ -2,7 +2,7 @@
   "Anything in the game world with agency; primarily but not exclusively
    characters."
   (:require [cc.journeyman.the-great-game.objects.game-object :refer [ProtoObject]]
-            [cc.journeyman.the-great-game.objects.container :refer [ProtoContainer]]))
+            [cc.journeyman.the-great-game.objects.container :refer [ProtoContainer contents is-empty?]]))
 
 ;;; hierarchy of needs probably gets implemented here
 ;;; I'm probably going to want to defprotocol stuff, to define the hierarchy
@@ -66,46 +66,64 @@
                                      `world`.")
   (tired? [actor world circle] "True if this `actor` needs rest."))
 
-;; (defrecord Agent
-;;   ;; "A default agent."
-;;            [name craft home culture]
-;;   ProtoObject
-;;   ProtoContainer
-;;   ProtoAgent
+(defrecord Agent
+  ;; "A default agent."
+           [name craft home culture]
+  ProtoObject
+  ProtoContainer
 
-;;   (act
-;;     “Return a world like this `world `except that this `actor `has acted in it.
-;;     ‘Circle’ indicates which activation circle the actor is in.
+  (contents
+    "The `contents` of an actor are the contents of their pack(s) (if any), where 
+     a pack may be any sort of bag or container which the actor could reasonably 
+     be carrying."
+    [actor]
+    (flatten
+     (map contents (filter #(satisfies? ProtoContainer %)
+                           (:burden actor)))))
 
-;;     Note that this implies that a `plan `is a function of three arguments, an
-;;     actor, a world. and a circle.”
-;;     [actor world circle]
-;;     (let [urgent (case circle
-;;                    :other (cond
-;;                             (pending-scheduled-action? actor world circle) 
-;;                             (plan-scheduled-action actor world circle)
-;;                             (empty? (:plans actor)) 
-;;                             (plan-goal actor world circle))
-;;                    :background (cond
-;;                                  (threatened? actor world circle) 
-;;                                  (plan-fight-or-flight actor world circle)
-;;                                  (pending-scheduled-action? actor world circle) 
-;;                                  (plan-scheduled-action actor world circle)
-;;                                  (empty? (:plans actor)) 
-;;                                  (plan-goal actor world circle))
-;;                    ;; else
-;;                    (cond
-;;                      (threatened? actor world circle) 
-;;                      (plan-fight-or-flight actor world circle)
-;;                      (hungry? actor world circle) 
-;;                      (plan-find-food actor world circle)
-;;                      (tired? actor world circle) 
-;;                      (plan-find-rest actor world circle)
-;;                      (pending-scheduled-action? actor world circle) 
-;;                      (plan-scheduled-action actor world circle)
-;;                      (empty? (:plans actor)) 
-;;                      (plan-goal actor world circle)))
-;;           a’ (if urgent
-;;                (assoc actor :plans (cons urgent (:plans actor)))
-;;                actor)]
-;;       (eval ((first (:plans a’)) a’ world)))))
+  (is-empty?
+    [actor]
+    (empty? (:burden actor)))
+
+  ProtoAgent
+
+  (act
+    “Return a map in which :world is bound to a world like this `world `except that this `actor `has acted in it; and `:actor` is bound to an 
+    actor like this `actor `except modified by the consequences of the action.
+    ‘Circle’ indicates which activation circle the actor is in.
+
+    Note that this implies that a `plan `is a function of three arguments, an
+    actor, a world. and a circle, and returns exactly the sort of map this
+    function returns.”
+    [actor world circle]
+    (let [urgent (case circle
+                   :other (cond
+                            (pending-scheduled-action? actor world circle)
+                            (plan-scheduled-action actor world circle))
+                   :background (cond
+                                 (threatened? actor world circle)
+                                 (plan-fight-or-flight actor world circle)
+                                 (pending-scheduled-action? actor world circle)
+                                 (plan-scheduled-action actor world circle))
+                   ;; else
+                   (cond
+                     (threatened? actor world circle)
+                     (plan-fight-or-flight actor world circle)
+                     (hungry? actor world circle)
+                     (plan-find-food actor world circle)
+                     (tired? actor world circle)
+                     (plan-find-rest actor world circle)
+                     (pending-scheduled-action? actor world circle)
+                     (plan-scheduled-action actor world circle)))
+          next-action (cond urgent urgent
+                            (empty? (:plans actor))
+                            (plan-goal actor world circle)
+                            :else (first (:plans actor)))
+          consequences (apply next-action (list actor world circle))]
+      ;; we return consequences of the action, except that, if the action
+      ;; was on the plans of the actor, we remove it.
+      (if-not (= next-action (first (:plans actor)))
+        consequences
+        (assoc consequences :actor
+               (assoc (:actor consequences) :plans
+                      (rest (-> consequences :actor :plans))))))))
