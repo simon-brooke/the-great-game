@@ -26,7 +26,7 @@
    microworld style world tagged with vegetation, etc, data). "
   ([height-map]
    (let [drained-world (get-drainage-map height-map)]
-     (run-world drained-world (compile (slurp "resources/baking/biome-rules.txt")) (count drained-world))))
+     (run-world drained-world (compile (slurp "resources/data/baking/biome-rules.txt")) (count drained-world))))
   ([height-map _rainfall-map]
    (get-biome-map height-map)))
 
@@ -70,6 +70,7 @@
                :camp (populate-npcs {:world world :cell cell :occupation :nomad})
                :house (populate-npcs {:world world :cell cell :occupation :peasant})
                :inn (populate-npcs {:world world :cell cell :occupation :innkeeper})
+               :market (populate-npcs {:world world :cell cell :occupation :merchant})
                ;; else
                nil)]
     (if npcs (assoc cell :npcs npcs)
@@ -80,7 +81,7 @@
    (probably some form of database) and return a structure which allows that
    database o be interrogated."
   [biome-map]
-  (let [world (run-world biome-map (compile (slurp "resources/baking/settlement-rules.txt")) (count biome-map))
+  (let [world (run-world biome-map (compile (slurp "resources/data/baking/settlement-rules.txt")) (count biome-map))
         with-npcs (map-world world (vary-meta (fn [w c] (populate-cell w c)) assoc :rule-type :ad-hoc))]
     ;; right, with that settled world, I'm going to put one herdsman with 
     ;; five animals (either all sheep, all cattle, all goats, all horses or 
@@ -101,7 +102,7 @@
      :roadmap []}))
 
 (defn get-road-map
-  [populated-world])
+  [_populated-world])
 
 (defn prove
   "Given this `height-map` (a monochrome raster) and optionally this 

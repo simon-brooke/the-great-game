@@ -26,6 +26,9 @@
 		},
 		{
 			"path": "../MicroWorld/mw-parser"
+		},
+		{
+			"path": "../../Documents/fiction/merchants-war-game"
 		}
 	],
 	"settings": {
