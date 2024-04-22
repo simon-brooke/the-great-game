@@ -1,25 +1,28 @@
 {
 	"folders": [
 		{
-			"path": "../GreatGameTerrain"
-		},
+			"path": "../biome"
+		}
 		{
-			"path": "../walkmap"
+			"path": "../GreatGameTerrain"
 		},
 		{
 			"path": "../jme-clj"
 		},
 		{
+			"path": "../MicroWorld/mw-parser"
+		},
+		{
 			"path": "../MicroWorld/mw-engine"
 		},
 		{
-			"path": "."
-		},
-		{
-			"path": "../test-graphs"
-		},
-		{
 			"path": "../speechio"
+		},
+		{
+			"path": "." /* the great game itself */
+		},
+		{
+			"path": "../walkmap"
 		},
 		{
 			"path": "../wherefore-art-thou"
