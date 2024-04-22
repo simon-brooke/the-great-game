@@ -1,5 +1,26 @@
-{:blacksmith {:workplace :forge 
-              :supplies #{:axe :chisel :plough :knife} 
-              :customers #{:farmer :cook}
-              :min-customers
-              :trade :smith}}
+(def craft-ranks {:apprentice {:social-rank 1 :independent? false}
+                  :journeyman {:social-rank 2 :independent? false} 
+                  :master {:social-rank 3} :independent? true})
+
+(def scholar-ranks {:student {:social-rank 2 :independent? false}
+                    :scholar {:social-rank 3 :independent? true}
+                    :sage {:social-rank 4 :independent? true}})
+
+(declare all-crafts)
+
+{
+ :blacksmith {:workplace :forge 
+              :supplies #{:axe :chisel :hammer :pick :plough :knife} 
+              :customers #{:peasant :nomad :cook}
+              :min-customers {:solo 5 :per-apprentice 1 :per-journeyman 3}
+              :trade :smith
+              :ranks craft-ranks}
+ :weaponsmith {:workplace :forge
+               :supplies #{:axe :knife :sword :spear}
+               :customers #{:soldier :outlaw}
+               :min-customers {:solo 5 :per-apprentice 1 :per-journeyman 3}
+               :trade :smith
+               :ranks craft-ranks}
+ :baker {:workplace :bakehouse
+         :supplies #{:bread :cake}
+         :customers all-crafts}}
