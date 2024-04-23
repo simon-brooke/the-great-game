@@ -5,7 +5,7 @@
                                   defsimpleapp fly-cam get-height-map image
                                   image-based-height-map load-height-map
                                   load-texture material set* start
-                                  terrain-lod-control terrain-quad]]) 
+                                  terrain-lod-control terrain-quad]])
   (:import (com.jme3.texture Texture$WrapMode))
   (:gen-class))
 
@@ -34,32 +34,36 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (def cli-options
-  ;; An option with a required argument
-  [["-p" "--port PORT" "Port number"
-    :default 80
-    :parse-fn #(Integer/parseInt %)
-    :validate [#(< 0 % 0x10000) "Must be a number between 0 and 65536"]]
-   ;; A non-idempotent option (:default is applied first)
-   ["-v" nil "Verbosity level"
+  "I haven't yet thought out what command line arguments (if any) I need.
+   This is a placeholder."
+  [["-v" nil "Verbosity level"
     :id :verbosity
     :default 0
-    :update-fn inc] ; Prior to 0.4.1, you would have to use:
-                   ;; :assoc-fn (fn [m k _] (update-in m [k] inc))
-   ;; A boolean option defaulting to nil
+    :update-fn inc]
    ["-h" "--help"]])
 
-(defn init []
+(defn init
+  "Again, placeholder. This initialises a bit of standard jMonkeyEngine 
+   terrain, just to check I have things wired up correctly."
+  []
   (set* (fly-cam) :move-speed 50)
-  (let [grass          (set* (load-texture "textures/terrain/splat/grass.jpg") :wrap Texture$WrapMode/Repeat)
-        dirt           (set* (load-texture "textures/terrain/splat/dirt.jpg") :wrap Texture$WrapMode/Repeat)
-        rock           (set* (load-texture "textures/terrain/splat/road.jpg") :wrap Texture$WrapMode/Repeat)
-        mat            (material "Common/MatDefs/Terrain/Terrain.j3md")
-        height-map-tex (load-texture "textures/terrain/splat/mountains512.png")
-        height-map     (->> height-map-tex image image-based-height-map load-height-map)
-        patch-size     65
-        terrain        (terrain-quad "my terrain" patch-size 513 (get-height-map height-map))]
+  (let [grass (set* (load-texture "jme3/textures/terrain/splat/grass.jpg")
+                    :wrap Texture$WrapMode/Repeat)
+        dirt (set* (load-texture "jme3/textures/terrain/splat/dirt.jpg")
+                   :wrap Texture$WrapMode/Repeat)
+        rock (set* (load-texture "jme3/textures/terrain/splat/road.jpg")
+                   :wrap Texture$WrapMode/Repeat)
+        mat (material "Common/MatDefs/Terrain/Terrain.j3md")
+        height-map-tex (load-texture 
+                        "jme3/textures/terrain/splat/mountains512.png")
+        height-map (->> height-map-tex image image-based-height-map
+                        load-height-map)
+        patch-size 65
+        terrain (terrain-quad "my terrain" patch-size 513
+                              (get-height-map height-map))]
     (-> mat
-        (set* :texture "Alpha" (load-texture "textures/terrain/splat/alphamap.png"))
+        (set* :texture "Alpha"
+              (load-texture "jme3/textures/terrain/splat/alphamap.png"))
         (set* :texture "Tex1" grass)
         (set* :float "Tex1Scale" (float 64))
         (set* :texture "Tex2" dirt)
@@ -73,15 +77,17 @@
         (add-to-root)
         (add-control (terrain-lod-control terrain (cam))))))
 
-(defsimpleapp app :init init)
+(defsimpleapp game :init init)
 
-(defn -main 
+(defn -main
   "Launch the game."
   [& args]
   (parse-opts args cli-options)
 
   ;; this isn't working, not sure why not.
-  ;; (.setSettings app (app-settings false :dialog-image "images/splash.png"))
+  (.setSettings game 
+                (app-settings false 
+                              :dialog-image "original/images/splash.png"))
 
-  (start app))
+  (start game))
   
