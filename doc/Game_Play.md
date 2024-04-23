@@ -1,4 +1,4 @@
-# Game Play
+# Game Play (unfinished)
 
 The principles of game play which I'm looking for are a reaction against all I see as wrong in modern video games. So let's set out what these are:
 

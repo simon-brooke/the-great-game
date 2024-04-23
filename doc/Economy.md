@@ -1,4 +1,4 @@
-# Game world economy
+# Game world economy (unfinished)
 
 Broadly this essay extends ideas presented in [Populating a game world](Populating-a-game-world.html), q.v.
 

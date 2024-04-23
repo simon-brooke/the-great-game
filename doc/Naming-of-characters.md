@@ -1,5 +1,7 @@
 # Naming of Characters
 
+**See [`wherefore-art-thou`](https://github.com/simon-brooke/wherefore-art-thou)**
+
 Generally speaking, in modern RPGs, every character with any impact on the plot has a distinct name. But if we are going to give all non-player characters sufficient agency to impact on the plot, then we must have a way of naming tens or hundreds of thousands of characters, and distinct names will become problematic (even if we're procedurally generating names, which we shall have to do. So this note is about how characters are named.
 
 

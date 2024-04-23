@@ -10,10 +10,13 @@
 			"path": "../jme-clj"
 		},
 		{
-			"path": "../MicroWorld/mw-parser"
+			"path": "../../Documents/fiction/merchants-war-game"
 		},
 		{
 			"path": "../MicroWorld/mw-engine"
+		},
+		{
+			"path": "../MicroWorld/mw-parser"
 		},
 		{
 			"path": "../speechio"
@@ -26,12 +29,6 @@
 		},
 		{
 			"path": "../wherefore-art-thou"
-		},
-		{
-			"path": "../MicroWorld/mw-parser"
-		},
-		{
-			"path": "../../Documents/fiction/merchants-war-game"
 		}
 	],
 	"settings": {

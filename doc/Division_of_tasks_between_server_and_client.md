@@ -1,4 +1,4 @@
-# Division of tasks between server and client
+# Division of tasks between server and client (unfinished)
 
 An alternative nomentclature I may use for this dichotomy would be _planner_ and _performer_; it would be the same dichotomy. 'Planner' and 'server' are synonyms; 'performer' and 'client' are synonyms.
 

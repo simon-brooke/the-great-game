@@ -25,11 +25,11 @@ A `heightmap` is a raster image of the world, such that the intensity in which a
 
 #### Holding
 
-A `holding` is a polygon 'owned' by an `actor` on which are built appropriate building units representing the `actors` craft and status.
+A `holding` is a polygon 'owned' by an `actor` on which are built appropriate building units representing the `actor`'s craft and status.
 
 #### Location
 
-A `location` value is a sequence comprising at most the x/y coordinate location and the ids of the settlement and region (possibly hierarchically) that contain the location. If the x/y is not local to the home of the receiving agent, they won't remember it and won't pass it on; if any of the ids are not interesting, they won't be passed on. So location information will degrade progressively as the item is passed along.
+A `location` value is a sequence comprising at most the x/y or x/y/z coordinate location and the ids of the settlement and region (possibly hierarchically) that contain the location. If the :z coordinate is not supplied the terrain surface hieght at that x/y location will be assumed. If the x/y is not local to the home of the receiving agent, they won't remember it and won't pass it on; if any of the ids are not interesting, they won't be passed on. So location information will degrade progressively as the item is passed along.
 
 It is assumed that the `:home` of a character is a location in this sense.
 
