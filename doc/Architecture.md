@@ -1,10 +1,12 @@
+# Architecture
+
 OK, the basic idea is this
 
 Everything (every game object, including the world) is a map.
 
 Every object as an :id property; every :id property is distinct.
 
-There is a master map - the `oblist` which contains every object, keyed by its :id.
+There is a master map - the `oblist` which contains every object, keyed by its :id.  (Actually, there probably can't be such a map in working memory, because there will be too many objects. There will be such a map in the database -- but still keyed by :id).
 
 Every object has a :run function, which returns either a new copy of itself or nil, and does not have side effects.
 
