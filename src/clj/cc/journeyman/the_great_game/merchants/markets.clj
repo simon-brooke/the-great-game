@@ -1,6 +1,6 @@
 (ns cc.journeyman.the-great-game.merchants.markets
   "Adjusting quantities and prices in markets."
-  (:require [taoensso.timbre :as l :refer [info error]]
+  (:require [taoensso.telemere.timbre :as l :refer [info error]]
             [cc.journeyman.the-great-game.utils :refer [deep-merge]]))
 
 (defn new-price

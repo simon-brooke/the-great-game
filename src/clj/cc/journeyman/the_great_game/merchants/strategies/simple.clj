@@ -6,7 +6,7 @@
   and sells it there. If there is no commodity locally which can be traded
   profitably, moves towards home with no cargo. If at home and no commodity
   can be traded profitably, does not move."
-  (:require [taoensso.timbre :as l :refer [info error spy]]
+  (:require [taoensso.telemere.timbre :as l :refer [info error spy]]
             [cc.journeyman.the-great-game.utils :refer [deep-merge]]
             [cc.journeyman.the-great-game.gossip.gossip :refer [move-gossip]]
             [cc.journeyman.the-great-game.merchants.planning :refer [augment-plan plan-trade select-cargo]]
@@ -72,7 +72,6 @@
             (map? merchant)
             merchant)
         id (:id m)
-        location (:location m)
         plan (augment-plan m world (plan-trade m world (-> m :plan :commodity)))]
     (l/debug "re-plan: merchant" id)
     (deep-merge

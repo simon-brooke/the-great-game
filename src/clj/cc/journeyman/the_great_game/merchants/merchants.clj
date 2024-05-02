@@ -2,7 +2,7 @@
   "Trade planning for merchants, primarily."
   (:require [cc.journeyman.the-great-game.utils :refer [deep-merge]]
             [cc.journeyman.the-great-game.merchants.strategies.simple :refer [move-merchant]]
-            [taoensso.timbre :as l]))
+            [taoensso.telemere.timbre :as l]))
 
 
 (defn run

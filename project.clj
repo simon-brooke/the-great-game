@@ -18,7 +18,8 @@
                  [com.github.seancorfield/next.jdbc "1.3.925"]
                  [com.simsilica/lemur "1.16.1-SNAPSHOT"]
                  [com.simsilica/sim-arboreal "1.0.1-SNAPSHOT"]
-                 [com.taoensso/timbre "6.5.0"]
+                 ;; [com.taoensso/timbre "6.5.0"]
+                 [com.taoensso/telemere "1.0.0-beta3"] ;; Peter Taoussanis' new replacement for Timbre
                  [environ "1.2.0"]
                  [hiccup "2.0.0-RC3"]
                  [jme-clj "0.1.13"]

@@ -9,3 +9,7 @@ Work by other people which is relevant to what I'm doing, and which I should stu
 ## Systemic games
 
 1. [This video](https://youtu.be/SnpAAX9CkIc) is thought provoking with excellent examples.
+
+## Procedural animation
+
+1. [This video](https://youtu.be/LNidsMesxSE) builds really impressive character animation on extremely simple foundations. I'm not saying this is easy, but it looks doable.

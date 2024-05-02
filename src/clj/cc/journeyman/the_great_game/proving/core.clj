@@ -6,7 +6,7 @@
             [mw-engine.heightmap :refer [apply-heightmap]]
             [mw-engine.utils :refer [map-world]]
             [mw-parser.declarative :refer [compile]]
-            [taoensso.timbre :refer [info]]
+            [taoensso.telemere.timbre :refer [info]]
             [wherefore-art-thou.core :refer [*genders* generate]]))
 
 (defn get-drainage-map
@@ -45,17 +45,19 @@
   ;; persist them in the database being built. This is just a sketch. 
   [prototype]
   (let [g (or (:gender prototype) (rand-nth (keys *genders*)))
-        p (generate g)]
-    (dissoc (merge {:age (+ 18 (rand-int 18))
-                    :disposition (- (rand-int 9) 4) ;; -4: surly to +4 sunny
-                    :gender g
-                    :goal (rand-nth *life-goals*)
-                    :family-name (generate)
-                    :occupation :vagrant
-                    :personal-name p} prototype)
-            ;; it's useful to have the world available to the create function,
-            ;; but we don't want to return it in the results because clutter.
-            :world)))
+        p (generate g)
+        npc (dissoc (merge {:age (+ 18 (rand-int 18))
+                            :disposition (- (rand-int 9) 4) ;; -4: surly to +4 sunny
+                            :gender g
+                            :goal (rand-nth *life-goals*)
+                            :family-name (generate)
+                            :occupation :vagrant
+                            :personal-name p} prototype)
+                        ;; it's useful to have the world available to the create function,
+                        ;; but we don't want to return it in the results because clutter.
+                    :world)]
+    (info (format "Created NPC %s" (select-keys npc [:id :family-name :personal-name :age :gender :occupation :goal])))
+    ))
 
 (defn- populate-npcs
   [prototype]
@@ -65,7 +67,7 @@
 
 (defn populate-cell
   [world cell]
-  ;; (info (format "populate-cell: w is %s; cell is %s" (type world) cell))
+  (info (format "populate-cell: w is %s; cell is %s" (type world) cell))
   (let [npcs (case (:state cell)
                :camp (populate-npcs {:world world :cell cell :occupation :nomad})
                :house (populate-npcs {:world world :cell cell :occupation :peasant})

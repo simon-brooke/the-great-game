@@ -34,7 +34,7 @@
             [cc.journeyman.the-great-game.world.location :refer [distance-between]]
             [cc.journeyman.the-great-game.time :refer [game-time]]
             [cc.journeyman.the-great-game.utils :refer [inc-or-one truthy?]]
-            [taoensso.timbre :as l]))
+            [taoensso.telemere.timbre :as l]))
 
 (declare interesting-location?)
 

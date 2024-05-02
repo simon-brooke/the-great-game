@@ -29,6 +29,9 @@
 		},
 		{
 			"path": "../../Documents/fiction/merchants-war-game"
+		},
+		{
+			"path": "../simulated-genetics"
 		}
 	],
 	"settings": {

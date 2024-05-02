@@ -1,7 +1,7 @@
 (ns cc.journeyman.the-great-game.world.run
   "Run the whole simulation"
   (:require [environ.core :refer [env]]
-            [taoensso.timbre :as timbre]
+            [taoensso.telemere.timbre :as timbre]
             [taoensso.timbre.appenders.3rd-party.rotor :as rotor]
             [cc.journeyman.the-great-game.gossip.gossip :as g]
             [cc.journeyman.the-great-game.merchants.merchants :as m]
