@@ -4,7 +4,7 @@
 
 The Great Game exists as a project on two levels. One one level, it's a framework for building algorithms to build much more vibrant, and thus enjoyable game worlds; at another level, it's about building a particular world, in which I want to tell stories.
 
-The world in which I want to tell stories is a world which is based roughly on late bronze age to medieval Europe. It's a world in which the region known as 'The Coast' -- the southern littoral of the continent -- had been a mostly-peaceful matrideic dispersed agrarian tribal society, which had been invaded some hundreds of years past by a warrior tribe with substantially better military technology.
+The world in which I want to tell stories is a world which is based roughly on late bronze age to medieval Europe. It's a world in which the region known as 'The Coast' &mdash; the southern littoral of the continent &mdash; had been a mostly-peaceful matrideic dispersed agrarian tribal society, which had been invaded some hundreds of years past by a warrior tribe with substantially better military technology.
 
 These warrior tribesmen have settled down as local tyrants or robber barons, parasitising on the indigenous communities, and have evolved into an aristocratic ('Ariston') class. In the meantime, a mercantile class has grown up and established important long distance overland trade routes; and significant towns (called 'cities', but of only at most a few tens of thousand inhabitants) have grown up around markets. 
 

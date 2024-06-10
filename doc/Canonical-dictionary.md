@@ -17,7 +17,7 @@ A `gossip` is an `actor` who exchanges news with other `actors`, even when the p
 1. `innkeepers` (and possibly some others) are `gossips` who do not move; rather, they gather information from gossips who do move, and all `non-player characters` local to the are deemed to know everything that their local `innkeeper` knows;
 2. `merchants` (and possibly some others) are `gossips` who do move from place to place, and thus transfer news.
 
-See [the spread of knowledge in a large game world](The-spread-of-knowledge-in-large-game.html).
+See [the spread of knowledge in a large game world](The-spread-of-knowledge-in-a-large-game-world.html).
 
 #### Heightmap
 

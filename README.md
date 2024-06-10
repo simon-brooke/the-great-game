@@ -14,3 +14,5 @@ This doesn't work and isn't ever likely to fully work: it's way too ambitious fo
 Copyright (c) 2019 Simon Brooke; licenced under the
 [GNU General Public Licence](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html), either version 2 or, at your option, any later version.
 
+Some assets from [jMonkeyEngine](https://jmonkeyengine.org/) examples are currently included in this repository; they are under [a BSD-style licence](https://github.com/jMonkeyEngine/jmonkeyengine/blob/master/LICENSE.md).
+

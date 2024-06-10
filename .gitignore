@@ -54,3 +54,9 @@ src/cc/journeyman/the_great_game/cloverage.clj
 .DS_Store
 
 .portal/
+
+# Excluding third party resources from the public repo;
+# probably ought to list them in the README files.
+resources/jme3/images/
+resources/jme3/textures/
+resources/polyhaven/textures/

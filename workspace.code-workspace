@@ -20,10 +20,23 @@
 		},
 		{
 			"path": "../speechio"
+		},
+		{
+			"path": "../wherefore-art-thou"
+		},
+		{
+			"path": "../MicroWorld/mw-parser"
+		},
+		{
+			"path": "../../Documents/fiction/merchants-war-game"
+		},
+		{
+			"path": "../simulated-genetics"
 		}
 	],
 	"settings": {
 		"java.configuration.updateBuildConfiguration": "automatic",
-		"java.compile.nullAnalysis.mode": "automatic"
+		"java.compile.nullAnalysis.mode": "automatic",
+		"java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable"
 	}
 }
