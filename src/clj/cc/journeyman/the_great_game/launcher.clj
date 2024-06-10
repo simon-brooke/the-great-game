@@ -33,6 +33,8 @@
 ;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(declare game)
+
 (def cli-options
   "I haven't yet thought out what command line arguments (if any) I need.
    This is a placeholder."
