@@ -16,9 +16,9 @@
 <h4><a href="#heightmap" id="heightmap"></a>Heightmap</h4>
 <p>A <code>heightmap</code> is a raster image of the world, such that the intensity in which an area is coloured represents the value of some variable, by default height, of that area.</p>
 <h4><a href="#holding" id="holding"></a>Holding</h4>
-<p>A <code>holding</code> is a polygon ‘owned’ by an <code>actor</code> on which are built appropriate building units representing the <code>actors</code> craft and status.</p>
+<p>A <code>holding</code> is a polygon ‘owned’ by an <code>actor</code> on which are built appropriate building units representing the <code>actor</code>’s craft and status.</p>
 <h4><a href="#location" id="location"></a>Location</h4>
-<p>A <code>location</code> value is a sequence comprising at most the x/y coordinate location and the ids of the settlement and region (possibly hierarchically) that contain the location. If the x/y is not local to the home of the receiving agent, they won’t remember it and won’t pass it on; if any of the ids are not interesting, they won’t be passed on. So location information will degrade progressively as the item is passed along.</p>
+<p>A <code>location</code> value is a sequence comprising at most the x/y or x/y/z coordinate location and the ids of the settlement and region (possibly hierarchically) that contain the location. If the :z coordinate is not supplied the terrain surface hieght at that x/y location will be assumed. If the x/y is not local to the home of the receiving agent, they won’t remember it and won’t pass it on; if any of the ids are not interesting, they won’t be passed on. So location information will degrade progressively as the item is passed along.</p>
 <p>It is assumed that the <code>:home</code> of a character is a location in this sense.</p>
 <p><strong>Examples</strong></p>
 <ol>

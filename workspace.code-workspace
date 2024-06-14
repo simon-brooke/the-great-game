@@ -1,37 +1,47 @@
 {
 	"folders": [
 		{
-			"path": "../GreatGameTerrain"
+			"path": "../biome"
 		},
 		{
-			"path": "../walkmap"
+			"path": "../GreatGameTerrain"
 		},
 		{
 			"path": "../jme-clj"
 		},
 		{
-			"path": "../MicroWorld/mw-engine"
-		},
-		{
-			"path": "."
-		},
-		{
-			"path": "../test-graphs"
-		},
-		{
-			"path": "../speechio"
-		},
-		{
-			"path": "../wherefore-art-thou"
-		},
-		{
-			"path": "../MicroWorld/mw-parser"
+			"path": "../jme3-template"
 		},
 		{
 			"path": "../../Documents/fiction/merchants-war-game"
 		},
 		{
+			"path": "../MicroWorld/mw-engine"
+		},
+		{
+			"path": "../MicroWorld/mw-parser"
+		},
+		{
+<<<<<<< HEAD
+			"path": "../../Documents/fiction/merchants-war-game"
+		},
+		{
 			"path": "../simulated-genetics"
+=======
+			"path": "../simulated-genetics"
+		},
+		{
+			"path": "../speechio"
+		},
+		{
+			"path": "." /* the great game itself */
+		},
+		{
+			"path": "../walkmap"
+		},
+		{
+			"path": "../wherefore-art-thou"
+>>>>>>> develop
 		}
 	],
 	"settings": {
