@@ -11,21 +11,14 @@
           :output-path "docs/codox"
           :source-uri "https://github.com/simon-brooke/the-great-game/blob/master/{filepath}#L{line}"}
   :cucumber-feature-paths ["test/features/"]
-  :dependencies [
-  ;; sadly it seems SQL Korma is dead. I'm experimenting with Honey SQL, 
+  :dependencies [;; sadly it seems SQL Korma is dead. I'm experimenting with Honey SQL, 
   ;; but this is not a final decision yet.
-                 [com.github.seancorfield/honeysql "2.6.1126"] 
+                 [com.github.seancorfield/honeysql "2.6.1126"]
                  [com.github.seancorfield/next.jdbc "1.3.925"]
-<<<<<<< HEAD
-                 [com.simsilica/lemur "1.16.1-SNAPSHOT"]
-                 [com.simsilica/sim-arboreal "1.0.1-SNAPSHOT"]
-                 ;; [com.taoensso/timbre "6.5.0"]
-                 [com.taoensso/telemere "1.0.0-beta3"] ;; Peter Taoussanis' new replacement for Timbre
-=======
                  [com.simsilica/lemur "1.16.0"]
-                 ;; [com.simsilica/sim-arboreal "1.0.1-SNAPSHOT"]
-                 [com.taoensso/timbre "6.5.0"]
->>>>>>> develop
+                 [com.simsilica/sim-arboreal "1.0.1-SNAPSHOT"]
+                                  ;; [com.taoensso/timbre "6.5.0"]
+                 [com.taoensso/telemere "1.0.0-beta3"] ;; Peter Taoussanis' new replacement for Timbre 
                  [environ "1.2.0"]
                  [hiccup "2.0.0-RC3"]
                  [jme-clj "0.1.13"]

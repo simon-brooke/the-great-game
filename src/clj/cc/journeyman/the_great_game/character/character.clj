@@ -5,7 +5,7 @@
    to mean a special character who is part of the news-passing network."
   (:require [cc.journeyman.the-great-game.gossip.gossip :refer [dialogue]]
             [cc.journeyman.the-great-game.agent.agent :refer [ProtoAgent]]
-            [cc.journeyman.the-great-game.character.container :refer [ProtoContainer]]
+            [cc.journeyman.the-great-game.objects.container :refer [ProtoContainer]]
             [clojure.string :as cs :only [join]])
   (:import [clojure.lang IPersistentMap]))
 
