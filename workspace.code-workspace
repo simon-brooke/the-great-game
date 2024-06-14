@@ -2,12 +2,15 @@
 	"folders": [
 		{
 			"path": "../biome"
-		}
+		},
 		{
 			"path": "../GreatGameTerrain"
 		},
 		{
 			"path": "../jme-clj"
+		},
+		{
+			"path": "../jme3-template"
 		},
 		{
 			"path": "../../Documents/fiction/merchants-war-game"
@@ -17,6 +20,9 @@
 		},
 		{
 			"path": "../MicroWorld/mw-parser"
+		},
+		{
+			"path": "../simulated-genetics"
 		},
 		{
 			"path": "../speechio"

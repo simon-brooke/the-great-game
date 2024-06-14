@@ -16,8 +16,8 @@
   ;; but this is not a final decision yet.
                  [com.github.seancorfield/honeysql "2.6.1126"] 
                  [com.github.seancorfield/next.jdbc "1.3.925"]
-                 [com.simsilica/lemur "1.16.1-SNAPSHOT"]
-                 [com.simsilica/sim-arboreal "1.0.1-SNAPSHOT"]
+                 [com.simsilica/lemur "1.16.0"]
+                 ;; [com.simsilica/sim-arboreal "1.0.1-SNAPSHOT"]
                  [com.taoensso/timbre "6.5.0"]
                  [environ "1.2.0"]
                  [hiccup "2.0.0-RC3"]
